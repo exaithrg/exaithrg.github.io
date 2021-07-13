@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 11:46:00" itemprop="dateModified" datetime="2021-07-13T11:46:00+08:00">2021-07-13</time>
+                <time title="修改时间：2021-07-13 11:55:36" itemprop="dateModified" datetime="2021-07-13T11:55:36+08:00">2021-07-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,11 +216,113 @@
 
       
           <h2 id="01"><a href="#01" class="headerlink" title="01"></a>01</h2><p>实验室有一台4通道MSOX3024T，200MHz 5Ga/s。输入为1MΩ 14pF。其user guide可以在<a target="_blank" rel="noopener" href="https://www.keysight.com/cn/zh/support/MSOX3024T/mixed-signal-oscilloscope-200-mhz-4-analog-16-digital-channels.html">MSOX3024T产品主页</a>上下载，<strong>强烈建议先看user guide</strong></p>
-<p>注意，200MHz表示示波器带宽，5GSa/s表示示波器采样率。该采样率代表示波器具备每秒钟采集50亿（$5<em>10^9$）个采样点的能力，此时其采样间隔是0.2纳秒（$2</em>10^{-10}s$）。示波器输入1MΩ 14pF可以等效为如下所示电路：</p>
+<p>注意，200MHz表示示波器带宽，5GSa/s表示示波器采样率。该采样率代表示波器具备每秒钟采集50亿（$5\times10^9$）个采样点的能力，此时其采样间隔是0.2纳秒（$2\times10^{-10}s$）。示波器输入1MΩ 14pF可以等效为如下所示电路：</p>
 <p><img src="/2021/07/07/Oscilloscope/001.png" alt="示波器输入端等效"></p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/07/Oscilloscope/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/blogmaintenance/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/07/blogmaintenance/" class="post-title-link" itemprop="url">博客日常维护记录</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-07 21:31:11" itemprop="dateCreated datePublished" datetime="2021-07-07T21:31:11+08:00">2021-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-13 11:55:21" itemprop="dateModified" datetime="2021-07-13T11:55:21+08:00">2021-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>有空就写写</p>
+<p><strong>21.07.13</strong></p>
+<ul>
+<li><p>执行了</p>
+<figure class="highlight ada"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">npm uninstall hexo-renderer-marked <span class="comment">--save</span></span><br><span class="line">npm install hexo-renderer-kramed <span class="comment">--save</span></span><br></pre></td></tr></table></figure>
+<p>和对node_modules\kramed\lib\rules\inline.js的escape、em的修改，在 Next 主题中开启了 MathJax 开关并在Oscilloscope的Front-matter里打开了MathJax，即mathjax: true，从而保证公式正常显示。注意乘号应使用<code>\times</code>而不是星号，否则会出bug。</p>
+</li>
+</ul>
+<hr>
+<p><strong>21.07.12</strong></p>
+<ul>
+<li>发现<a target="_blank" rel="noopener" href="https://github.com/njughr/njughr.github.io/blob/master/2021/07/06/AltiumDesigner/ADrun.png在博客里无法正常显示的问题。原则上，只要hexo">https://github.com/njughr/njughr.github.io/blob/master/2021/07/06/AltiumDesigner/ADrun.png在博客里无法正常显示的问题。原则上，只要hexo</a> s能正常显示就不用管。</li>
+</ul>
+<hr>
+<p><strong>21.07.10</strong></p>
+<ul>
+<li><p>修改了_config.yml，将post_asset_folder改为true，方便在文章中插入图片。执行了<code>npm install https://github.com/7ym0n/hexo-asset-image --save</code>，但是出现了如下报错：</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code 128</span><br><span class="line">npm ERR! Command failed: git clone --mirror -q https://github.com/7ym0n/hexo-asset-image.git C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\R</span>oaming<span class="symbol">\n</span>pm-cache<span class="symbol">\_</span>cacache<span class="symbol">\t</span>mp<span class="symbol">\g</span>it-clone-a9d2a397<span class="symbol">\.</span>git --config core.longpaths=true</span><br><span class="line">npm ERR! warning: templates not found in C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\T</span>emp<span class="symbol">\p</span>acote-git-template-tmp<span class="symbol">\g</span>it-clone-eb194c4b</span><br><span class="line">npm ERR! fatal: unable to access &#x27;https://github.com/7ym0n/hexo-asset-image.git/&#x27;: OpenSSL SSL_read: Connection was reset, errno 10054</span><br><span class="line">npm ERR!</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\R</span>oaming<span class="symbol">\n</span>pm-cache<span class="symbol">\_</span>logs<span class="symbol">\2</span>021-07-10T11_17_38_295Z-debug.log</span><br></pre></td></tr></table></figure>
+<p>应该是网络问题。过段时间就好了。</p>
+</li>
+<li><p>执行<code>hexo d</code>时多次出现以下问题：</p>
+<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FATAL &#123; <span class="attribute">objects</span>:  13% (7/52)</span><br><span class="line">	err: Error: Spawn failed</span><br><span class="line">		at ChildProcess.&lt;anonymous&gt; (E:\MINE\blog\ghrblog\node_modules\hexo-util\lib\spawn<span class="variable">.js</span>:51:21)</span><br><span class="line">		at ChildProcess<span class="variable">.emit</span> (events<span class="variable">.js</span>:375:28)</span><br><span class="line">		at ChildProcess<span class="variable">.cp</span><span class="variable">.emit</span> (E:\MINE\blog\ghrblog\node_modules\cross-spawn\lib\enoent<span class="variable">.js</span>:34:29)</span><br><span class="line">		at Process<span class="variable">.ChildProcess</span><span class="variable">._handle</span><span class="variable">.onexit</span> (internal/child_process<span class="variable">.js</span>:277:12) &#123;</span><br><span class="line">			code: 130</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo<span class="variable">.io</span>/docs/troubleshooting<span class="variable">.html</span></span><br></pre></td></tr></table></figure></li></ul>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/07/blogmaintenance/" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -662,101 +764,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/07/diaries/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/blogmaintenance/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/paperboat.jpg">
-      <meta itemprop="name" content="Haoran Geng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GHR'Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/07/blogmaintenance/" class="post-title-link" itemprop="url">博客日常维护记录</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-07 21:31:11" itemprop="dateCreated datePublished" datetime="2021-07-07T21:31:11+08:00">2021-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 10:52:26" itemprop="dateModified" datetime="2021-07-12T10:52:26+08:00">2021-07-12</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p>有空就写写</p>
-<hr>
-<p><strong>21.07.12</strong></p>
-<ul>
-<li>发现<a target="_blank" rel="noopener" href="https://github.com/njughr/njughr.github.io/blob/master/2021/07/06/AltiumDesigner/ADrun.png在博客里无法正常显示的问题">https://github.com/njughr/njughr.github.io/blob/master/2021/07/06/AltiumDesigner/ADrun.png在博客里无法正常显示的问题</a></li>
-</ul>
-<hr>
-<p><strong>21.07.10</strong></p>
-<ul>
-<li><p>修改了_config.yml，将post_asset_folder改为true，方便在文章中插入图片。执行了<code>npm install https://github.com/7ym0n/hexo-asset-image --save</code>，但是出现了如下报错：</p>
-<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">npm ERR! code 128</span><br><span class="line">npm ERR! Command failed: git clone --mirror -q https://github.com/7ym0n/hexo-asset-image.git C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\R</span>oaming<span class="symbol">\n</span>pm-cache<span class="symbol">\_</span>cacache<span class="symbol">\t</span>mp<span class="symbol">\g</span>it-clone-a9d2a397<span class="symbol">\.</span>git --config core.longpaths=true</span><br><span class="line">npm ERR! warning: templates not found in C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\L</span>ocal<span class="symbol">\T</span>emp<span class="symbol">\p</span>acote-git-template-tmp<span class="symbol">\g</span>it-clone-eb194c4b</span><br><span class="line">npm ERR! fatal: unable to access &#x27;https://github.com/7ym0n/hexo-asset-image.git/&#x27;: OpenSSL SSL_read: Connection was reset, errno 10054</span><br><span class="line">npm ERR!</span><br><span class="line"></span><br><span class="line">npm ERR! A complete log of this run can be found in:</span><br><span class="line">npm ERR!     C:<span class="symbol">\U</span>sers<span class="symbol">\H</span>eX_ReG<span class="symbol">\A</span>ppData<span class="symbol">\R</span>oaming<span class="symbol">\n</span>pm-cache<span class="symbol">\_</span>logs<span class="symbol">\2</span>021-07-10T11_17_38_295Z-debug.log</span><br></pre></td></tr></table></figure>
-<p>应该是网络问题。过段时间就好了。</p>
-</li>
-<li><p>执行<code>hexo d</code>时多次出现以下问题：</p>
-<figure class="highlight roboconf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">FATAL &#123; <span class="attribute">objects</span>:  13% (7/52)</span><br><span class="line">	err: Error: Spawn failed</span><br><span class="line">		at ChildProcess.&lt;anonymous&gt; (E:\MINE\blog\ghrblog\node_modules\hexo-util\lib\spawn<span class="variable">.js</span>:51:21)</span><br><span class="line">		at ChildProcess<span class="variable">.emit</span> (events<span class="variable">.js</span>:375:28)</span><br><span class="line">		at ChildProcess<span class="variable">.cp</span><span class="variable">.emit</span> (E:\MINE\blog\ghrblog\node_modules\cross-spawn\lib\enoent<span class="variable">.js</span>:34:29)</span><br><span class="line">		at Process<span class="variable">.ChildProcess</span><span class="variable">._handle</span><span class="variable">.onexit</span> (internal/child_process<span class="variable">.js</span>:277:12) &#123;</span><br><span class="line">			code: 130</span><br><span class="line">	&#125;</span><br><span class="line">&#125; </span><br><span class="line">Something&#x27;s wrong. Maybe you can find the solution here: %s https://hexo<span class="variable">.io</span>/docs/troubleshooting<span class="variable">.html</span></span><br></pre></td></tr></table></figure></li></ul>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/07/blogmaintenance/" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
