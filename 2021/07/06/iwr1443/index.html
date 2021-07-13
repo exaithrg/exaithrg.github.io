@@ -20,15 +20,15 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="TI毫米波雷达IWR1443的使用笔记​">
+  <meta name="description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西： E:\CONTESTS\ciciec_2021\GUIDES FMCW_精度分析.pptx 0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf 1_Range_Resoluation_FMCW_Radar.pdf 3_Frequency_Estimator.pdf 雷达原理.pdf DB60M34">
 <meta property="og:type" content="article">
 <meta property="og:title" content="雷达应用笔记">
 <meta property="og:url" content="https://njughr.github.io/2021/07/06/iwr1443/index.html">
 <meta property="og:site_name" content="GHR&#39;Blog">
-<meta property="og:description" content="TI毫米波雷达IWR1443的使用笔记​">
+<meta property="og:description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西： E:\CONTESTS\ciciec_2021\GUIDES FMCW_精度分析.pptx 0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf 1_Range_Resoluation_FMCW_Radar.pdf 3_Frequency_Estimator.pdf 雷达原理.pdf DB60M34">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2021-07-06T13:15:58.000Z">
-<meta property="article:modified_time" content="2021-07-12T09:10:55.553Z">
+<meta property="article:modified_time" content="2021-07-13T12:46:27.921Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="RADAR">
 <meta property="article:tag" content="MCU">
@@ -198,7 +198,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-12 17:10:55" itemprop="dateModified" datetime="2021-07-12T17:10:55+08:00">2021-07-12</time>
+                <time title="修改时间：2021-07-13 20:46:27" itemprop="dateModified" datetime="2021-07-13T20:46:27+08:00">2021-07-13</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -221,8 +221,38 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="TI毫米波雷达IWR1443的使用笔记"><a href="#TI毫米波雷达IWR1443的使用笔记" class="headerlink" title="TI毫米波雷达IWR1443的使用笔记"></a>TI毫米波雷达IWR1443的使用笔记</h1><p>​    </p>
+        <h1 id="TI毫米波雷达IWR1443的使用笔记"><a href="#TI毫米波雷达IWR1443的使用笔记" class="headerlink" title="TI毫米波雷达IWR1443的使用笔记"></a>TI毫米波雷达IWR1443的使用笔记</h1><p>需要看的东西：</p>
+<p><strong>E:\CONTESTS\ciciec_2021\GUIDES</strong></p>
+<p>FMCW_精度分析.pptx</p>
+<p>0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf</p>
+<p>1_Range_Resoluation_FMCW_Radar.pdf</p>
+<p>3_Frequency_Estimator.pdf</p>
+<p>雷达原理.pdf</p>
+<p>DB60M34A6435V1毫米波雷达核心板说明.pdf</p>
+<p>iwr6843.pdf</p>
+<p>毫米波雷达核心板开发平台建立及例程演示.pdf</p>
+<p>原始ADC数据获取流程及数据结构.pdf</p>
+<p>iwr1443.pdf</p>
+<p>毫米波传感技术基础_zhcy075.pdf</p>
+<p>用户指南_DCA1000EVM.pdf</p>
+<p>用户指南_IWR1443BOOST.pdf</p>
+<p>mmwave_sdk_user_guide.pdf</p>
 <span id="more"></span>
+<h2 id="用户指南-IWR1443BOOST-pdf"><a href="#用户指南-IWR1443BOOST-pdf" class="headerlink" title="用户指南_IWR1443BOOST.pdf"></a>用户指南_IWR1443BOOST.pdf</h2><ul>
+<li>电源线不能超过3m</li>
+</ul>
+<h2 id="DB60M34A6435V1毫米波雷达核心板说明-pdf"><a href="#DB60M34A6435V1毫米波雷达核心板说明-pdf" class="headerlink" title="DB60M34A6435V1毫米波雷达核心板说明.pdf"></a>DB60M34A6435V1毫米波雷达核心板说明.pdf</h2><blockquote>
+<p>此核心板是没有本公司提供的特制算法程序的，但是其内部的程序可以参考TI的官方例程（具有诸多的参考例程），不但可以进行例程演示，还可以通过CCS查看例程的源代码甚至在此基础上做进一步的修改开发，具体获得例程的方法请查阅TI官网。</p>
+<p>这个核心板是一个最小的雷达系统，如果想要跑TI的例程，需要配套本公司的DBMMDEBUG调试板，这个调试板通过排针与核心板连接，两个板子组成一套基本上可以跑TI的所有例程，这个DBMMDEBUG调试板是XDS110仿真器，可以直接通过CCS进行程序的在线仿真，所以这里也不需要再购买TI的其他JTAG仿真器。</p>
+<p>这个核心板为了减小体积以及降低成本，内部并没有将LVDS高速数据接口引出来，而引出来的串行接口如SPI、UART、CAN等，其传输速度较低不能满足实时ADC原始数据的输出，所以这个核心板不能实时获得ADC的原始数据，但是如果您对原始ADC数据的实时性没有要求，可以使用此核心板的串行接口慢慢打印原始ADC数据，这里举个使用UART打印原始ADC数据的例子，通过更改IWR6843内部程序，可以将ADC转换的数据存储到内部的L3 RAM中，这里假设ADC数据占用了全部的L3 RAM即768KB，UART波特率为921600bps，将所有ADC数据传输出来所花费的时间大致为768<em>1024</em>10/921600≈8.54s（这里乘以10是因为串口发送有起始和停止位）。如果使用SPI进行传输的话，这里假设使用SPI的CLK为50MHz，打印所有ADC数据所花时间大致为768<em>1024</em>8/50000000≈0.126s。所以只要对ADC数据的实时性没有要求的话，也是可以通过更改内部程序以及接口，实现原始ADC数据的输出。</p>
+<p>客户可以自己根据供电的电源、通信接口自行设计底板（替代XDS110调试板），具体的接口说明后文会详细解释，用户根据核心板的尺寸、接口（使用UART、SPI或者是CAN等都可以）、系统电源（12V、5V）等设计好底板后，可以直接将核心板装上使用，注意一些接口以及电源一定符合核心板要求，如果可以的话本公司可以帮忙检查设计的底板。</p>
+<p>为了避免核心板损坏，请严格注意以下几点：其一就是供电电压，一定不能使用超限的电源进行供电；其二是插拔核心板时一定要对系统断电；其三插拔核心板时要对齐排针和排母，不能错位插入，细心检查后再给系统上电（因为此核心板使用了防呆的排针，所以排针排母不对齐插入的现象应该不会再发生）；其四是测试过程中尽量不要用手触碰天线，可以的话请使用放电手环。</p>
+<p>DB60M34A6435V1毫米波雷达核心板内部已经处理好了SOP0、SOP1、SOP2的默认状态，其中SOP0=1，SOP1=0，SOP2=0，其中SOP2通过排针引出，这里只能改变SOP2的状态，从而改变相应的运行模式。SOP2=0，雷达从Flash读取程序并正常运行；SOP2=1，UART向Flash烧程序。</p>
+</blockquote>
+<h2 id="iwr6843-pdf"><a href="#iwr6843-pdf" class="headerlink" title="iwr6843.pdf"></a>iwr6843.pdf</h2><blockquote>
+<p>IWR6843：1.75MB，分为 MSS 程序 RAM (512KB)、MSS 数据 RAM (192KB)、DSP L1 RAM (64KB) 和 L2 RAM (256KB) 以及 L3 雷达数据立方体 RAM (768KB)</p>
+</blockquote>
+<h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p>L3 RAM: 384KB</p>
 <hr>
 <p><strong>参考</strong>：</p>
 <ol>
@@ -333,7 +363,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-IWR1443BOOST-pdf"><span class="nav-number">1.1.</span> <span class="nav-text">用户指南_IWR1443BOOST.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB60M34A6435V1%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E8%AF%B4%E6%98%8E-pdf"><span class="nav-number">1.2.</span> <span class="nav-text">DB60M34A6435V1毫米波雷达核心板说明.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr6843-pdf"><span class="nav-number">1.3.</span> <span class="nav-text">iwr6843.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf"><span class="nav-number">1.4.</span> <span class="nav-text">iwr1443.pdf</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
