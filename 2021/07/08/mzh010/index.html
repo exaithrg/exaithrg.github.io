@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/G128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/G32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/G16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="记录MZH010开发板的使用方法等 01 Keil uVision的安装使用源文件见E:\study\SoftwareUserGuides\Keil_uVision。 照抄正点原子的教程：">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MZH010开发板使用记录">
+<meta property="og:url" content="https://njughr.github.io/2021/07/08/mzh010/index.html">
+<meta property="og:site_name" content="GHR&#39;Blog">
+<meta property="og:description" content="记录MZH010开发板的使用方法等 01 Keil uVision的安装使用源文件见E:\study\SoftwareUserGuides\Keil_uVision。 照抄正点原子的教程：">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-07-08T06:42:34.000Z">
+<meta property="article:modified_time" content="2021-07-09T09:09:02.089Z">
+<meta property="article:author" content="Haoran Geng">
+<meta property="article:tag" content="MCU">
+<meta property="article:tag" content="IoT">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="https://njughr.github.io/2021/07/08/mzh010/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>MZH010开发板使用记录 | GHR'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">GHR'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Yesterday is done. Tomorrow never comes. Today is here.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/08/mzh010/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          MZH010开发板使用记录
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-08 14:42:34" itemprop="dateCreated datePublished" datetime="2021-07-08T14:42:34+08:00">2021-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-09 17:09:02" itemprop="dateModified" datetime="2021-07-09T17:09:02+08:00">2021-07-09</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>记录MZH010开发板的使用方法等</strong></p>
+<h2 id="01-Keil-uVision的安装使用"><a href="#01-Keil-uVision的安装使用" class="headerlink" title="01 Keil uVision的安装使用"></a>01 Keil uVision的安装使用</h2><p>源文件见E:\study\SoftwareUserGuides\Keil_uVision。</p>
+<p>照抄正点原子的教程：</p>
+<span id="more"></span>
+<blockquote>
+<p>请按如下顺序安装：</p>
+<p>1，安装mdk_514.exe<br>2，安装Keil.STM32F1xx_DFP.1.0.5.pack<br>3，注册方法：用注册机生成序列号</p>
+</blockquote>
+<p>注册机可以用到2032年，根据Keil官方说法，快过期的时候就会发布截止日期更晚的注册机。</p>
+<h2 id="02-JLINK安装"><a href="#02-JLINK安装" class="headerlink" title="02 JLINK安装"></a>02 JLINK安装</h2><p>双击E:\study\SoftwareUserGuides\ST-LINK-DRIVER\ST-LINKV2 USB driver for Windows 8 10\ST-LINKV2 USB driver for Windows 8\stsw-link006\stlink_winusb_install.bat安装即可，然后就可以在Keil里直接烧录程序了。</p>
+<h2 id="03-阿里云平台"><a href="#03-阿里云平台" class="headerlink" title="03 阿里云平台"></a>03 阿里云平台</h2><p>用户名：nju_test_iot</p>
+<p>控制台-&gt;物联网平台-&gt;公共实例-&gt;设备</p>
+<h2 id="实录"><a href="#实录" class="headerlink" title="实录"></a>实录</h2><ol>
+<li>需要micro USB线一根和JLINK一根。</li>
+<li>MZH010的资料：E:\ICAIS\projects\insulator\MCU</li>
+</ol>
+<h2 id="Keil报错及解决方法"><a href="#Keil报错及解决方法" class="headerlink" title="Keil报错及解决方法"></a>Keil报错及解决方法</h2><h3 id="01"><a href="#01" class="headerlink" title="01"></a>01</h3><p>报错如下：</p>
+<hr>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">Rebuild</span> target &#x27;STM<span class="number">32</span>F<span class="number">103</span>C<span class="number">8</span> MCU&#x27;</span><br><span class="line"><span class="attribute">compiling</span> delay.c...</span><br><span class="line"><span class="attribute">system</span>\src\delay.c(<span class="number">32</span>): warning:  #<span class="number">223</span>-D: function <span class="string">&quot;SysTick_CLKSourceConfig&quot;</span> declared implicitly</span><br><span class="line">        <span class="attribute">SysTick_CLKSourceConfig</span>(SysTick_CLKSource_HCLK_Div<span class="number">8</span>);   //选择外部时钟  HCLK/<span class="number">8</span></span><br><span class="line"><span class="attribute">system</span>\src\delay.c(<span class="number">32</span>): error:  #<span class="number">20</span>: identifier <span class="string">&quot;SysTick_CLKSource_HCLK_Div8&quot;</span> is undefined</span><br><span class="line">        <span class="attribute">SysTick_CLKSourceConfig</span>(SysTick_CLKSource_HCLK_Div<span class="number">8</span>);   //选择外部时钟  HCLK/<span class="number">8</span></span><br><span class="line"><span class="attribute">system</span>\src\delay.c: <span class="number">1</span> warning, <span class="number">1</span> error</span><br></pre></td></tr></table></figure>
+<hr>
+<p>报错原因：pack installer里面的Keil::STM32F1xx_DFP装的是1.0.5，改装2.3.0即可</p>
+<p>感谢anto老师帮忙</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Haoran Geng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://njughr.github.io/2021/07/08/mzh010/" title="MZH010开发板使用记录">https://njughr.github.io/2021/07/08/mzh010/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/MCU/" rel="tag"># MCU</a>
+              <a href="/tags/IoT/" rel="tag"># IoT</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/07/blogmaintenance/" rel="prev" title="博客日常维护记录">
+      <i class="fa fa-chevron-left"></i> 博客日常维护记录
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/08/nbiot/" rel="next" title="华为HCIA-IoT复习">
+      华为HCIA-IoT复习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#01-Keil-uVision%E7%9A%84%E5%AE%89%E8%A3%85%E4%BD%BF%E7%94%A8"><span class="nav-number">1.</span> <span class="nav-text">01 Keil uVision的安装使用</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#02-JLINK%E5%AE%89%E8%A3%85"><span class="nav-number">2.</span> <span class="nav-text">02 JLINK安装</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#03-%E9%98%BF%E9%87%8C%E4%BA%91%E5%B9%B3%E5%8F%B0"><span class="nav-number">3.</span> <span class="nav-text">03 阿里云平台</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%AE%9E%E5%BD%95"><span class="nav-number">4.</span> <span class="nav-text">实录</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Keil%E6%8A%A5%E9%94%99%E5%8F%8A%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95"><span class="nav-number">5.</span> <span class="nav-text">Keil报错及解决方法</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#01"><span class="nav-number">5.1.</span> <span class="nav-text">01</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haoran Geng"
+      src="/images/paperboat.jpg">
+  <p class="site-author-name" itemprop="name">Haoran Geng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/njughr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;njughr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hrgeng@smail.nju.edu.cn" title="E-Mail → mailto:hrgeng@smail.nju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=782125&auto=0&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoran Geng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='105,7,90' opacity='0.6' zIndex='-1' count='100' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

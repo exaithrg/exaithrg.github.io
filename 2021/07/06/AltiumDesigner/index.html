@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/G128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/G32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/G16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="详细的Altium Designer教程，画PCB必备！ 先画个大饼，后面慢慢写。 主要需要写的内容包括：  常用进制转换 Altium Designer常用快捷键 什么是PCB PCB工艺介绍及限制 Altium Designer简介 Altium Designer的安装和破解 准备工作，如安装新语言 怎么画原理图 怎么基于原理图画PCB 怎么直接画PCB 高速PCB的布局布线 寻找库里没有的封">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Altium Designer使用教程">
+<meta property="og:url" content="https://njughr.github.io/2021/07/06/AltiumDesigner/index.html">
+<meta property="og:site_name" content="GHR&#39;Blog">
+<meta property="og:description" content="详细的Altium Designer教程，画PCB必备！ 先画个大饼，后面慢慢写。 主要需要写的内容包括：  常用进制转换 Altium Designer常用快捷键 什么是PCB PCB工艺介绍及限制 Altium Designer简介 Altium Designer的安装和破解 准备工作，如安装新语言 怎么画原理图 怎么基于原理图画PCB 怎么直接画PCB 高速PCB的布局布线 寻找库里没有的封">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/PCBssss.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/01.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/02.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/jingzhe.jpg">
+<meta property="article:published_time" content="2021-07-06T11:17:43.000Z">
+<meta property="article:modified_time" content="2021-07-13T02:49:49.791Z">
+<meta property="article:author" content="Haoran Geng">
+<meta property="article:tag" content="Altium Designer">
+<meta property="article:tag" content="PCB">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/PCBssss.png">
+
+<link rel="canonical" href="https://njughr.github.io/2021/07/06/AltiumDesigner/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Altium Designer使用教程 | GHR'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">GHR'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Yesterday is done. Tomorrow never comes. Today is here.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/AltiumDesigner/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Altium Designer使用教程
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-06 19:17:43" itemprop="dateCreated datePublished" datetime="2021-07-06T19:17:43+08:00">2021-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-13 10:49:49" itemprop="dateModified" datetime="2021-07-13T10:49:49+08:00">2021-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">软件学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <p><strong>详细的Altium Designer教程，画PCB必备！</strong></p>
+<p>先画个大饼，后面慢慢写。</p>
+<p><strong>主要需要写的内容包括：</strong></p>
+<ol>
+<li>常用进制转换</li>
+<li>Altium Designer常用快捷键</li>
+<li>什么是PCB</li>
+<li>PCB工艺介绍及限制</li>
+<li>Altium Designer简介</li>
+<li>Altium Designer的安装和破解</li>
+<li>准备工作，如安装新语言</li>
+<li>怎么画原理图</li>
+<li>怎么基于原理图画PCB</li>
+<li>怎么直接画PCB</li>
+<li>高速PCB的布局布线</li>
+<li>寻找库里没有的封装的方法</li>
+<li>怎么自己画封装</li>
+<li>怎么自己画原理图符号</li>
+<li>如何制作自己的library</li>
+<li>如何在PCB上添加自定义图形</li>
+<li>怎么生成工程的pdf文档</li>
+<li>（可选）如何直接导出Gerber文件</li>
+<li>（可选）PCB工艺流程</li>
+<li>（可选）其他电路板绘制软件</li>
+</ol>
+<span id="more"></span>
+<h1 id="01-常用进制转换"><a href="#01-常用进制转换" class="headerlink" title="01 常用进制转换"></a>01 常用进制转换</h1><p>注意，按<code>q</code>可以在Altium Designer中进行mil和mm的单位转换。但是为了统一起见，建议使用mil。</p>
+<blockquote>
+<p>1mil（密耳） = 0.0254mm = 25.4um</p>
+<p>1mm = 39.37mil</p>
+<p>1um = 0.03937mil</p>
+<p>1in（英寸）= 2.54cm = 1000mil</p>
+<p>1ft（英尺）= 30.48cm</p>
+<p>1oz（盎司）= 28.35g，重量单位</p>
+</blockquote>
+<p>所谓铜厚1oz，指的是1平方英尺的面积上均匀覆盖28.35g（1oz）铜箔时铜箔的厚度。这个值工程上一般来说是35um（1.378mil），<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OZ/17842661">精确计算是34.287um</a>，也就是1.35mil。</p>
+<p>盎司是一个非常乱的单位，既可以表示重量，也可以表示容量，还可以表示长度。盎司和国际单位制之间也难以换算，PCB行业采用盎司只能说是约定俗成。</p>
+<h1 id="02-Altium-Designer常用快捷键"><a href="#02-Altium-Designer常用快捷键" class="headerlink" title="02 Altium Designer常用快捷键"></a>02 Altium Designer常用快捷键</h1><p><strong>PCB Editor：</strong><br><code>鼠标右键</code>取消<br><code>1</code>  切换到规划模式<br><code>2</code>  切换到二维模式<br><code>3</code>  切换到三维模式<br><code>2</code> + <code>1</code> + <code>2</code>     在二维和规划之间切换一遍，可以解决一些选中元件无法取消选中、测量线去不掉等问题<br><code>Ctrl</code> + <code>W</code> 交互式布线<br><code>Ctrl</code>+<code>G</code>打开栅格编辑器<br><code>Shift</code> + <code>Space</code> 切换布线方式<br><code>Shift</code> + <code>C</code>  清除Mask（过滤器）<br><code>Shift</code>+<code>S</code>  单层编辑及显示<br><code>g</code> 网格设置，可以提高或降低布线精度<br><code>l</code> 层显示设置（关闭绿色）<br><code>q</code> mil和mm切换<br><code>d</code>+<code>c</code> 打开classes<br><code>p</code>+<code>g</code> 铺铜<br><code>d</code>+<code>r</code> 打开规则设置窗口<br><code>d</code>+<code>n</code>+<code>n</code> edit nets<br><code>e</code>+<code>j</code>+<code>c</code> 搜索器件<br><code>j</code>+<code>c</code>选器件<br><code>t</code>+<code>e</code>滴泪<br>布线时按<code>+</code>/<code>-</code> 打过孔换层<br>布线时按<code>TAB</code> 直接修改当前走线线宽<br>选中某条线后按<code>TAB</code>    选中当前Net的所有线<br>design rule check所显示的白线带着双斜线划掉，说明没有布通<br>右侧<code>library</code>库找不到了，在窗口右下角点击<code>Panels</code>，打开<code>Components</code>窗口即可</p>
+<p><strong>如何选中原理图的同时选中PCB上相对应的元件（交叉选择）？</strong><br><strong>方法一：</strong>单击选中原理图中元器件，然后单击<code>tools</code>&gt;<code>Seclect PCBcomponents</code>,即可在PCB中看到该器件的高亮显示；<br><strong>方法二：</strong>单击<code>Tools</code>&gt;<code>Cross Select Mode</code>，或用快捷键<code>Ctrl</code>+<code>Shift</code>+<code>X</code>键，然后在原理图中单击任意器件，在PCB中都可高亮。<br><strong>方法三：</strong><code>Tools</code>&gt;<code>Cross Probe</code>，按<code>Ctrl</code>，然后选中某个元器件，就可以跳到相应原理图或PCB的元器件位置</p>
+<h1 id="03-什么是PCB"><a href="#03-什么是PCB" class="headerlink" title="03 什么是PCB"></a>03 什么是PCB</h1><p>PCB（Printed Circuit Board），中文名称为印制电路板，又称印刷线路板，是重要的电子部件，是电子元器件的支撑体，是电子元器件电气相互连接的载体。由于它是采用电子印刷术制作的，故被称为“印刷”电路板。PCB有很多种，如下图所示：</p>
+<p><img src="/2021/07/06/AltiumDesigner/PCBssss.png" alt="几款PCB"></p>
+<p>详见<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/PCB/146397">印制电路板 百度百科</a></p>
+<h1 id="04-PCB工艺介绍及限制"><a href="#04-PCB工艺介绍及限制" class="headerlink" title="04 PCB工艺介绍及限制"></a>04 PCB工艺介绍及限制</h1><p>了解PCB工艺最好的方法是用不同的工艺做多片PCB直接看它们的区别，其次是去厂商的网店看说明，淘宝在线客服也可以起到很好的辅助作用。下面给出几个PCB制作厂家的对外门户，也是比较好的PCB工艺学习网站：</p>
+<p><a target="_blank" rel="noopener" href="https://jiepei.tmall.com/shop/view_shop.htm">捷配淘宝店铺</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jiepei.com/pcbonlinenew.html">捷配官网在线计价</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zxhgroup.com/pcbproduce.html">立创PCB在线下单</a></p>
+<p>一般来讲，双层板，FR-4板材，1.6板厚，绿油白字，过孔盖油是默认工艺。</p>
+<p>在PCB绘制过程中，有很多design rules必须遵守。较为常规的工艺限制如下，按照如下限制绘制的PCB一般厂家都可以生产：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>项目</th>
+<th>工艺限制</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>线宽线距</td>
+<td>0.15mm   6mil   （注，部分厂家要求铺铜与其余布线间距不低于8mil）</td>
+</tr>
+<tr>
+<td>过孔内径</td>
+<td>0.3mm     12mil （注，部分厂家可以做到0.25mm也就是10mil，但一般需要加不少钱）</td>
+</tr>
+<tr>
+<td>过孔外径</td>
+<td>0.6mm     24mil （注，部分厂家可以做到20mil）</td>
+</tr>
+<tr>
+<td>内外径之差</td>
+<td>0.15mm   6mil</td>
+</tr>
+<tr>
+<td>最小字符宽度</td>
+<td>0.15mm   6mil</td>
+</tr>
+<tr>
+<td>最小字符高度</td>
+<td>0.8mm     32mil</td>
+</tr>
+<tr>
+<td>标准字符宽高比</td>
+<td>1:5</td>
+</tr>
+<tr>
+<td>过孔间距</td>
+<td>0.4mm     16mil</td>
+</tr>
+<tr>
+<td>过孔到线</td>
+<td>0.25mm   10mil</td>
+</tr>
+<tr>
+<td>插件孔间距</td>
+<td>0.55mm   22mil</td>
+</tr>
+<tr>
+<td>插件孔到线</td>
+<td>0.4mm     16mil</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>以上表格仅供参考，具体限制请直接咨询厂家。例如捷配的工艺限制可以在<a target="_blank" rel="noopener" href="https://jiepei.tmall.com/shop/view_shop.htm">捷配淘宝店铺</a>和<a target="_blank" rel="noopener" href="https://www.jiepei.com/pcbonlinenew.html">捷配官网在线计价</a>两个平台找到。</p>
+<h1 id="05-Altium-Designer简介"><a href="#05-Altium-Designer简介" class="headerlink" title="05 Altium Designer简介"></a>05 Altium Designer简介</h1><p>Altium Designer 代表了数十年的创新和发展，致力于创建一个真正统一的设计环境，使用户能够轻松连接到印刷电路板设计过程的各个方面。本教程基于Altium Designer 2020。</p>
+<p>Altium Designer 在功能强大和易用性之间取得了完美的平衡，已成为市场上应用最广泛的印刷电路板设计解决方案。</p>
+<p>下图展示了Altium Designer的启动界面</p>
+<p><img src="/2021/07/06/AltiumDesigner/01.png" alt="AD启动"></p>
+<p>下图展示了Altium Designer打开工程后的界面</p>
+<p><img src="/2021/07/06/AltiumDesigner/02.png" alt="AD界面"></p>
+<p><strong>更多信息参见<a target="_blank" rel="noopener" href="https://www.altium.com.cn/altium-designer/">Altium Designer官网</a></strong></p>
+<h1 id="06-Altium-Designer的安装和破解"><a href="#06-Altium-Designer的安装和破解" class="headerlink" title="06 Altium Designer的安装和破解"></a>06 Altium Designer的安装和破解</h1><p>安装包位置：F:\software\AltiumDesigner2020\Altium Designer 2020（WD BLACK）</p>
+<p>首先双击F:\software\AltiumDesigner2020\Altium Designer 2020\setup\AltiumDesigner20Setup.exe安装，注意安装过程中的Shared Documents的路径最好不要修改，否则可能在迁移工程到其他人的电脑上时可能出问题。</p>
+<p>软件主体装好后，打开安装目录，也就是X2.EXE所在的目录，把F:\software\AltiumDesigner2020\Altium Designer 2020\Crack\shfolder.dll复制过去，然后打开安装完毕的AD20，点击Add standlone license file添加注册文件，从F:\software\AltiumDesigner2020\Altium Designer 2020\Crack\Licenses里面随便选一个就行了。</p>
+<p>需要注意的是安装目录和安装包的路径都最好不要出现中文和空格。</p>
+<hr>
+<p><img src="/2021/07/06/AltiumDesigner/jingzhe.jpg" alt="24节气-惊蛰"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Haoran Geng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://njughr.github.io/2021/07/06/AltiumDesigner/" title="Altium Designer使用教程">https://njughr.github.io/2021/07/06/AltiumDesigner/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/Altium-Designer/" rel="tag"># Altium Designer</a>
+              <a href="/tags/PCB/" rel="tag"># PCB</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/06/iwr1443/" rel="next" title="雷达应用笔记">
+      雷达应用笔记 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#01-%E5%B8%B8%E7%94%A8%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">01 常用进制转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#02-Altium-Designer%E5%B8%B8%E7%94%A8%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">2.</span> <span class="nav-text">02 Altium Designer常用快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#03-%E4%BB%80%E4%B9%88%E6%98%AFPCB"><span class="nav-number">3.</span> <span class="nav-text">03 什么是PCB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#04-PCB%E5%B7%A5%E8%89%BA%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%99%90%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">04 PCB工艺介绍及限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#05-Altium-Designer%E7%AE%80%E4%BB%8B"><span class="nav-number">5.</span> <span class="nav-text">05 Altium Designer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#06-Altium-Designer%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3"><span class="nav-number">6.</span> <span class="nav-text">06 Altium Designer的安装和破解</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haoran Geng"
+      src="/images/paperboat.jpg">
+  <p class="site-author-name" itemprop="name">Haoran Geng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/njughr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;njughr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hrgeng@smail.nju.edu.cn" title="E-Mail → mailto:hrgeng@smail.nju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=782125&auto=0&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoran Geng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='105,7,90' opacity='0.6' zIndex='-1' count='100' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>

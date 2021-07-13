@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/G128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/G32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/G16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="GHR’Blog搭建实录记录博客搭建方法，常用操作，所看的资料链接等 基础框架目前看到的较好的Blog： Lei Wang的Blog waterxjw的Blog 上述两个博客均由Hexo驱动，这是一个快速、简洁、高效的博客框架。上述两个博客采用了不同的Hexo Theme所以界面差异很大。本博客的Theme为NexT，这是一个被广泛使用的优雅而功能强大的Hexo主题，在手机端也有比较好的效果。参见">
+<meta property="og:type" content="article">
+<meta property="og:title" content="博客搭建总结帖">
+<meta property="og:url" content="https://njughr.github.io/2021/07/07/blogsetup/index.html">
+<meta property="og:site_name" content="GHR&#39;Blog">
+<meta property="og:description" content="GHR’Blog搭建实录记录博客搭建方法，常用操作，所看的资料链接等 基础框架目前看到的较好的Blog： Lei Wang的Blog waterxjw的Blog 上述两个博客均由Hexo驱动，这是一个快速、简洁、高效的博客框架。上述两个博客采用了不同的Hexo Theme所以界面差异很大。本博客的Theme为NexT，这是一个被广泛使用的优雅而功能强大的Hexo主题，在手机端也有比较好的效果。参见">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/07/07/blogsetup/lichun.jpg">
+<meta property="article:published_time" content="2021-07-07T09:08:21.000Z">
+<meta property="article:modified_time" content="2021-07-13T02:57:34.940Z">
+<meta property="article:author" content="Haoran Geng">
+<meta property="article:tag" content="blog">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://njughr.github.io/2021/07/07/blogsetup/lichun.jpg">
+
+<link rel="canonical" href="https://njughr.github.io/2021/07/07/blogsetup/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>博客搭建总结帖 | GHR'Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">GHR'Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Yesterday is done. Tomorrow never comes. Today is here.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">11</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">4</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/blogsetup/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          博客搭建总结帖
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-07 17:08:21" itemprop="dateCreated datePublished" datetime="2021-07-07T17:08:21+08:00">2021-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-13 10:57:34" itemprop="dateModified" datetime="2021-07-13T10:57:34+08:00">2021-07-13</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="GHR’Blog搭建实录"><a href="#GHR’Blog搭建实录" class="headerlink" title="GHR’Blog搭建实录"></a>GHR’Blog搭建实录</h1><p><strong>记录博客搭建方法，常用操作，所看的资料链接等</strong></p>
+<h2 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h2><p>目前看到的较好的Blog：</p>
+<p><a target="_blank" rel="noopener" href="https://leiblog.wang/">Lei Wang的Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://waterxjw.github.io/">waterxjw的Blog</a></p>
+<p>上述两个博客均由<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>驱动，这是一个快速、简洁、高效的博客框架。上述两个博客采用了不同的<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo Theme</a>所以界面差异很大。本博客的Theme为NexT，这是一个被广泛使用的优雅而功能强大的Hexo主题，在手机端也有比较好的效果。参见<a target="_blank" rel="noopener" href="https://github.com/next-theme">NexT的github项目</a>。</p>
+<p>本博客的搭建首先参考了这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37781304/article/details/82729029">zjufangzh的史上最全hexo搭建教程</a></p>
+<p>安装NexT主题，主要参考了这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">nightmare_dimple的NexT安装教程</a></p>
+<span id="more"></span>
+<p>此时界面还是英文，且tags标签和categories标签是不可用的，可以通过这篇文章的方法修正：</p>
+<p><a target="_blank" rel="noopener" href="http://www.chenlianhan.com/2020/03/20/HEXO-NEXT%E7%95%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">chenlianhan的HEXO+NEXT界面美化教程</a></p>
+<p>值得注意的是，上面这篇文章还给出了将页面字体从默认的微软雅黑改为更好看的思源宋体的方法、编辑博客中的社交软件链接的方法（打开主题配置文件，搜索关键字<code>social</code>）等，是一篇很好的文章，有空可以转过来。</p>
+<p>主要的Hexo命令有下面几条：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">hexo init [folder]</span><br><span class="line">hexo cl (hexo clean)</span><br><span class="line">hexo g  (hexo generate)</span><br><span class="line">hexo s  (hexo server)</span><br><span class="line">hexo d  (hexo deploy)</span><br><span class="line">hexo new &lt;papername&gt;</span><br><span class="line">hexo new page &lt;pagename&gt;</span><br></pre></td></tr></table></figure>
+<p>这些命令的详细作用可以参见<a target="_blank" rel="noopener" href="https://hexo.io/zh-cn/docs/commands.html">Hexo指令</a></p>
+<p>通过以上步骤，基本就可以搭建一个可以使用的博客了。</p>
+<h2 id="继续优化"><a href="#继续优化" class="headerlink" title="继续优化"></a>继续优化</h2><p>推荐一个ico图标文件生成器，本站的站标就是用该生成器生成的：<a target="_blank" rel="noopener" href="https://www.bitbug.net/">比特虫</a></p>
+<p>在侧边栏嵌入网易云音乐播放器的教程：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/d747148cffad">NexT嵌入网易云播放器</a></p>
+<p><strong>修改标题栏背景颜色和侧边栏标签字体颜色的方法：</strong></p>
+<p>我首先参考了<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2a8d399f1266">ChungZH的方法</a>、<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42046850/article/details/90264327">丨漠河以北丨的方法</a>，但是都不好用，原因是我用的NexT太新了，之前的方法失效了。不过NexT开发者已经在github上给出了<a target="_blank" rel="noopener" href="https://github.com/next-theme/hexo-theme-next/issues/4">关于Custom Files的用法说明</a>，摘抄如下：</p>
+<blockquote>
+<p><strong>PR <a target="_blank" rel="noopener" href="https://github.com/theme-next/hexo-theme-next/pull/868">theme-next/hexo-theme-next#868</a> 调整了自定义布局或样式的方式，取消原本主题目录下的自定义文件（例如 <code>_custom/custom.styl</code>），只保留在配置文件中指定自定义文件的方式。</strong> 自定义文件与主题文件分离是个好的实践，这样可以在不修改任何主题原始代码的情况下加入自定义内容；可以避免由于 <code>git merge</code> 产生冲突，同时也允许在通过 <code>npm</code> 安装主题时方便地进行自定义。</p>
+<p>你可以将所有自定义布局或样式放在一个位置特定位置（比如：<code>hexo-site/source/_data</code>），然后取消注释主题配置文件中 <code>custom_file_path</code> 部分下对应的内容（注意文件名与路径要一致），即可完成对于主题的自定义。这个页面提供了几个使用 Custom Files 的例子，例如加载看板娘、修改页面宽度、隐藏 <code>cheers</code> 等等： <a target="_blank" rel="noopener" href="https://theme-next.js.org/docs/advanced-settings/custom-files.html">https://theme-next.js.org/docs/advanced-settings/custom-files.html</a></p>
+</blockquote>
+<p>这个说明和<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/2a8d399f1266">ChungZH的方法</a>相结合就可以使得颜色配置生效。但是，在修改最新NexT版本网站标题栏颜色时只使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.site-meta</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#49b1f5</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>是不够的，必须使用</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="selector-class">.site-brand-container</span> &#123;</span><br><span class="line">    <span class="attribute">background</span>: <span class="number">#69075A</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>之所以发现类名应该使用<code>site-brand-container</code>而不是<code>site-meta</code>，是参考了<a target="_blank" rel="noopener" href="https://blog.wzdxy.com/2018/09/next-theme-edit/">网中的小鱼的方法</a>。同时，该文章还给出了修改菜单配色的方法，具体改法请参考<a target="_blank" rel="noopener" href="https://github.com/wzdxy/hexo-theme-next/commit/2b16e66ed5870393447368813122b8a2fc2891a5">wzdxy的github update</a>。</p>
+<p><strong>文章按更新日期而不是创建日期排序的方法：</strong></p>
+<p><a target="_blank" rel="noopener" href="https://sevming.github.io/Hexo/hexo-custom-post-collation.html">sevming的方法</a> <a target="_blank" rel="noopener" href="https://gsy00517.github.io/hexo20200207151318/">gsy00517的方法</a> 都不是特别好用，主要是他们说要调整很多东西，比较烦</p>
+<p>建议看<a target="_blank" rel="noopener" href="https://aiellochan.com/2018/02/13/hexo/Hexo-%E6%96%87%E7%AB%A0%E6%8C%89%E7%85%A7%E6%9B%B4%E6%96%B0%E6%97%B6%E9%97%B4%E6%8E%92%E5%BA%8F/">aiellochan的方法</a>，这个方法只需要把配置文件的-date改为-updated</p>
+<p><strong>添加<code>阅读全文</code>按钮的方法</strong></p>
+<p>，<code>auto_excerpt</code>功能在v7.6.0版本中就已经被移除了。引用如下：</p>
+<blockquote>
+<p>自 7.6.0 版本开始，<code>auto_excerpt</code> 功能被移除，因为按照字数截断文章，必须先移除其中的 HTML 标签，这将导致图片、代码块无法显示等一系列问题；并且，它也并不属于 Hexo 主题应当负责的内容。我们推荐通过 <code>&lt;!-- more --&gt;</code> 来精确控制 Read More 的位置；或者设置 <code>excerpt_description</code> 然后为每篇文章指定 <code>description</code>。当然，也可以自行安装第三方插件。</p>
+</blockquote>
+<p>进一步解决点开<code>阅读全文</code>后被定位至 more 标签，也就是文章被截头的问题：<a target="_blank" rel="noopener" href="https://www.v2ex.com/t/691354">v2ex上的求助</a> <a target="_blank" rel="noopener" href="https://blog.csdn.net/weizhixiang/article/details/105112467">weizhixiang的方法</a></p>
+<p><strong>在博文中插入图片的方法</strong></p>
+<p>参见<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_30734435/article/details/98497054">weixin_30734435的方法</a>和<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">DCBXZ的方法</a></p>
+<p>总结如下：</p>
+<ol>
+<li>用<code>npm install https://github.com/7ym0n/hexo-asset-image --save</code>命令安装插件；</li>
+<li>按<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/f72aaad7b852">DCBXZ的方法</a>继续进行即可。插入图片时采用类似AltiumDesigner/PCBssss.png的格式即可。</li>
+</ol>
+<p><strong>解决数学公式无法正常显示的方法</strong></p>
+<p>参见<a target="_blank" rel="noopener" href="https://blog.csdn.net/yexiaohhjk/article/details/82526604">yexiaohhjk的方法</a></p>
+<hr>
+<p><strong>附：</strong></p>
+<p>南大紫颜色数据：<code>#69075A</code>; <code>R105G7B90</code>; <code>E206S210L53</code>; <code>C50M100Y0K40</code>. 来源：<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8D%97%E5%A4%A7%E7%B4%AB">南大紫 百度百科</a></p>
+<hr>
+<p><img src="/2021/07/07/blogsetup/lichun.jpg" alt="24节气-春分"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Haoran Geng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://njughr.github.io/2021/07/07/blogsetup/" title="博客搭建总结帖">https://njughr.github.io/2021/07/07/blogsetup/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/blog/" rel="tag"># blog</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/06/iwr1443/" rel="prev" title="雷达应用笔记">
+      <i class="fa fa-chevron-left"></i> 雷达应用笔记
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/07/diaries/" rel="next" title="随记^_^">
+      随记^_^ <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#GHR%E2%80%99Blog%E6%90%AD%E5%BB%BA%E5%AE%9E%E5%BD%95"><span class="nav-number">1.</span> <span class="nav-text">GHR’Blog搭建实录</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E7%A1%80%E6%A1%86%E6%9E%B6"><span class="nav-number">1.1.</span> <span class="nav-text">基础框架</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%A7%E7%BB%AD%E4%BC%98%E5%8C%96"><span class="nav-number">1.2.</span> <span class="nav-text">继续优化</span></a></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haoran Geng"
+      src="/images/paperboat.jpg">
+  <p class="site-author-name" itemprop="name">Haoran Geng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">4</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">11</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/njughr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;njughr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hrgeng@smail.nju.edu.cn" title="E-Mail → mailto:hrgeng@smail.nju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=782125&auto=0&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoran Geng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='105,7,90' opacity='0.6' zIndex='-1' count='100' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
