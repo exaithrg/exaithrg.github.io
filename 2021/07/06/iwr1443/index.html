@@ -27,12 +27,15 @@
 <meta property="og:site_name" content="GHR&#39;Blog">
 <meta property="og:description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西： E:\CONTESTS\ciciec_2021\GUIDES FMCW_精度分析.pptx 0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf 1_Range_Resoluation_FMCW_Radar.pdf 3_Frequency_Estimator.pdf 雷达原理.pdf DB60M34">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/JIAOCUO.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/guyu.jpg">
 <meta property="article:published_time" content="2021-07-06T13:15:58.000Z">
-<meta property="article:modified_time" content="2021-07-13T12:46:27.921Z">
+<meta property="article:modified_time" content="2021-07-14T04:05:38.051Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="RADAR">
 <meta property="article:tag" content="MCU">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://njughr.github.io/2021/07/06/iwr1443/JIAOCUO.png">
 
 <link rel="canonical" href="https://njughr.github.io/2021/07/06/iwr1443/">
 
@@ -198,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 20:46:27" itemprop="dateModified" datetime="2021-07-13T20:46:27+08:00">2021-07-13</time>
+                <time title="修改时间：2021-07-14 12:05:38" itemprop="dateModified" datetime="2021-07-14T12:05:38+08:00">2021-07-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -237,6 +240,13 @@
 <p>用户指南_DCA1000EVM.pdf</p>
 <p>用户指南_IWR1443BOOST.pdf</p>
 <p>mmwave_sdk_user_guide.pdf</p>
+<p>mmwave Rader Device ADC Raw Data Capture.pdf</p>
+<p>bin文件数据格式.pptx</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xiao_Jie123/article/details/112028352">Xiaojie雷达之路—-TI实战笔记—-对AWR1843+DCA1000采集的数据进行解析</a></p>
+<p>mmWave Demo Setup Guide</p>
+<p>mmWave SDK User’s Guide</p>
+<p>mmwave Studio User’s Guide</p>
+<p>mmwave Radar Device ADC Raw Data Capture（参考文章）</p>
 <span id="more"></span>
 <h2 id="用户指南-IWR1443BOOST-pdf"><a href="#用户指南-IWR1443BOOST-pdf" class="headerlink" title="用户指南_IWR1443BOOST.pdf"></a>用户指南_IWR1443BOOST.pdf</h2><ul>
 <li>电源线不能超过3m</li>
@@ -253,6 +263,16 @@
 <p>IWR6843：1.75MB，分为 MSS 程序 RAM (512KB)、MSS 数据 RAM (192KB)、DSP L1 RAM (64KB) 和 L2 RAM (256KB) 以及 L3 雷达数据立方体 RAM (768KB)</p>
 </blockquote>
 <h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p>L3 RAM: 384KB</p>
+<h2 id="bin文件数据格式-pptx"><a href="#bin文件数据格式-pptx" class="headerlink" title="bin文件数据格式.pptx"></a>bin文件数据格式.pptx</h2><p>在得到bin文件之后，每个bin文件的大小均为16384KB。</p>
+<p>原始数据字节大小=32*128*256*2*2*4=16777216字节=16348K字节</p>
+<p>数据包有32个帧（frame）；一帧有128个chirp；一个chirp采256个点；一个采样点16bit；一个接收天线分为I/Q两路采集；4个接收天线。</p>
+<p>驱动代码如下，截取自mmwave Rader Device ADC Raw Data Capture.pdf。</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line">%%% This <span class="keyword">script</span> <span class="keyword">is</span> used <span class="keyword">to</span> <span class="built_in">read</span> <span class="keyword">the</span> binary <span class="built_in">file</span> produced <span class="keyword">by</span> <span class="keyword">the</span> DCA1000</span><br><span class="line">%%% <span class="keyword">and</span> Mmwave Studio</span><br><span class="line">%%% Command <span class="keyword">to</span> <span class="built_in">run</span> <span class="keyword">in</span> Matlab GUI - readDCA1000(&#x27;&lt;ADC capture bin <span class="built_in">file</span>&gt;&#x27;)</span><br><span class="line"></span><br><span class="line">function [retVal] = readDCA1000(fileName)</span><br><span class="line">%% <span class="keyword">global</span> variables</span><br><span class="line">% change based <span class="keyword">on</span> sensor config</span><br><span class="line">numADCBits = <span class="number">16</span>; % <span class="built_in">number</span> <span class="keyword">of</span> ADC bits per sample</span><br><span class="line">numLanes = <span class="number">4</span>; % do <span class="keyword">not</span> change. <span class="built_in">number</span> <span class="keyword">of</span> lanes <span class="keyword">is</span> always <span class="number">4</span> even <span class="keyword">if</span> only <span class="number">1</span> lane <span class="keyword">is</span> used. unused lanes</span><br><span class="line">isReal = <span class="number">0</span>; % <span class="keyword">set</span> <span class="keyword">to</span> <span class="number">1</span> <span class="keyword">if</span> <span class="built_in">real</span> only data, <span class="number">0</span> <span class="keyword">if</span> complex dataare populated <span class="keyword">with</span> <span class="number">0</span> </span><br><span class="line"></span><br><span class="line">%% <span class="built_in">read</span> <span class="built_in">file</span> <span class="keyword">and</span> convert <span class="keyword">to</span> signed <span class="built_in">number</span></span><br><span class="line">% <span class="built_in">read</span> .bin <span class="built_in">file</span></span><br><span class="line">fid = fopen(fileName,&#x27;r&#x27;);</span><br><span class="line">% DCA1000 should <span class="built_in">read</span> <span class="keyword">in</span> two&#x27;s complement data</span><br><span class="line">adcData = fread(fid, &#x27;int16&#x27;);</span><br><span class="line">% <span class="keyword">if</span> <span class="number">12</span> <span class="keyword">or</span> <span class="number">14</span> bits ADC per sample compensate <span class="keyword">for</span> sign extension</span><br><span class="line"><span class="keyword">if</span> numADCBits ~= <span class="number">16</span></span><br><span class="line">	l_max = <span class="number">2</span>^(numADCBits<span class="number">-1</span>)<span class="number">-1</span>;</span><br><span class="line">	adcData(adcData &gt; l_max) = adcData(adcData &gt; l_max) - <span class="number">2</span>^numADCBits;</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">fclose(fid);</span><br><span class="line"></span><br><span class="line">%% organize data <span class="keyword">by</span> LVDS lane</span><br><span class="line">% <span class="keyword">for</span> <span class="built_in">real</span> only data</span><br><span class="line"><span class="keyword">if</span> isReal</span><br><span class="line">	% reshape data based <span class="keyword">on</span> one samples per LVDS lane</span><br><span class="line">	adcData = reshape(adcData, numLanes, []);</span><br><span class="line">%<span class="keyword">for</span> complex data</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">	% reshape <span class="keyword">and</span> combine <span class="built_in">real</span> <span class="keyword">and</span> imaginary parts <span class="keyword">of</span> complex <span class="built_in">number</span></span><br><span class="line">	adcData = reshape(adcData, numLanes*<span class="number">2</span>, []);</span><br><span class="line">	adcData = adcData([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>],:) + sqrt(<span class="number">-1</span>)*adcData([<span class="number">5</span>,<span class="number">6</span>,<span class="number">7</span>,<span class="number">8</span>],:);</span><br><span class="line"><span class="keyword">end</span></span><br><span class="line">%% <span class="literal">return</span> receiver data</span><br><span class="line">retVal = adcData;</span><br></pre></td></tr></table></figure>
+<p>ADC是16位，4个接收天线（4路），adc data是16位int数以int16读入16777216字节，也就是8,388,608个数，故adcData刚开始是8388608x1；reshape后，每8个数据为一组，分了1048576组，也就是成了一个8x1048576的数据矩阵。readDCA1000()函数获取得到的数据矩阵为：4x1048576;其中4代表四个接收端；每一行的排列顺序为：先frame1的所有chirp，再frame2，类推到frame32。其中每一frame共有128个chirp，一个chirp是256个点；共有32frame。即：32x128x256=1048576个点。每个点实际上是2个16bit合成的，所以总点数是32framex128chirpx256pointsx16bitx2IQx4lanes/8bit=16777216Byte。1个frame就是512KB。</p>
+<p>数据通过四个LVDS通道捕获，并以交错格式存储在二进制文件中。</p>
+<p>任何未使用的LVDS通道都将填充0。使能的接收机数量应与使能 的LVDS通道数量相匹配。</p>
+<p>其存储结构如下，注意交错存储：<br><img src="/2021/07/06/iwr1443/JIAOCUO.png" alt="JIAOCUO"></p>
+<h2 id="MINE"><a href="#MINE" class="headerlink" title="MINE"></a>MINE</h2><p>需要做的处理：</p>
 <hr>
 <p><strong>参考</strong>：</p>
 <ol>
@@ -262,6 +282,8 @@
 <li><a target="_blank" rel="noopener" href="https://www.ti.com.cn/cn/lit/pdf/swru518">IWR1443BOOST评估板用户指南</a></li>
 <li><a target="_blank" rel="noopener" href="https://www.ti.com.cn/cn/lit/pdf/zhcy075">毫米波传感器基础知识</a></li>
 </ol>
+<hr>
+<p><img src="/2021/07/06/iwr1443/guyu.jpg" alt="guyu"></p>
 
     </div>
 
@@ -363,7 +385,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-IWR1443BOOST-pdf"><span class="nav-number">1.1.</span> <span class="nav-text">用户指南_IWR1443BOOST.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB60M34A6435V1%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E8%AF%B4%E6%98%8E-pdf"><span class="nav-number">1.2.</span> <span class="nav-text">DB60M34A6435V1毫米波雷达核心板说明.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr6843-pdf"><span class="nav-number">1.3.</span> <span class="nav-text">iwr6843.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf"><span class="nav-number">1.4.</span> <span class="nav-text">iwr1443.pdf</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-IWR1443BOOST-pdf"><span class="nav-number">1.1.</span> <span class="nav-text">用户指南_IWR1443BOOST.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB60M34A6435V1%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E8%AF%B4%E6%98%8E-pdf"><span class="nav-number">1.2.</span> <span class="nav-text">DB60M34A6435V1毫米波雷达核心板说明.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr6843-pdf"><span class="nav-number">1.3.</span> <span class="nav-text">iwr6843.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf"><span class="nav-number">1.4.</span> <span class="nav-text">iwr1443.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bin%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-pptx"><span class="nav-number">1.5.</span> <span class="nav-text">bin文件数据格式.pptx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MINE"><span class="nav-number">1.6.</span> <span class="nav-text">MINE</span></a></li></ol></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -413,7 +435,7 @@
 
       </div>
 
-      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=782125&auto=0&height=66"></iframe>
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1444528490&auto=0&height=66"></iframe>
 
     </div>
   </aside>
