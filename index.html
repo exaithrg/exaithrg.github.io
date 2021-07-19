@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
 
   </li>
   </ul>
@@ -157,6 +157,99 @@
 
           <div class="content index posts-expand">
             
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/iwr1443/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/06/iwr1443/" class="post-title-link" itemprop="url">雷达应用笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-06 21:15:58" itemprop="dateCreated datePublished" datetime="2021-07-06T21:15:58+08:00">2021-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 16:37:32" itemprop="dateModified" datetime="2021-07-19T16:37:32+08:00">2021-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="TI毫米波雷达IWR1443的使用笔记"><a href="#TI毫米波雷达IWR1443的使用笔记" class="headerlink" title="TI毫米波雷达IWR1443的使用笔记"></a>TI毫米波雷达IWR1443的使用笔记</h1><p>需要看的东西：</p>
+<hr>
+<p>E:\CONTESTS\ciciec_2021\GUIDES</p>
+<hr>
+<h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p><strong>System synchronization</strong></p>
+<p>SYNC_OUT：Low-frequency frame synchronization signal output. Can be used by slave chip in multichip cascading.</p>
+<p>SYNC_IN： Low-frequency frame synchronization signal input.</p>
+<p><strong>5.9.2 Synchronized Frame Triggering</strong></p>
+<p>The IWR1443 device supports a hardware based mechanism to trigger radar frames. An external host can pulse the SYNC_IN signal to start radar frames. The typical time difference between the rising edge of the external pulse and the frame transmission on air (Tlag) is about 160 ns. There is also an additional programmable delay that the user can set to control the frame start time.</p>
+<p>IWR1443 器件支持基于硬件的机制来触发雷达帧。 外部主机可以脉冲 SYNC_IN 信号以启动雷达帧。 外部脉冲上升沿与空中帧传输 (Tlag) 之间的典型时间差约为 160 ns。 还有一个额外的可编程延迟，用户可以设置它来控制帧开始时间。</p>
+<p><img src="/2021/07/06/iwr1443/05.png" alt="05"></p>
+<p><strong>$T_{active_frame}$是用户定义的；$T_{pulse}$最小是25ns，最大不能超过$T_{active_frame}$。</strong></p>
+<p>根据<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/710632/awr1243-dca1000-and-1243-hardware-trigger-sts_no_lvds_data#pi320995=2">Yuji Sugimoto的讨论</a>，他们所用的SYNC_IN信号是3.4V, 30ms period, 11us width。所以实际上我觉得用个100ns的应该也没问题。要求脉冲周期大于帧周期，即SYNC_IN pulse periodicity大于mmWare Studio的frame periodicity配置。如果单次触发的话应该不用考虑这个。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/06/iwr1443/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
       
   
   
@@ -192,7 +285,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-15 12:07:05" itemprop="dateModified" datetime="2021-07-15T12:07:05+08:00">2021-07-15</time>
+                <time title="修改时间：2021-07-18 15:28:44" itemprop="dateModified" datetime="2021-07-18T15:28:44+08:00">2021-07-18</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -215,8 +308,8 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>记录USB,CAN,CAN-FD,COM,SPI,SDIO,SYNC,I2C,VGA,DVI,HDMI,DP,PCI,PCI-E,AGP,SATA,mSATA,LVDS,NVMe,CSI,type-A,type-B,type-C,micro-USB,UART,USART,JTAG,DDR,Ethernet MAC,RS232,RS485,SD,micro-SD,SIM,OTG,各类音频口….</strong></p>
-<h2 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h2><p>UART波特率为921600bps(每秒921600bit)</p>
+          <p><strong>记录GPIO, CAN, CAN-FD, COM, SPI, SDIO, SYNC, I2C, VGA, DVI, HDMI, DP, DMM, PCI, PCI-E, AGP, SATA, mSATA, LVDS, NVMe, CSI, USB type-A, type-B, type-C, micro-USB, UART, USART, JTAG, DDR, Ethernet MAC, RS232, RS422, RS485, SD, micro-SD, SIM, OTG, RGMII, SGMII, 60-pin Samtec, FTDI,各类音频口等接口协议、使用方法与引脚布局</strong></p>
+<h2 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h2><p>UART的一种波特率为921600bps(每秒921600bit)</p>
 <p>URAT传输768KB数据，需要花费：768*1024*10/921600≈8.54s。乘以10是因为串口发送有起始和停止位。</p>
 <h2 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h2><p>如果使用SPI进行传输的话，这里假设使用SPI的CLK为50MHz，打印所有ADC数据所花时间大致为768*1024*8/50000000≈0.126s。</p>
           <!--noindex-->
@@ -227,6 +320,65 @@
             </div>
           <!--/noindex-->
         
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/15/storage/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/15/storage/" class="post-title-link" itemprop="url">storage</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-07-15 17:53:44 / 修改时间：17:54:02" itemprop="dateCreated datePublished" datetime="2021-07-15T17:53:44+08:00">2021-07-15</time>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <p>EEPROM</p>
+
       
     </div>
 
@@ -409,111 +561,6 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/07/blogmaintenance/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/iwr1443/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/paperboat.jpg">
-      <meta itemprop="name" content="Haoran Geng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GHR'Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/06/iwr1443/" class="post-title-link" itemprop="url">雷达应用笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-06 21:15:58" itemprop="dateCreated datePublished" datetime="2021-07-06T21:15:58+08:00">2021-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-14 23:41:30" itemprop="dateModified" datetime="2021-07-14T23:41:30+08:00">2021-07-14</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="TI毫米波雷达IWR1443的使用笔记"><a href="#TI毫米波雷达IWR1443的使用笔记" class="headerlink" title="TI毫米波雷达IWR1443的使用笔记"></a>TI毫米波雷达IWR1443的使用笔记</h1><p>需要看的东西：</p>
-<hr>
-<p>E:\CONTESTS\ciciec_2021\GUIDES</p>
-<hr>
-<p>FMCW_精度分析.pptx</p>
-<p>0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf</p>
-<p>1_Range_Resoluation_FMCW_Radar.pdf</p>
-<p>3_Frequency_Estimator.pdf</p>
-<p>雷达原理.pdf</p>
-<p>DB60M34A6435V1毫米波雷达核心板说明.pdf</p>
-<p>iwr6843.pdf</p>
-<p>毫米波雷达核心板开发平台建立及例程演示.pdf</p>
-<p>原始ADC数据获取流程及数据结构.pdf</p>
-<p>iwr1443.pdf</p>
-<p>毫米波传感技术基础_zhcy075.pdf</p>
-<p>用户指南_DCA1000EVM.pdf</p>
-<p>用户指南_IWR1443BOOST.pdf</p>
-<p>mmwave_sdk_user_guide.pdf</p>
-<p>mmwave Rader Device ADC Raw Data Capture.pdf</p>
-<p>bin文件数据格式.pptx</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xiao_Jie123/article/details/112028352">Xiaojie雷达之路—-TI实战笔记—-对AWR1843+DCA1000采集的数据进行解析</a></p>
-<p>mmWave Demo Setup Guide</p>
-<p>mmWave SDK User’s Guide</p>
-<p>mmwave Studio User’s Guide</p>
-<p>mmwave Radar Device ADC Raw Data Capture（参考文章）</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/06/iwr1443/" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -978,87 +1025,6 @@
   
   
 
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/FunctionGenerator/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/paperboat.jpg">
-      <meta itemprop="name" content="Haoran Geng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GHR'Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/07/FunctionGenerator/" class="post-title-link" itemprop="url">信号发生器使用笔记</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-07 19:07:18" itemprop="dateCreated datePublished" datetime="2021-07-07T19:07:18+08:00">2021-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-10 14:46:17" itemprop="dateModified" datetime="2021-07-10T14:46:17+08:00">2021-07-10</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h2 id="01"><a href="#01" class="headerlink" title="01"></a>01</h2><p>实验室目前有一台是德33512B，正面标注的是33500B，其实是表示这台信号发生器是33500B这个系列的产品，真正的型号在背面用一个贴纸贴上了。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/07/FunctionGenerator/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
 
   
   <nav class="pagination">
@@ -1130,7 +1096,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>

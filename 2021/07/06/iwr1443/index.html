@@ -20,24 +20,30 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西：  E:\CONTESTS\ciciec_2021\GUIDES  FMCW_精度分析.pptx 0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf 1_Range_Resoluation_FMCW_Radar.pdf 3_Frequency_Estimator.pdf 雷达原理.pdf DB60M">
+  <meta name="description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西：  E:\CONTESTS\ciciec_2021\GUIDES  iwr1443.pdfSystem synchronization SYNC_OUT：Low-frequency frame synchronization signal output. Can be used by slave chip in multichip cascadi">
 <meta property="og:type" content="article">
 <meta property="og:title" content="雷达应用笔记">
 <meta property="og:url" content="https://njughr.github.io/2021/07/06/iwr1443/index.html">
 <meta property="og:site_name" content="GHR&#39;Blog">
-<meta property="og:description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西：  E:\CONTESTS\ciciec_2021\GUIDES  FMCW_精度分析.pptx 0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf 1_Range_Resoluation_FMCW_Radar.pdf 3_Frequency_Estimator.pdf 雷达原理.pdf DB60M">
+<meta property="og:description" content="TI毫米波雷达IWR1443的使用笔记需要看的东西：  E:\CONTESTS\ciciec_2021\GUIDES  iwr1443.pdfSystem synchronization SYNC_OUT：Low-frequency frame synchronization signal output. Can be used by slave chip in multichip cascadi">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/JIAOCUO.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/05.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/06.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/07.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/08.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/04.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/01.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/02.jpg">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/03.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/09.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/iwr1443/guyu.jpg">
 <meta property="article:published_time" content="2021-07-06T13:15:58.000Z">
-<meta property="article:modified_time" content="2021-07-14T15:41:30.528Z">
+<meta property="article:modified_time" content="2021-07-19T08:37:32.758Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="RADAR">
 <meta property="article:tag" content="MCU">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://njughr.github.io/2021/07/06/iwr1443/JIAOCUO.png">
+<meta name="twitter:image" content="https://njughr.github.io/2021/07/06/iwr1443/05.png">
 
 <link rel="canonical" href="https://njughr.github.io/2021/07/06/iwr1443/">
 
@@ -142,7 +148,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
 
   </li>
   </ul>
@@ -203,7 +209,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-14 23:41:30" itemprop="dateModified" datetime="2021-07-14T23:41:30+08:00">2021-07-14</time>
+                <time title="修改时间：2021-07-19 16:37:32" itemprop="dateModified" datetime="2021-07-19T16:37:32+08:00">2021-07-19</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -230,31 +236,52 @@
 <hr>
 <p>E:\CONTESTS\ciciec_2021\GUIDES</p>
 <hr>
-<p>FMCW_精度分析.pptx</p>
-<p>0_CPI_Coherent_Processing_Interval_Rres_Imprv.pdf</p>
-<p>1_Range_Resoluation_FMCW_Radar.pdf</p>
-<p>3_Frequency_Estimator.pdf</p>
-<p>雷达原理.pdf</p>
-<p>DB60M34A6435V1毫米波雷达核心板说明.pdf</p>
-<p>iwr6843.pdf</p>
-<p>毫米波雷达核心板开发平台建立及例程演示.pdf</p>
-<p>原始ADC数据获取流程及数据结构.pdf</p>
-<p>iwr1443.pdf</p>
-<p>毫米波传感技术基础_zhcy075.pdf</p>
-<p>用户指南_DCA1000EVM.pdf</p>
-<p>用户指南_IWR1443BOOST.pdf</p>
-<p>mmwave_sdk_user_guide.pdf</p>
-<p>mmwave Rader Device ADC Raw Data Capture.pdf</p>
-<p>bin文件数据格式.pptx</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xiao_Jie123/article/details/112028352">Xiaojie雷达之路—-TI实战笔记—-对AWR1843+DCA1000采集的数据进行解析</a></p>
-<p>mmWave Demo Setup Guide</p>
-<p>mmWave SDK User’s Guide</p>
-<p>mmwave Studio User’s Guide</p>
-<p>mmwave Radar Device ADC Raw Data Capture（参考文章）</p>
+<h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p><strong>System synchronization</strong></p>
+<p>SYNC_OUT：Low-frequency frame synchronization signal output. Can be used by slave chip in multichip cascading.</p>
+<p>SYNC_IN： Low-frequency frame synchronization signal input.</p>
+<p><strong>5.9.2 Synchronized Frame Triggering</strong></p>
+<p>The IWR1443 device supports a hardware based mechanism to trigger radar frames. An external host can pulse the SYNC_IN signal to start radar frames. The typical time difference between the rising edge of the external pulse and the frame transmission on air (Tlag) is about 160 ns. There is also an additional programmable delay that the user can set to control the frame start time.</p>
+<p>IWR1443 器件支持基于硬件的机制来触发雷达帧。 外部主机可以脉冲 SYNC_IN 信号以启动雷达帧。 外部脉冲上升沿与空中帧传输 (Tlag) 之间的典型时间差约为 160 ns。 还有一个额外的可编程延迟，用户可以设置它来控制帧开始时间。</p>
+<p><img src="/2021/07/06/iwr1443/05.png" alt="05"></p>
+<p><strong>$T_{active_frame}$是用户定义的；$T_{pulse}$最小是25ns，最大不能超过$T_{active_frame}$。</strong></p>
+<p>根据<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/710632/awr1243-dca1000-and-1243-hardware-trigger-sts_no_lvds_data#pi320995=2">Yuji Sugimoto的讨论</a>，他们所用的SYNC_IN信号是3.4V, 30ms period, 11us width。所以实际上我觉得用个100ns的应该也没问题。要求脉冲周期大于帧周期，即SYNC_IN pulse periodicity大于mmWare Studio的frame periodicity配置。如果单次触发的话应该不用考虑这个。</p>
 <span id="more"></span>
+<h2 id="IWR1443BOOST原理图-pdf"><a href="#IWR1443BOOST原理图-pdf" class="headerlink" title="IWR1443BOOST原理图.pdf"></a>IWR1443BOOST原理图.pdf</h2><p>IWR1443BOOST是一个6层板。</p>
+<p><strong>可以查到AR_SYNC_IN的接法。SYNC_IN是IWR1443的N10引脚，用于硬件触发。</strong></p>
+<p><strong>根据IWR1443BOOST原理图.pdf，AR_SYNC_IN接了一个下拉电阻R196(10k)到SYNC_IN上。也就是说AR_SYNC_IN在不管的时候是低电平。</strong></p>
+<p><strong>AR_SYNC_IN通过0欧的R62电阻接到了J1的16引脚上，J1是那个60pin的高速接口。</strong></p>
+<p><strong>此外通过0欧的R165电阻接到了J5的9引脚上。</strong></p>
+<p>R62位置如下：</p>
+<p><img src="/2021/07/06/iwr1443/06.png" alt="06"></p>
+<p>R165位置如下：</p>
+<p><img src="/2021/07/06/iwr1443/07.png" alt="07"></p>
+<p>有必要卸掉R62。或者可以先看一下带着R62的话SYNC_IN引脚是什么样的状态。但是R62是非常难拆的，它旁边的小电阻太多了，风枪吹肯定不行，必须用烙铁拆，比如用两支烙铁，但也很难拆。</p>
+<p>R62电阻接到了J1的16，如果按照引脚对应，那么相当于接到了DCA1000EVM的DMM_MUX_CTL引脚，而DMM_MUX_CTL引脚通过电阻<strong>R120</strong>接到了DMM_MUX_CTL_C这个NET。因此只要干掉DCA1000EVM上的<strong>R120</strong>或者IWR1443BOOST上的<strong>R62</strong>即可启动硬件触发，值得注意的是IWR1443BOOST的<strong>R165</strong>是已经焊好的，所以不需要动他。</p>
+<p>R120的位置如下（DCA板的反面）：</p>
+<p><img src="/2021/07/06/iwr1443/08.png" alt="08"></p>
 <h2 id="用户指南-IWR1443BOOST-pdf"><a href="#用户指南-IWR1443BOOST-pdf" class="headerlink" title="用户指南_IWR1443BOOST.pdf"></a>用户指南_IWR1443BOOST.pdf</h2><ul>
 <li>电源线不能超过3m</li>
 </ul>
+<p>我们的IWR1443BOOST应该是ES3.0版本，因为MMWAVE-SDK  02_01_00_04只适配ES3.0</p>
+<h2 id="PROC048A-SCH-DCA1000EVM-pdf"><a href="#PROC048A-SCH-DCA1000EVM-pdf" class="headerlink" title="PROC048A_SCH_DCA1000EVM.pdf"></a>PROC048A_SCH_DCA1000EVM.pdf</h2><p>关于CAPTURE_START信号：</p>
+<p>接到了LFE5UM-85F-8BG381I芯片的PB6A/D5/MISO2/IO5引脚，然后就不知道去哪了。</p>
+<h2 id="用户指南-DCA1000EVM-pdf"><a href="#用户指南-DCA1000EVM-pdf" class="headerlink" title="用户指南_DCA1000EVM.pdf"></a>用户指南_DCA1000EVM.pdf</h2><p>这是一个十层板。</p>
+<p>The Ethernet port is interfaced to the LATTICE FPGA through the Ethernet PHY DP83867IRPAPT, and is used to stream the captured data over the network to the host PC.</p>
+<p>注意SW3开关表示供电模式</p>
+<p>以太网接口是Gigabit Ethernet port</p>
+<p>Switch2的5号开关的作用：拨到5那一端，硬件配置，软件配置被忽略；拨到另一端，软件配置，DIP配置（是啥？）被忽略。这些开关拨到12345那边就是打开，否则就是关闭。例如SW1，只能有一个开关打在123侧，其余两个开关应该打在ON WE侧。</p>
+<p>我们取的是LVDS 16bit data。</p>
+<p>注意在硬件配置模式中，按SW5启动数据传输，再按一下关闭。</p>
+<p>SW7是FPGA RESET。</p>
+<ol>
+<li>采集卡需要通过网线连接主机以传输数据；</li>
+<li>如果使用mmWare Studio，采集卡需要将RADAR FTDI连接到PC以配置雷达。</li>
+<li><strong>1443板需要把USB线接到主机上用于实现RS232端口。</strong></li>
+<li>PC 的静态IP地址：  Static IP Address – 192.168.33.30</li>
+<li>安装mmWare Studio</li>
+<li>J4接口用于配置FPGA，也需要连接</li>
+</ol>
+<p>关于Raw Mode和Data Separated Mode：</p>
 <h2 id="DB60M34A6435V1毫米波雷达核心板说明-pdf"><a href="#DB60M34A6435V1毫米波雷达核心板说明-pdf" class="headerlink" title="DB60M34A6435V1毫米波雷达核心板说明.pdf"></a>DB60M34A6435V1毫米波雷达核心板说明.pdf</h2><blockquote>
 <p>此核心板是没有本公司提供的特制算法程序的，但是其内部的程序可以参考TI的官方例程（具有诸多的参考例程），不但可以进行例程演示，还可以通过CCS查看例程的源代码甚至在此基础上做进一步的修改开发，具体获得例程的方法请查阅TI官网。</p>
 <p>这个核心板是一个最小的雷达系统，如果想要跑TI的例程，需要配套本公司的DBMMDEBUG调试板，这个调试板通过排针与核心板连接，两个板子组成一套基本上可以跑TI的所有例程，这个DBMMDEBUG调试板是XDS110仿真器，可以直接通过CCS进行程序的在线仿真，所以这里也不需要再购买TI的其他JTAG仿真器。</p>
@@ -266,7 +293,7 @@
 <h2 id="iwr6843-pdf"><a href="#iwr6843-pdf" class="headerlink" title="iwr6843.pdf"></a>iwr6843.pdf</h2><blockquote>
 <p>IWR6843：1.75MB，分为 MSS 程序 RAM (512KB)、MSS 数据 RAM (192KB)、DSP L1 RAM (64KB) 和 L2 RAM (256KB) 以及 L3 雷达数据立方体 RAM (768KB)</p>
 </blockquote>
-<h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p>L3 RAM: 384KB</p>
+<h2 id="iwr1443-pdf-1"><a href="#iwr1443-pdf-1" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p>L3 RAM: 384KB</p>
 <h2 id="bin文件数据格式-pptx"><a href="#bin文件数据格式-pptx" class="headerlink" title="bin文件数据格式.pptx"></a>bin文件数据格式.pptx</h2><p>在得到bin文件之后，每个bin文件的大小均为16384KB。</p>
 <p>原始数据字节大小=32*128*256*2*2*4=16777216字节=16348K字节</p>
 <p>数据包有32个帧（frame）；一帧有128个chirp；一个chirp采256个点；一个采样点16bit；一个接收天线分为I/Q两路采集；4个接收天线。</p>
@@ -275,7 +302,7 @@
 <p>ADC是16位，4个接收天线（4路），adc data是16位int数以int16读入16777216字节，也就是8,388,608个数，故adcData刚开始是8388608x1；reshape后，每8个数据为一组，分了1048576组，也就是成了一个8x1048576的数据矩阵。readDCA1000()函数获取得到的数据矩阵为：4x1048576;其中4代表四个接收端；每一行的排列顺序为：先frame1的所有chirp，再frame2，类推到frame32。其中每一frame共有128个chirp，一个chirp是256个点；共有32frame。即：32x128x256=1048576个点。每个点实际上是2个16bit合成的，所以总点数是32framex128chirpx256pointsx16bitx2IQx4lanes/8bit=16777216Byte。1个frame就是512KB。</p>
 <p>数据通过四个LVDS通道捕获，并以交错格式存储在二进制文件中。</p>
 <p>任何未使用的LVDS通道都将填充0。使能的接收机数量应与使能 的LVDS通道数量相匹配。</p>
-<p>其存储结构如下，注意交错存储：<br><img src="/2021/07/06/iwr1443/JIAOCUO.png" alt="JIAOCUO"></p>
+<p>其存储结构如下，注意交错存储：<br><img src="/2021/07/06/iwr1443/04.png" alt="JIAOCUO"></p>
 <h2 id="毫米波雷达核心板开发平台建立及例程演示-pdf"><a href="#毫米波雷达核心板开发平台建立及例程演示-pdf" class="headerlink" title="毫米波雷达核心板开发平台建立及例程演示.pdf"></a>毫米波雷达核心板开发平台建立及例程演示.pdf</h2><p><a target="_blank" rel="noopener" href="http://software-dl.ti.com/ccs/esd/documents/ccs_downloads.html">CCS下载地址</a></p>
 <p><a target="_blank" rel="noopener" href="https://www.ti.com/tool/download/UNIFLASH">UniFlash下载工具</a></p>
 <p>搞定这两个之后在CCS里下载TI官方例程包：Industrial Toolbox</p>
@@ -289,13 +316,129 @@
 <p>正常情况下，下图所示的雷达配置参数在开机初始化配置一次即可，后面再次获取数据可以通过发送sensorStop和sensorStart 0指令重新获取新的数据。在雷达工作一帧并收到sensorStop指令前，其核心板的LED灯会点亮，在收到sensorStop指令后LED灯会熄灭，再收到sensorStart 0后LED又会点亮，以此循环，所以可以通过LED观察其工作状态。</p>
 <p>发送的配置指令每一条后面必须有回车字符才能被雷达接收识别，配置每一条指令时间间隔要大于10ms。</p>
 <p>注意，如果出现了配置参数后不能正常工作的情况，则需要重新启动雷达（给雷达重新上电），否则雷达不能恢复到正常工作流程。建议监视雷达回复配置指令或者是雷达回传数据，如果出现不能恢复的情况，请给雷达重新上电，可以通过雷达核心板上PMIC_EN管脚控制雷达重新上电。</p>
-<h2 id="MINE"><a href="#MINE" class="headerlink" title="MINE"></a>MINE</h2><p>如何获得这个bin文件？</p>
+<h2 id="mmwave-studio-user-guide"><a href="#mmwave-studio-user-guide" class="headerlink" title="mmwave_studio_user_guide"></a>mmwave_studio_user_guide</h2><p>This tab allows users with advanced frame configuration. Configuration options include sub-frames, bursts within each sub-frame, program burst loops, selection of chirp start index for the first chirp within the burst, configuration of sub-frame periodicity and burst periodicity. Also there are options to force a particular chirp profile within a sub-frame, selection of trigger source software/hardware and to program a trigger delay</p>
+<h2 id="mmwave-sdk-user-guide-pdf"><a href="#mmwave-sdk-user-guide-pdf" class="headerlink" title="mmwave_sdk_user_guide.pdf"></a>mmwave_sdk_user_guide.pdf</h2><p>在frameCfg里面看到only option for Software trigger is selected。不太懂什么意思。</p>
+<p>User should take care of this restriction when writing their custom application using the SDK LVDS driver. This alignment is taken care by the HSI header library if the application uses the headers for LVDS streaming. If no header are used while streaming data over LVDS lanes, user should calculate the total data size in bytes for the hardware triggered session (i.e. per chirp) and make sure it follows the rules mentioned above. Similar rules apply for the user data sent during the software triggered session.</p>
+<h2 id="HARDWARE-TRIGGER"><a href="#HARDWARE-TRIGGER" class="headerlink" title="HARDWARE TRIGGER"></a>HARDWARE TRIGGER</h2><p>什么叫DNP？DNP是英文（Do Not Populate）的意思，译为“不焊接”。. 实际使用过程中，在PCB上会留有空焊盘，可以做测试引脚用。</p>
+<p><strong>上电的时候不要摸板子，避免ESD损坏</strong></p>
+<p>如何获得这个bin文件？</p>
 <p>雷达板上提供了1个micro-USB口，实际上这个口包括两个串口，需要把这两个串口分开。可以考虑CH340、CP2102、FT232RL，PL2303TA。</p>
 <p><a target="_blank" rel="noopener" href="https://blog.csdn.net/yuantuo3887/article/details/79749037">很好USB转串口入门介绍</a></p>
 <p><strong>串口定义</strong></p>
 <p><img src="/2021/07/06/iwr1443/02.jpg" alt="02"></p>
 <p>Industrial Toolbox - 4.7.0的安装非常耗时。874MB的文件下载了半天，从下载500M降到300M再到400M，重新启动一下又变成了227/836M，重启又变成265/898，晕了。通过CCS下载太慢了，不如用网页，比如<a target="_blank" rel="noopener" href="https://dev.ti.com/tirex/explore/">Resource Explorer</a></p>
 <p>正常的工程应该包括一个.projectspec文件和一个工程文件夹。只有projectspec说明没下好。不是的。。。out_of_box_demo仍然只有一个projectspec。</p>
+<p>计划：用串口读取雷达输出的数据。</p>
+<p>首先用电脑把雷达配置好，然后用串口读数据即可。</p>
+<p><a target="_blank" rel="noopener" href="https://dev.ti.com/mmWaveDemoVisualizer">mmWave Demo Visualizer</a>没有IWR14xx？？</p>
+<p>不要用USB转串口一拖二线。问题可能有两个：</p>
+<ol>
+<li>USB有master和slave。一般来讲USB转串口一拖二的应用场景都是PC作为host，但是雷达板作为host的话可能不行。</li>
+<li>哪怕雷达板可以当host，但是这种虚拟串口可能还存在芯片是否支持的问题。比如雷达板支持虚拟串口，PC也支持，所以可以用；但是BM3823可能不支持，就完蛋了。</li>
+</ol>
+<p>而且网口的好处是速度快。</p>
+<p>目标：复现LQ的测试结果。搞明白网口怎么驱动。目标很简单：只上电+网口能否用起来板子？如果可以，那么如何把网口的数据接过来？</p>
+<p>DCA1000EVM配置好之后可以关掉，然后换电脑吗？</p>
+<p>不需要FFT！只需要一个看上去不是很难的互相关函数。只要能把raw data传过去就是胜利。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/menghuanshen/article/details/111147929">DCA1000EVM用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://e2echina.ti.com/blogs_/b/the_process/archive/2019/01/09/dca1000evm">官方DCA1000EVM用法</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/bigData1994pb/article/details/117112725">DCA1000EVM注意事项</a></p>
+<p>主要需要修改的：</p>
+<ul>
+<li>ADC Config - Format - Complex2x</li>
+<li>SensorConfig - Frequency Slope 65(64.985)</li>
+<li>Idle Time 7</li>
+<li>ADC start time 3</li>
+<li>Sample Rate 5120</li>
+<li>波形设置里面选2个发射天线</li>
+<li>32帧</li>
+</ul>
+<p>数据采集卡的RADAR FTDI输入是接了一个FT4232HL芯片</p>
+<p>“With a hardware trigger, the frame will be triggered by an external source on the digital sync end pin, which is typically used in Cascade applications. “<a target="_blank" rel="noopener" href="https://training.ti.com/dca1000-training-video">DCA1000EVM Training Video</a></p>
+<p>Code的重要说明：</p>
+<p><img src="/2021/07/06/iwr1443/03.png" alt="03"></p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/923329/iwr6843isk-iwr6843isk-hardware-trigger">IWR6843ISK Hardware Trigger</a>关键是有个SINC_IN的玩意。需要仔细读一遍IWR1443BOOST的手册。</p>
+<p>【</p>
+<p>SDK API function and guideline如下：file:///C:/ti/mmwave_sdk_02_01_00_04/packages/ti/control/mmwavelink/docs/doxygen/html/group___sensor.html，该内容指出了：</p>
+<p>The SYNC_IN pulse must not arrive before the frame end boundary b. If frame trigger delay is used with hardware triggered mode, then external SYNC_IN pulse periodicity should take care of the configured frame trigger delay and frame periodicity. The external pulse should be issued only after the sum total of frame trigger delay and frame periodicity. See figure below</p>
+<p>SYNC_IN 脉冲不得在帧结束边界 b 之前到达。 如果帧触发延迟与硬件触发模式一起使用，则外部 SYNC_IN 脉冲周期应注意配置的帧触发延迟和帧周期。 外部脉冲应该在帧触发延迟和帧周期的总和之后发出。</p>
+<p>The inter frame blank time should be at least 250 uS(100 uS for frame preparation and 150 uS for any calibration updates to hardware). Add 150 uS to inter-frame blank time for test source configuration if test source is enabled.</p>
+<p>帧间空白时间应至少为 250 微秒（100 微秒用于帧准备，150 微秒用于硬件的任何校准更新）。 如果启用了测试源，则将 150 uS 添加到测试源配置的帧间空白时间。</p>
+<p>注意rlSensorStart(rlUInt8_t deviceMap)函数。说明如下：</p>
+<p>This function triggers the transmission of the frames as per the frame and chirp configuration If trigger mode is selected as SW API based trigger, mmWaveFront end would start chirp immediately after receiving this API. If trigger mode is HW SYNC IN pulse, it would wait for SYNC pulse</p>
+<p>此函数根据帧和 chirp 配置触发帧的传输 如果触发模式选择为基于 SW API 的触发，mmWaveFront 端将在收到此 API 后立即启动 chirp。 如果触发方式为 HW SYNC IN 脉冲，则等待 SYNC 脉冲</p>
+<p>参见：file:///C:/ti/mmwave_sdk_02_01_00_04/packages/ti/control/mmwavelink/docs/doxygen/html/group___sensor.html#ga4ce3a292815faac84048977ad29658cd</p>
+<p>】</p>
+<p><strong>hardware trigger的参考资料集合</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Xiao_Jie123/article/details/110928789">Xiaojie雷达之路—-profile、chirp、advframe、frame的设置及关系</a>这里面好像是介绍了mmWare Studio的很多源码</p>
+<p><a target="_blank" rel="noopener" href="https://www.ti.com/tool/TIDEP-0091">MSP430通过SPI等驱动IWR1443的参考设计</a></p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/972613/iwr6843isk-hardware-trigger">IWR6843ISK: Hardware trigger</a>【</p>
+<p>流程如下：</p>
+<ol>
+<li>Set the trigger select to Hardware Trigger and hit trigger frame</li>
+<li>Feed the pulse to SYNC IN on pin 9 of J6 connector </li>
+</ol>
+<p>I keep getting the message: <strong>[RadarAPI]: No of files Captured: 0, Total no of frames for each device : 8</strong></p>
+<p>这个人插了根杜邦线到板子的SYNCIN引脚上。将mmWare Studio的Frame的Trigger Select设置为Hardware Trigger。</p>
+<p>下面回复：</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/members/44611">zigang Yang</a>：software trigger正常工作吗？</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/members/5964618">user5964618</a>：正常工作！而且我看了<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/710632/awr1243-dca1000-and-1243-hardware-trigger-sts_no_lvds_data#pi320995=2">AWR1243: DCA1000 and 1243 hardware trigger: STS_NO_LVDS_DATA</a>之后卸掉了R346，加上了R348，但是HW trigger还是不行。我看了<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/750656/iwr6843-sync_in-hardware-trigger">IWR6843: SYNC_IN Hardware Trigger</a>，我确实加入了R348，但是不知道R120咋办。</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/members/44611">zigang Yang</a>：我在ICD（接口控制文档）上找到了一些硬件触发信息。如果使用硬件触发模式，SYNC IN 脉冲宽度应该小于帧的 ON 时间（如果是传统的帧配置模式）或突发的开启时间（在高级帧配置模式的情况下）。 还有，SYNC IN 的最小脉宽应该是 25 ns。雷达 ICD 文档可在此处找到的毫米波 DFP 版本的 /docs 文件夹中找到：<a target="_blank" rel="noopener" href="https://www.ti.com/tool/MMWAVE-DFP。R120">https://www.ti.com/tool/MMWAVE-DFP。R120</a> 不需要更改。</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/members/5964618">user5964618</a>：原因是脉冲上升时间设置不正确。上升时间太长，无法为设定的 3.3 V 供电。我确实在脉冲宽度为 50 us 和上升时间为 3.51 us 时使用硬件触发器运行了雷达！感谢您的帮助！</p>
+<p>】</p>
+<p><a target="_blank" rel="noopener" href="https://www.ti2k.com/145283.html">去掉R62电阻？？</a>【我现在有一套AWR1443BOOST和DCA1000EVM，我想使用板子的hardware trigger模式。我查阅相关资料发现需要移除AWR1443BOOST上的R62电阻。我想知道把这个电阻移除之后，原来的software trigger模式还能正常使用吧？】</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/997127/iwr6843isk-ods-iwr6843-hardware-trigger-issues?tisearch=e2e-sitesearch&amp;keymatch=hardware%20trigger#">IWR6843ISK-ODS: IWR6843 Hardware Trigger Issues</a>【该问题的题主说他借鉴了下面这个问题】</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/972613/iwr6843isk-hardware-trigger?tisearch=e2e-sitesearch&amp;keymatch=hardware%2520trigger#">IWR6843ISK: Hardware trigger</a>【这个题主又引用了AA和BB两个问题】</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/923329/iwr6843isk-iwr6843isk-hardware-trigger">IWR6843ISK: IWR6843ISK Hardware Trigger</a>【指出了IWR1443是上升沿硬件触发】</p>
+<p>【AA】<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/710632/awr1243-dca1000-and-1243-hardware-trigger-sts_no_lvds_data">AWR1243: DCA1000 and 1243 hardware trigger: STS_NO_LVDS_DATA</a>【</p>
+<p>非常有用的文章，解决了核心问题</p>
+<hr>
+<p>这个家伙采用的步骤是：</p>
+<p>1) Set as Software Trigger and then hit DCA arm and trigger frame【什么叫hit DCA arm】</p>
+<p>2) Set the trigger select to Hardware Trigger and hit trigger frame</p>
+<p>3) After a second we armed the DCA1000 and activated our external trigger.</p>
+<hr>
+<p>DCA1000 在DCA arm后有 30 秒的timeout。 所以它期望传感器在 30 秒内开始发送 LVDS 数据，没有数据就会Timeout。</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/members/333578">Vivek Dham</a>之前写过硬件触发的配置帖子</p>
+<p>三年多前这个帖子的题主<a target="_blank" rel="noopener" href="https://e2e.ti.com/members/5700976">Yuji Sugimoto</a>和我干了一模一样的事情，那就是LVDS_PATH_ERR亮红灯，Wireshark不显示数据。</p>
+<hr>
+<p>LVDS_PATH_ERR 上的红色 LED 表示 fpga 未通过 LVDS 接收任何数据。 这可能是由于超时。只是为了澄清，如果您在框架配置中使用“软件触发”模式，它可以正常工作，对吗？ 您只在硬件触发模式下有问题吗？</p>
+<hr>
+<p>我们在软件触发模式下没有问题，但无法让硬件触发与 DCA1000 一起工作。</p>
+<p>由于超时，灯打开肯定是不可避免的，但我试图在灯打开之前通过 SYNC_IN 引脚将触发器发送到 AWR1243。</p>
+<p>只是为了确保 SYNC_IN 是 JTag 6 上的引脚 10，并且我已确保填充 R165。 我使用的触发器以前在使用 TSW1400 时有效。</p>
+<hr>
+<p>SYNC IN 信号在 J6 连接器的引脚 9 上，你能仔细检查一下你是否在正确的引脚上输入脉冲吗？<br>DCA1000 和 TSW 的操作应该没有区别，硬件触发和 SW 触发在 AWR 设备上，应该与使用的捕获设备无关。</p>
+<p>在您开始提供 SYNC IN 脉冲后，您能否确认您正在毫米波工作室中执行“DCA1000 ARM”和“触发帧”吗？ 您提供的 SYNC IN 脉冲的周期是多少？帧配置中编程的帧周期是多少？</p>
+<hr>
+<p>关键：嗨，维维克，通过在 DCA1000 上去掉 R120，我们已经能够解决这个问题。 该电阻将 SYNC_IN 脉冲连接到 DCA 的 FPGA 之一。我们看到我们输入的 SYNC_IN 信号通常具有 3.3V 的 pk 到 pk，但是当连接 DCA 时，它下降到 500mV。 将它连接到 DCA 会极大地衰减信号。 当电阻被拿走时，信号再次恢复到 3.3V pk 到 pk 并且触发器开始工作。</p>
+<p>所以必须要拆掉R62才行。</p>
+<p>】</p>
+<p>【BB】<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/844637/iwr6843-is-hardware-trigger-supported">IWR6843: Is hardware trigger supported?</a>【这是个凡尔赛题主，他说他在资料上没看到支持HW trigger但是自己实现了。。。他说可以很好的控制。。。able to adjust frame start 。。。。】</p>
+<p><a target="_blank" rel="noopener" href="https://e2echina.ti.com/support/sensors/f/sensors-forum/205224/dca1000evm-dca1000evm-iwr1443boost-dca1000">DCA1000EVM: DCA1000EVM+IWR1443BOOST有没有办法实现硬件触发DCA1000开始录制数据？</a></p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/929743/dca1000evm-hardware-trigger-with-frame-period-in-framecfg">DCA1000EVM: hardware trigger with frame period in framecfg</a></p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/983134/dca1000evm-hardware-failure-confirmation">DCA1000EVM: Hardware failure confirmation</a></p>
+<p><a target="_blank" rel="noopener" href="https://e2echina.ti.com/blogs_/b/the_process/posts/dca1000evm">DCA1000EVM使用指南</a>【DCA1000EVM触发模式：以上介绍的是DCA1000EVM软件触发的方式。DCA1000EVM还可以借助板上SW1和SW2开关（如下图）使用硬件触发，具体可参<a target="_blank" rel="noopener" href="http://www.ti.com/lit/ug/spruij4/spruij4.pdf。】">http://www.ti.com/lit/ug/spruij4/spruij4.pdf。】</a></p>
+<p>在e2echina上找不到硬件触发如何配置的资料。</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/855101/iwr1443-iwr1443-boost-external-trigeering?tisearch=e2e-sitesearch&amp;keymatch=IWR1443%20R62#">IWR1443: iwr1443 boost external trigeering</a>【</p>
+<p><strong>可以查到AR_SYNC_IN的接法。SYNC_IN是IWR1443的N10引脚，用于硬件触发。</strong></p>
+<p><strong>根据IWR1443BOOST原理图.pdf，AR_SYNC_IN接了一个下拉电阻R196(10k)到SYNC_IN上。也就是说AR_SYNC_IN在不管的时候是低电平。</strong></p>
+<p><strong>AR_SYNC_IN通过0欧的R62电阻接到了J1的16引脚上，J1是那个60pin的高速接口。</strong></p>
+<p><strong>此外通过0欧的R165电阻接到了J5的9引脚上</strong></p>
+<p>】</p>
+<p>关于硬件配置： 有两条路径可以提供硬件 Sync_in 信号：</p>
+<p>1) 应连接此 R62 的 J1（60 针连接器）</p>
+<p>2) 应连接此 R165 的 J5（20 针连接器）</p>
+<p>上述 e2e 帖子的说明是：由于两个引脚都会到达毫米波传感器上的同一个球，因此您可以在一个引脚上施加信号，并可以在另一个引脚上进行监控。</p>
+<p>感觉上是不是不需要拆R62电阻了，直接加电压就行？</p>
+<p>】</p>
+<p><a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/734332/iwr1443boost-how-do-you-connect-external-hardward-trigger">IWR1443BOOST: How do you connect external hardward trigger?</a>【很重要的资料，详细说明了如何实现硬件触发</p>
+<p>The Sync In, needs to be 50ns min width (to be detected by the 40Mhz clock). ‘0-&gt;1’ for start.</p>
+<p>硬件上：给J5的9引脚打一个0-3.3的脉冲SINC_IN电平尝试触发</p>
+<p>软件上：在mmWare Studio中设置为hardware trigger。</p>
+<p>】</p>
+<hr>
+<h1 id="Ethernet-Configuration"><a href="#Ethernet-Configuration" class="headerlink" title="Ethernet Configuration"></a>Ethernet Configuration</h1><p><img src="/2021/07/06/iwr1443/09.png" alt="09"></p>
 <hr>
 <p><strong>参考</strong>：</p>
 <ol>
@@ -408,7 +551,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-IWR1443BOOST-pdf"><span class="nav-number">1.1.</span> <span class="nav-text">用户指南_IWR1443BOOST.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB60M34A6435V1%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E8%AF%B4%E6%98%8E-pdf"><span class="nav-number">1.2.</span> <span class="nav-text">DB60M34A6435V1毫米波雷达核心板说明.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr6843-pdf"><span class="nav-number">1.3.</span> <span class="nav-text">iwr6843.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf"><span class="nav-number">1.4.</span> <span class="nav-text">iwr1443.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bin%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-pptx"><span class="nav-number">1.5.</span> <span class="nav-text">bin文件数据格式.pptx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0%E5%BB%BA%E7%AB%8B%E5%8F%8A%E4%BE%8B%E7%A8%8B%E6%BC%94%E7%A4%BA-pdf"><span class="nav-number">1.6.</span> <span class="nav-text">毫米波雷达核心板开发平台建立及例程演示.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8BADC%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E6%B5%81%E7%A8%8B%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-pdf"><span class="nav-number">1.7.</span> <span class="nav-text">原始ADC数据获取流程及数据结构.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MINE"><span class="nav-number">1.8.</span> <span class="nav-text">MINE</span></a></li></ol></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#TI%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BEIWR1443%E7%9A%84%E4%BD%BF%E7%94%A8%E7%AC%94%E8%AE%B0"><span class="nav-number">1.</span> <span class="nav-text">TI毫米波雷达IWR1443的使用笔记</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf"><span class="nav-number">1.1.</span> <span class="nav-text">iwr1443.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#IWR1443BOOST%E5%8E%9F%E7%90%86%E5%9B%BE-pdf"><span class="nav-number">1.2.</span> <span class="nav-text">IWR1443BOOST原理图.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-IWR1443BOOST-pdf"><span class="nav-number">1.3.</span> <span class="nav-text">用户指南_IWR1443BOOST.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#PROC048A-SCH-DCA1000EVM-pdf"><span class="nav-number">1.4.</span> <span class="nav-text">PROC048A_SCH_DCA1000EVM.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%94%A8%E6%88%B7%E6%8C%87%E5%8D%97-DCA1000EVM-pdf"><span class="nav-number">1.5.</span> <span class="nav-text">用户指南_DCA1000EVM.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DB60M34A6435V1%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E8%AF%B4%E6%98%8E-pdf"><span class="nav-number">1.6.</span> <span class="nav-text">DB60M34A6435V1毫米波雷达核心板说明.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr6843-pdf"><span class="nav-number">1.7.</span> <span class="nav-text">iwr6843.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#iwr1443-pdf-1"><span class="nav-number">1.8.</span> <span class="nav-text">iwr1443.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#bin%E6%96%87%E4%BB%B6%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F-pptx"><span class="nav-number">1.9.</span> <span class="nav-text">bin文件数据格式.pptx</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%AB%E7%B1%B3%E6%B3%A2%E9%9B%B7%E8%BE%BE%E6%A0%B8%E5%BF%83%E6%9D%BF%E5%BC%80%E5%8F%91%E5%B9%B3%E5%8F%B0%E5%BB%BA%E7%AB%8B%E5%8F%8A%E4%BE%8B%E7%A8%8B%E6%BC%94%E7%A4%BA-pdf"><span class="nav-number">1.10.</span> <span class="nav-text">毫米波雷达核心板开发平台建立及例程演示.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%8E%9F%E5%A7%8BADC%E6%95%B0%E6%8D%AE%E8%8E%B7%E5%8F%96%E6%B5%81%E7%A8%8B%E5%8F%8A%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84-pdf"><span class="nav-number">1.11.</span> <span class="nav-text">原始ADC数据获取流程及数据结构.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mmwave-studio-user-guide"><span class="nav-number">1.12.</span> <span class="nav-text">mmwave_studio_user_guide</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#mmwave-sdk-user-guide-pdf"><span class="nav-number">1.13.</span> <span class="nav-text">mmwave_sdk_user_guide.pdf</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HARDWARE-TRIGGER"><span class="nav-number">1.14.</span> <span class="nav-text">HARDWARE TRIGGER</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Ethernet-Configuration"><span class="nav-number">2.</span> <span class="nav-text">Ethernet Configuration</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -424,7 +567,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">11</span>
+          <span class="site-state-item-count">12</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
