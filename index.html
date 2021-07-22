@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">12</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">11</span></a>
 
   </li>
   </ul>
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/iwr1443/">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/15/storage/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/paperboat.jpg">
@@ -175,7 +175,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/06/iwr1443/" class="post-title-link" itemprop="url">雷达应用笔记</a>
+            <a href="/2021/07/15/storage/" class="post-title-link" itemprop="url">存储器学习及使用</a>
         </h2>
 
         <div class="post-meta">
@@ -185,24 +185,15 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-07-06 21:15:58" itemprop="dateCreated datePublished" datetime="2021-07-06T21:15:58+08:00">2021-07-06</time>
+              <time title="创建时间：2021-07-15 17:53:44" itemprop="dateCreated datePublished" datetime="2021-07-15T17:53:44+08:00">2021-07-15</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-19 16:37:32" itemprop="dateModified" datetime="2021-07-19T16:37:32+08:00">2021-07-19</time>
+                <time title="修改时间：2021-07-21 21:30:36" itemprop="dateModified" datetime="2021-07-21T21:30:36+08:00">2021-07-21</time>
               </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
-                </span>
-            </span>
 
           
 
@@ -215,27 +206,20 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <h1 id="TI毫米波雷达IWR1443的使用笔记"><a href="#TI毫米波雷达IWR1443的使用笔记" class="headerlink" title="TI毫米波雷达IWR1443的使用笔记"></a>TI毫米波雷达IWR1443的使用笔记</h1><p>需要看的东西：</p>
-<hr>
-<p>E:\CONTESTS\ciciec_2021\GUIDES</p>
-<hr>
-<h2 id="iwr1443-pdf"><a href="#iwr1443-pdf" class="headerlink" title="iwr1443.pdf"></a>iwr1443.pdf</h2><p><strong>System synchronization</strong></p>
-<p>SYNC_OUT：Low-frequency frame synchronization signal output. Can be used by slave chip in multichip cascading.</p>
-<p>SYNC_IN： Low-frequency frame synchronization signal input.</p>
-<p><strong>5.9.2 Synchronized Frame Triggering</strong></p>
-<p>The IWR1443 device supports a hardware based mechanism to trigger radar frames. An external host can pulse the SYNC_IN signal to start radar frames. The typical time difference between the rising edge of the external pulse and the frame transmission on air (Tlag) is about 160 ns. There is also an additional programmable delay that the user can set to control the frame start time.</p>
-<p>IWR1443 器件支持基于硬件的机制来触发雷达帧。 外部主机可以脉冲 SYNC_IN 信号以启动雷达帧。 外部脉冲上升沿与空中帧传输 (Tlag) 之间的典型时间差约为 160 ns。 还有一个额外的可编程延迟，用户可以设置它来控制帧开始时间。</p>
-<p><img src="/2021/07/06/iwr1443/05.png" alt="05"></p>
-<p><strong>$T_{active_frame}$是用户定义的；$T_{pulse}$最小是25ns，最大不能超过$T_{active_frame}$。</strong></p>
-<p>根据<a target="_blank" rel="noopener" href="https://e2e.ti.com/support/sensors-group/sensors/f/sensors-forum/710632/awr1243-dca1000-and-1243-hardware-trigger-sts_no_lvds_data#pi320995=2">Yuji Sugimoto的讨论</a>，他们所用的SYNC_IN信号是3.4V, 30ms period, 11us width。所以实际上我觉得用个100ns的应该也没问题。要求脉冲周期大于帧周期，即SYNC_IN pulse periodicity大于mmWare Studio的frame periodicity配置。如果单次触发的话应该不用考虑这个。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/06/iwr1443/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
+          <h1 id="EEPROM"><a href="#EEPROM" class="headerlink" title="EEPROM"></a>EEPROM</h1><h1 id="FLASH"><a href="#FLASH" class="headerlink" title="FLASH"></a>FLASH</h1><h1 id="SRAM"><a href="#SRAM" class="headerlink" title="SRAM"></a>SRAM</h1><p>静态随机存取存储器（Static Random-Access Memory，SRAM）。断电数据丢失。CPU 的缓存就是 SRAM ，速度极快，但是成本极高，所以容量非常小，现在的基本是和 CPU 主频同速。制造相同容量的SRAM比DRAM的成本高的多。正因为如此，才使其发展受到了限制。因此目前SRAM基本上只用于CPU内部的一级缓存以及内置的二级缓存。BM3823A上的SRAM只有2M，PROM有10M，SDRAM有128M。</p>
+<p>SRAM，静态的随机存取存储器，加电情况下，不需要刷新，数据不会丢失，而且，一般不是行列地址复用的。</p>
+<p>典型芯片：IS61LV51216-10TI</p>
+<h1 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h1><p>动态随机存取存储器（DRAM）里面所储存的数据需要周期性地更新。断电数据丢失。</p>
+<p>DRAM，动态随机存取存储器，需要不断的刷新，才能保存数据。 而且是行列地址复用的，许多都有页模式。 </p>
+<h1 id="SDRAM"><a href="#SDRAM" class="headerlink" title="SDRAM"></a>SDRAM</h1><p>断电数据丢失。SDRAM（Synchronous Dynamic Random Access Memory），同步动态随机存储器。同步是指内存工作需要同步时钟，内部的命令的发送与数据的传输都以它为基准；动态是指存储阵列需要不断的刷新来保证数据不丢失；随机是指数据不是线性依次存储，而是自由指定地址进行数据读写。</p>
+<p>SDRAM的内部是一个存储阵列，你可以把它想象成一张表格。我们在向这个表格中写入数据的时候，需要先指定一个行（Row），再指定一个列（Column），就可以准确地找到所需要的“单元格”，这就是SDRAM寻址的基本原理。</p>
+<p> SDRAM 将 CPU 与 RAM 通过一个相同的时钟锁在一起，使 RAM 和 CPU 能够共享一个时钟周期，以相同的速度同步工作。 SDRAM 基于双存储体结构，内含两个交错的存储阵列，当 CPU 从一个存储体或阵列访问数据时，另一个就已为读写数据做好了准备，通过这两个存储阵列的紧密切换，读取效率就能得到成倍的提高。</p>
+<p>SDRAM，同步的DRAM，即数据的读写需要时钟来同步。 DRAM和SDRAM由于实现工艺问题，容量较SRAM大，但是读写速度不如SRAM。</p>
+<p>典型芯片：IS42S32160-86PIN</p>
+<h1 id="DDR-SDRAM"><a href="#DDR-SDRAM" class="headerlink" title="DDR SDRAM"></a>DDR SDRAM</h1><p>DDR SDRAM，前面DDR就是Dual Data Rate，双倍速率，2bit预读，上下同时读写，相当于SDRAM的频率X2，所以现在DDR400的实际频率只有200MHz，但是等效400MHz。</p>
+<p>典型芯片如mt47h64m16。</p>
+<h1 id="PROM"><a href="#PROM" class="headerlink" title="PROM"></a>PROM</h1><p>典型芯片：AM29LV160</p>
+<h1 id="FSMC"><a href="#FSMC" class="headerlink" title="FSMC"></a>FSMC</h1>
       
     </div>
 
@@ -285,7 +269,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-18 15:28:44" itemprop="dateModified" datetime="2021-07-18T15:28:44+08:00">2021-07-18</time>
+                <time title="修改时间：2021-07-20 17:48:15" itemprop="dateModified" datetime="2021-07-20T17:48:15+08:00">2021-07-20</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -308,10 +292,12 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>记录GPIO, CAN, CAN-FD, COM, SPI, SDIO, SYNC, I2C, VGA, DVI, HDMI, DP, DMM, PCI, PCI-E, AGP, SATA, mSATA, LVDS, NVMe, CSI, USB type-A, type-B, type-C, micro-USB, UART, USART, JTAG, DDR, Ethernet MAC, RS232, RS422, RS485, SD, micro-SD, SIM, OTG, RGMII, SGMII, 60-pin Samtec, FTDI,各类音频口等接口协议、使用方法与引脚布局</strong></p>
+          <p><strong>记录60-pin Samtec, AGP, AHB, APB, CAN, CAN-FD, COM, CSI, DDR, DMM, DP, DSU, DVI, Ethernet MAC, FTDI, GMAC, GMII, GPIO, HDMI, I2C, JTAG, LVDS, micro-USB, MII, mSATA, micro-SD, NVMe, OTG, PCI, PCI-E, PIO, RGMII, RJ11, RJ45, RMII, RS232, RS422, RS485, SATA, SD, SDIO, SGMII, SIM, SPI, SYNC, TBI, UART, USART, USB type-A, type-B, type-C, VGA, 各类音频口等接口协议、使用方法与引脚布局</strong></p>
 <h2 id="UART"><a href="#UART" class="headerlink" title="UART"></a>UART</h2><p>UART的一种波特率为921600bps(每秒921600bit)</p>
 <p>URAT传输768KB数据，需要花费：768*1024*10/921600≈8.54s。乘以10是因为串口发送有起始和停止位。</p>
+<p>使用RS232电路。</p>
 <h2 id="SPI"><a href="#SPI" class="headerlink" title="SPI"></a>SPI</h2><p>如果使用SPI进行传输的话，这里假设使用SPI的CLK为50MHz，打印所有ADC数据所花时间大致为768*1024*8/50000000≈0.126s。</p>
+<p>SPI FLASH芯片：M25P40，工作电压 3.3V存储空间大小为 4Mbit(512K*8) 。</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/07/08/connectors/" rel="contents">
@@ -338,7 +324,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/15/storage/">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/AltiumDesigner/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/paperboat.jpg">
@@ -352,7 +338,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/07/15/storage/" class="post-title-link" itemprop="url">storage</a>
+            <a href="/2021/07/06/AltiumDesigner/" class="post-title-link" itemprop="url">Altium Designer使用教程</a>
         </h2>
 
         <div class="post-meta">
@@ -361,9 +347,24 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-07-15 17:53:44 / 修改时间：17:54:02" itemprop="dateCreated datePublished" datetime="2021-07-15T17:53:44+08:00">2021-07-15</time>
+              <time title="创建时间：2021-07-06 19:17:43" itemprop="dateCreated datePublished" datetime="2021-07-06T19:17:43+08:00">2021-07-06</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 19:09:43" itemprop="dateModified" datetime="2021-07-19T19:09:43+08:00">2021-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">软件学习</span></a>
+                </span>
             </span>
 
           
@@ -377,8 +378,120 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p>EEPROM</p>
+          <p><strong>详细的Altium Designer教程，画PCB必备！</strong></p>
+<p>先画个大饼，后面慢慢写。</p>
+<p><strong>主要需要写的内容包括：</strong></p>
+<ol>
+<li>常用进制转换</li>
+<li>Altium Designer常用快捷键</li>
+<li>什么是PCB</li>
+<li>PCB工艺介绍及限制</li>
+<li>Altium Designer简介</li>
+<li>Altium Designer的安装和破解</li>
+<li>准备工作，如安装新语言</li>
+<li>怎么画原理图</li>
+<li>怎么基于原理图画PCB</li>
+<li>怎么直接画PCB</li>
+<li>高速PCB的布局布线</li>
+<li>寻找库里没有的封装的方法</li>
+<li>怎么自己画封装</li>
+<li>怎么自己画原理图符号</li>
+<li>如何制作自己的library</li>
+<li>如何在PCB上添加自定义图形</li>
+<li>怎么生成工程的pdf文档</li>
+<li>（可选）如何直接导出Gerber文件</li>
+<li>（可选）PCB工艺流程</li>
+<li>（可选）其他电路板绘制软件</li>
+</ol>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/06/AltiumDesigner/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
 
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/FunctionGenerator/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR'Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/07/07/FunctionGenerator/" class="post-title-link" itemprop="url">信号发生器使用笔记</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-07 19:07:18" itemprop="dateCreated datePublished" datetime="2021-07-07T19:07:18+08:00">2021-07-07</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-07-19 16:46:10" itemprop="dateModified" datetime="2021-07-19T16:46:10+08:00">2021-07-19</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E7%A1%AC%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">硬件学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h2 id="01"><a href="#01" class="headerlink" title="01"></a>01</h2><p>实验室目前有一台是德33512B，正面标注的是33500B，其实是表示这台信号发生器是33500B这个系列的产品，真正的型号在背面用一个贴纸贴上了。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/07/07/FunctionGenerator/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
       
     </div>
 
@@ -756,111 +869,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/06/AltiumDesigner/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/paperboat.jpg">
-      <meta itemprop="name" content="Haoran Geng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GHR'Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/06/AltiumDesigner/" class="post-title-link" itemprop="url">Altium Designer使用教程</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-06 19:17:43" itemprop="dateCreated datePublished" datetime="2021-07-06T19:17:43+08:00">2021-07-06</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-07-13 10:49:49" itemprop="dateModified" datetime="2021-07-13T10:49:49+08:00">2021-07-13</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E8%BD%AF%E4%BB%B6%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">软件学习</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <p><strong>详细的Altium Designer教程，画PCB必备！</strong></p>
-<p>先画个大饼，后面慢慢写。</p>
-<p><strong>主要需要写的内容包括：</strong></p>
-<ol>
-<li>常用进制转换</li>
-<li>Altium Designer常用快捷键</li>
-<li>什么是PCB</li>
-<li>PCB工艺介绍及限制</li>
-<li>Altium Designer简介</li>
-<li>Altium Designer的安装和破解</li>
-<li>准备工作，如安装新语言</li>
-<li>怎么画原理图</li>
-<li>怎么基于原理图画PCB</li>
-<li>怎么直接画PCB</li>
-<li>高速PCB的布局布线</li>
-<li>寻找库里没有的封装的方法</li>
-<li>怎么自己画封装</li>
-<li>怎么自己画原理图符号</li>
-<li>如何制作自己的library</li>
-<li>如何在PCB上添加自定义图形</li>
-<li>怎么生成工程的pdf文档</li>
-<li>（可选）如何直接导出Gerber文件</li>
-<li>（可选）PCB工艺流程</li>
-<li>（可选）其他电路板绘制软件</li>
-</ol>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/06/AltiumDesigner/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/diaries/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1096,7 +1104,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">12</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
