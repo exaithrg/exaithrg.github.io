@@ -29,10 +29,12 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/MMR.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/pyramid.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/memhiera.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/memper.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/comparison.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/15/storage/guyu.jpg">
 <meta property="article:published_time" content="2021-07-15T09:53:44.000Z">
-<meta property="article:modified_time" content="2021-10-14T06:30:04.519Z">
+<meta property="article:modified_time" content="2021-10-14T06:53:00.756Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="memory">
 <meta name="twitter:card" content="summary">
@@ -202,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-14 14:30:04" itemprop="dateModified" datetime="2021-10-14T14:30:04+08:00">2021-10-14</time>
+                <time title="修改时间：2021-10-14 14:53:00" itemprop="dateModified" datetime="2021-10-14T14:53:00+08:00">2021-10-14</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,18 +236,19 @@
 <h1 id="Types-of-Memory"><a href="#Types-of-Memory" class="headerlink" title="Types of Memory"></a>Types of Memory</h1><p><img src="/2021/07/15/storage/MMR.png" alt="存储器种类"></p>
 <p>ABCDEFGHIJKLMNOPQRSTUVWXYZ</p>
 <p>ZYXWVUTSRQPONMLKJIHGFEDCBA</p>
-<p>RAM    Random-Access Memory 随机存取存储器</p>
-<p>ROM    Read Only Memory 只读存储器</p>
-<p>SRAM    Static Random-Access Memory 静态随机存储器 应用：高速Cache</p>
-<p>DRAM    Dynamic Random Access Memory 动态随机存储器 应用：主存（内存）</p>
+<p>NVM non-volatile memory 非易失性存储器</p>
+<p>VM volatile memory 易失性存储器</p>
+<p>Durable Storage 永久存储</p>
 <span id="more"></span>
 <p>CDROM    Compact Disc Read Only Memory 光盘只读存储器</p>
-<p>DDR    Double Data Rate SDRAM双倍速率同步DRAM</p>
-<p>DDR2</p>
-<p>DDR3</p>
-<p>DDR4</p>
+<p>DDR SDRAM    Double Data Rate SDRAM双倍速率同步DRAM</p>
+<p>DDR2 SDRAM</p>
+<p>DDR3 SDRAM</p>
+<p>DDR4 SDRAM</p>
 <p>DIMM    Dual Inline Memory Modules 双列直插式存储模块</p>
+<p>DRAM    Dynamic Random Access Memory 动态随机存储器 应用：主存（内存）</p>
 <p>DRDRAM    直接型RDRAM</p>
+<p>EAROM    Electrically alterable read only memory 电可改写只读内存</p>
 <p>ECC    Error Correcting Code 纠错码。亦解释为Error Checking &amp; Correction，错误检查与更正</p>
 <p>EDO DRAM    Extended Data Out DRAM 扩展数据输出DRAM（Micron公司专利）</p>
 <p>EPROM    Erasable Programmable Read Only Memory 可擦除可编程只读存储器</p>
@@ -264,26 +267,28 @@
 <p>NAND FLASH    = NAND Flash Memory</p>
 <p>NOR FLASH    = NOR Flash Memory</p>
 <p>NVRAM    Non-Volatile Random Access Memory 非易失性随机访问存储器</p>
-<p>OTPROM    One Time Programmable Read Only Memory</p>
+<p>OTPROM    One Time Programmable Read Only Memory 一次编程只读存储器</p>
 <p>Parity    奇偶校验</p>
 <p>PROM    Programmable Read-only Memory 可编程只读存储器</p>
+<p>RAM    Random-access Memory 随机存取存储器</p>
 <p>RDIMM    Registered DIMM</p>
 <p>RDRAM    Rambus DRAM RAMBUS公司开发的一种DRAM</p>
 <p>Registered ECC SDRAM    带寄存器带校验SDRAM</p>
+<p>ROM    Read-only Memory 只读存储器</p>
 <p>SDRAM    Synchronous Dynamic Random-Access Memory 同步动态随机存取内存</p>
 <p>SDR SDRAM    单数据速率SDRAM</p>
 <p>SIMM    Single Inline Memory Module 单列直插式内存模块</p>
 <p>SO-DIMM    Small Outline Dual Inline Memory Module 小外形双列直插式内存模块</p>
+<p>SRAM    Static Random-Access Memory 静态随机存储器 应用：高速Cache</p>
 <p>SSD Solid State Disk 固态硬盘</p>
 <p>UDIMM    Unregistered DIMM</p>
 <p>VRAM    Video RAM 视频RAM</p>
-<h1 id="What-is-a-Memory-Wall"><a href="#What-is-a-Memory-Wall" class="headerlink" title="What is a Memory Wall?"></a>What is a Memory Wall?</h1><p>source: <a target="_blank" rel="noopener" href="https://www.offtek.co.uk/blog/what-is-a-memory-wall/">What is a memory wall?</a></p>
-<blockquote>
-<p>According to Moore’s Law, which states that the number of transistors in a circuit doubles every two years, CPUs will eventually become too fast to yield any noticeable difference in computing speed. Once we reach this so-called memory wall, program/app execution time will depend almost entirely on the speed at which RAM can send data to the CPU. So even if you have an incredibly fast processor in your computer, it’s function may be limited to the speed of your RAM.</p>
-<p>The processor chip maker also noted that certain applications have become less efficient as processors continue to evolve – something known as the Von Neumann bottleneck effect. This effectively reduces gains that normal frequency increases may achieve. More so, delays in signal transmission continue to grow while feature sizes shrink, further stressing the problem of bottleneck.</p>
-<p>But there are some solutions available to combat the problem of memory wall, one of which is the use of cached data. By delivering small amounts of high-speed memory on multiple levels of caching, computers can bridge the gap between RAM and CPU speeds. So, just how much of a difference can this make? Some experts suggest it can make up to a 53% difference between the growth speed of processors and the growth speed of RAM.</p>
-</blockquote>
-<h1 id="Mem-hierarchy-pyramid"><a href="#Mem-hierarchy-pyramid" class="headerlink" title="Mem hierarchy pyramid"></a>Mem hierarchy pyramid</h1><p><img src="/2021/07/15/storage/pyramid.png" alt="金字塔结构"></p>
+<h1 id="Mem-hierarchy-pyramid"><a href="#Mem-hierarchy-pyramid" class="headerlink" title="Mem hierarchy pyramid"></a>Mem hierarchy pyramid</h1><p>mem ˈhʌɪərɑːki ˈpɪrəmɪd</p>
+<p><img src="/2021/07/15/storage/pyramid.png" alt="金字塔结构"></p>
+<p>Memory Hierarchy</p>
+<p><img src="/2021/07/15/storage/memhiera.png" alt="MemHiera"></p>
+<p>Memory Performance Gap</p>
+<p><img src="/2021/07/15/storage/memper.png" alt="MemGap"></p>
 <p>形成原因：</p>
 <p><img src="/2021/07/15/storage/comparison.png" alt="comparison"></p>
 <p>原因：</p>
@@ -293,6 +298,12 @@
 <li>程序运行的时间局部性、空间局部性</li>
 <li>存储墙：访存速度限制程序运行速度</li>
 </ol>
+<h1 id="What-is-a-Memory-Wall"><a href="#What-is-a-Memory-Wall" class="headerlink" title="What is a Memory Wall?"></a>What is a Memory Wall?</h1><p>source: <a target="_blank" rel="noopener" href="https://www.offtek.co.uk/blog/what-is-a-memory-wall/">What is a memory wall?</a></p>
+<blockquote>
+<p>According to Moore’s Law, which states that the number of transistors in a circuit doubles every two years, CPUs will eventually become too fast to yield any noticeable difference in computing speed. Once we reach this so-called memory wall, program/app execution time will depend almost entirely on the speed at which RAM can send data to the CPU. So even if you have an incredibly fast processor in your computer, it’s function may be limited to the speed of your RAM.</p>
+<p>The processor chip maker also noted that certain applications have become less efficient as processors continue to evolve – something known as the Von Neumann bottleneck effect. This effectively reduces gains that normal frequency increases may achieve. More so, delays in signal transmission continue to grow while feature sizes shrink, further stressing the problem of bottleneck.</p>
+<p>But there are some solutions available to combat the problem of memory wall, one of which is the use of cached data. By delivering small amounts of high-speed memory on multiple levels of caching, computers can bridge the gap between RAM and CPU speeds. So, just how much of a difference can this make? Some experts suggest it can make up to a 53% difference between the growth speed of processors and the growth speed of RAM.</p>
+</blockquote>
 <h1 id="DDR-SDRAM"><a href="#DDR-SDRAM" class="headerlink" title="DDR SDRAM"></a>DDR SDRAM</h1><p>DDR SDRAM，前面DDR就是Dual Data Rate，双倍速率，2bit预读，上下同时读写，相当于SDRAM的频率X2，所以现在DDR400的实际频率只有200MHz，但是等效400MHz。</p>
 <p>典型芯片如mt47h64m16。</p>
 <h1 id="DRAM"><a href="#DRAM" class="headerlink" title="DRAM"></a>DRAM</h1><p>动态随机存取存储器（DRAM）里面所储存的数据需要周期性地更新。断电数据丢失。</p>
@@ -303,7 +314,7 @@
 <p>不像EPROM芯片，EEPROM不需从计算机中取出即可修改。在一个EEPROM中，当计算机在使用的时候可频繁地反复编程，因此EEPROM的寿命是一个很重要的设计考虑参数。EEPROM是一种特殊形式的闪存，其应用通常是个人电脑中的电压来擦写和重编程。</p>
 <p>主板上BIOS ROM芯片大部分都采用EEPROM。</p>
 <p>EEPROM的出现，解决了ROM只能制造时写一次，PROM只能写一次，EPROM需要透光【紫外线】擦写数据不方便的问题。EEPROM只需要电信号即可重复擦除编程。【该特性应该是刷BIOS的基础吧？】</p>
-<h1 id="FLASH（闪存）"><a href="#FLASH（闪存）" class="headerlink" title="FLASH（闪存）"></a>FLASH（闪存）</h1><p>flash的一个重要特点是断电数据保留</p>
+<h1 id="FLASH"><a href="#FLASH" class="headerlink" title="FLASH"></a>FLASH</h1><p>flash（闪存）的一个重要特点是断电数据保留</p>
 <p>因此uVision如果将程序烧入flash，则断电后重新上电还可以继续运行</p>
 <p>固态硬盘就是FLASH。</p>
 <blockquote>
@@ -426,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Types-of-Memory"><span class="nav-number">1.</span> <span class="nav-text">Types of Memory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-a-Memory-Wall"><span class="nav-number">2.</span> <span class="nav-text">What is a Memory Wall?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mem-hierarchy-pyramid"><span class="nav-number">3.</span> <span class="nav-text">Mem hierarchy pyramid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDR-SDRAM"><span class="nav-number">4.</span> <span class="nav-text">DDR SDRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRAM"><span class="nav-number">5.</span> <span class="nav-text">DRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EEPROM"><span class="nav-number">6.</span> <span class="nav-text">EEPROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FLASH%EF%BC%88%E9%97%AA%E5%AD%98%EF%BC%89"><span class="nav-number">7.</span> <span class="nav-text">FLASH（闪存）</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FSMC"><span class="nav-number">8.</span> <span class="nav-text">FSMC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PROM"><span class="nav-number">9.</span> <span class="nav-text">PROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDRAM"><span class="nav-number">10.</span> <span class="nav-text">SDRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SRAM"><span class="nav-number">11.</span> <span class="nav-text">SRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">12.</span> <span class="nav-text">References</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Types-of-Memory"><span class="nav-number">1.</span> <span class="nav-text">Types of Memory</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Mem-hierarchy-pyramid"><span class="nav-number">2.</span> <span class="nav-text">Mem hierarchy pyramid</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#What-is-a-Memory-Wall"><span class="nav-number">3.</span> <span class="nav-text">What is a Memory Wall?</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DDR-SDRAM"><span class="nav-number">4.</span> <span class="nav-text">DDR SDRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#DRAM"><span class="nav-number">5.</span> <span class="nav-text">DRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#EEPROM"><span class="nav-number">6.</span> <span class="nav-text">EEPROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FLASH"><span class="nav-number">7.</span> <span class="nav-text">FLASH</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FSMC"><span class="nav-number">8.</span> <span class="nav-text">FSMC</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PROM"><span class="nav-number">9.</span> <span class="nav-text">PROM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SDRAM"><span class="nav-number">10.</span> <span class="nav-text">SDRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#SRAM"><span class="nav-number">11.</span> <span class="nav-text">SRAM</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#References"><span class="nav-number">12.</span> <span class="nav-text">References</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
