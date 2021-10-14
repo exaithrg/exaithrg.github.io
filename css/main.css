@@ -1194,7 +1194,7 @@ pre .javascript .function {
 }
 .links-of-author a::before,
 .links-of-author span.exturl::before {
-  background: #ff04f6;
+  background: #fb33ff;
   border-radius: 50%;
   content: ' ';
   display: inline-block;
@@ -2489,27 +2489,27 @@ mjx-container + br {
     // border-bottom: none; 
     // border-bottom: 1px solid #0593d3; 
     &:hover { 
-        color: #69075A; 
+        color: #6A005F; 
         border-bottom: none; 
-        border-bottom: 1px solid #69075A; 
+        border-bottom: 1px solid #6A005F; 
     } 
 }
 */
 /* webkit, opera, IE9 */
 ::selection {
-  background: #69075a;
+  background: #6a005f;
   color: #f7f7f7;
 }
 /* firefox */
 ::-moz-selection {
-  background: #69075a;
+  background: #6a005f;
   color: #f7f7f7;
 }
 .headband {
-  background: #69075a;
+  background: #6a005f;
 }
 .site-brand-container {
-  background: #69075a;
+  background: #6a005f;
 }
 .site-subtitle {
   color: #fff;
@@ -2521,7 +2521,7 @@ mjx-container + br {
   height: 2px;
   bottom: 0;
   left: 0;
-  background-color: #69075a;
+  background-color: #6a005f;
   visibility: hidden;
   -webkit-transform: scaleX(0);
   -moz-transform: scaleX(0);
