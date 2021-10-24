@@ -31,6 +31,9 @@
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/04.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/10.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/13.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/16.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/15.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/14.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/09.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/03.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/01.png">
@@ -42,7 +45,7 @@
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/07.png">
 <meta property="og:image" content="https://njughr.github.io/2021/07/06/AltiumDesigner/jingzhe.jpg">
 <meta property="article:published_time" content="2021-07-06T11:17:43.000Z">
-<meta property="article:modified_time" content="2021-10-24T07:33:27.692Z">
+<meta property="article:modified_time" content="2021-10-24T07:49:56.388Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="Altium Designer">
 <meta property="article:tag" content="PCB">
@@ -213,7 +216,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-24 15:33:27" itemprop="dateModified" datetime="2021-10-24T15:33:27+08:00">2021-10-24</time>
+                <time title="修改时间：2021-10-24 15:49:56" itemprop="dateModified" datetime="2021-10-24T15:49:56+08:00">2021-10-24</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -259,7 +262,8 @@
 <li>如何在PCB上添加自定义图形</li>
 <li>怎么生成工程的pdf文档</li>
 <li>（可选）如何直接导出Gerber文件</li>
-<li>（可选）PCB工艺流程</li>
+<li>（可选）PCB工艺流程简介</li>
+<li>（可选）PCB焊接技巧</li>
 <li>（可选）其他电路板绘制软件</li>
 <li>参考资料</li>
 </ol>
@@ -275,15 +279,14 @@
 </blockquote>
 <p>所谓铜厚1oz，指的是1平方英尺的面积上均匀覆盖28.35g（1oz）铜箔时铜箔的厚度。这个值工程上一般来说是35um（1.378mil），<a target="_blank" rel="noopener" href="https://baike.baidu.com/item/OZ/17842661">精确计算是34.287um</a>，也就是1.35mil。</p>
 <p>盎司是一个非常乱的单位，既可以表示重量，也可以表示容量，还可以表示长度。盎司和国际单位制之间也难以换算，PCB行业采用盎司只能说是约定俗成。</p>
-<h1 id="AD常用技巧"><a href="#AD常用技巧" class="headerlink" title="AD常用技巧"></a>AD常用技巧</h1><p>所有快捷键均强烈建议在<strong>English (United States)</strong>输入环境下使用。</p>
+<h1 id="AD常用技巧"><a href="#AD常用技巧" class="headerlink" title="AD常用技巧"></a>AD常用技巧</h1><h2 id="输入模式"><a href="#输入模式" class="headerlink" title="输入模式"></a>输入模式</h2><p>所有快捷键均强烈建议在<strong>English (United States)</strong>输入环境下使用。</p>
 <p>下图是建议的输入环境：</p>
 <p><img src="/2021/07/06/AltiumDesigner/05.png" alt="English(United States)"></p>
 <p>下图说明还在中文输入模式下，可能会造成快捷键失效：</p>
 <p><img src="/2021/07/06/AltiumDesigner/04.png" alt="Chinese(Simpified, China)"></p>
 <p>安装English (United States)语言，参考“AD使用前的准备”部分。</p>
 <hr>
-<p><strong>PCB Editor：</strong></p>
-<p><code>鼠标右键</code>取消</p>
+<h2 id="快捷键："><a href="#快捷键：" class="headerlink" title="快捷键："></a>快捷键：</h2><p><code>鼠标右键</code>取消</p>
 <p><code>1</code>  切换到规划模式</p>
 <p><code>2</code>  切换到二维模式</p>
 <p><code>3</code>  切换到三维模式</p>
@@ -310,7 +313,7 @@
 <p>选中某条线后按<code>TAB</code>    选中当前Net的所有线</p>
 <p>右侧<code>library</code>库找不到了，在窗口右下角点击<code>Panels</code>，打开<code>Components</code>窗口即可</p>
 <hr>
-<p><strong>如何选中原理图的同时选中PCB上相对应的元件（交叉选择）？</strong></p>
+<h2 id="交叉选择"><a href="#交叉选择" class="headerlink" title="交叉选择"></a>交叉选择</h2><p><strong>如何选中原理图的同时选中PCB上相对应的元件（交叉选择）？</strong></p>
 <p><strong>方法一：</strong>单击选中原理图中元器件，然后单击<code>tools</code>&gt;<code>Seclect PCBcomponents</code>,即可在PCB中看到该器件的高亮显示；</p>
 <p><strong>方法二：</strong>单击<code>Tools</code>&gt;<code>Cross Select Mode</code>，或用快捷键<code>Ctrl</code>+<code>Shift</code>+<code>X</code>键，然后在原理图中单击任意器件，在PCB中都可高亮。</p>
 <p><strong>方法三：</strong><code>Tools</code>&gt;<code>Cross Probe</code>，按<code>Ctrl</code>，然后选中某个元器件，就可以跳到相应原理图或PCB的元器件位置。</p>
@@ -319,13 +322,20 @@
 <p>并排方法是在选项卡上右键，选择Split Vertical，如下图：</p>
 <p><img src="/2021/07/06/AltiumDesigner/13.png" alt="13"></p>
 <hr>
-<p><strong>如何通过画铺铜的方式连接NET，从而更精细的控制走线形状？</strong></p>
+<h2 id="精细布线"><a href="#精细布线" class="headerlink" title="精细布线"></a>精细布线</h2><p><strong>如何通过画铺铜的方式连接NET，从而更精细的控制走线形状？</strong></p>
+<p>铺铜和布线是一种东西，只不过名字不同。<code>Ctrl</code>+<code>W</code>布线布出来的红色线就是顶层铜皮，铺铜铺出来的红色线也是顶层铜皮。可以通过快捷键<code>Shift</code>+<code>S</code>仅查看单层。如下图，红色部分全部是顶层铜皮，蓝色部分都是底层铜皮，不管到底是通过布线还是铺铜方法画出来的，最后生产都是指同一种东西。</p>
+<p>顶层铜皮：</p>
+<p><img src="/2021/07/06/AltiumDesigner/16.png" alt="16"></p>
+<p>底层铜皮：</p>
+<p><img src="/2021/07/06/AltiumDesigner/15.png" alt="15"></p>
 <p>首先<code>d</code>+<code>r</code>打开PCB Rules and Constraints Editior，在Plane - Polygon Connect Style - PolygonConnect里面【这也是设置热焊盘的方法】把Connect Style改成Direct Connect；</p>
 <p>按<code>g</code>提高布线精度，便于精确的定位到线的边缘；</p>
 <p><code>Ctrl</code>+鼠标滚轮放大PCB，鼠标滚轮上下移动PCB，<code>Shift</code>+鼠标滚轮左右移动PCB，定位到需要精细布线的区域，<code>p</code>+<code>g</code>开始铺铜，通过<code>Shift</code>+<code>Space</code>切换线型，<code>Space</code>上下翻转布线，精确的画出需要的布线形状，画好后点鼠标右键退出铺铜；</p>
 <p>铺铜时按<code>TAB</code>或铺铜后右键铺铜区域选择Properties，将Net改为需要连接的Net名称，铺铜选择Pour Over All Same Net Objects，右键铺铜，Polygon Actions - Repour Selected即可。</p>
+<p>如下图，利用铺铜作为走线，连接3个距离非常近的NetAD835_4。这种连接形状靠<code>Ctrl</code>+<code>W</code>交互式布线是难以做到的。</p>
+<p><img src="/2021/07/06/AltiumDesigner/14.png" alt="vio"></p>
 <hr>
-<p>run design rule check后，PCB上显示一条连接着两个相同NET的白线，线上还有双斜线划掉，说明线两端连接的NET相同但是没有电气连接。显示一个圈加上一个类似probe或者天线符号的东西，说明属于走线了但是没有完全走线【没有连接两个相同NET】。如下图所示：</p>
+<h2 id="DRC警告样例"><a href="#DRC警告样例" class="headerlink" title="DRC警告样例"></a>DRC警告样例</h2><p>run design rule check后，PCB上显示一条连接着两个相同NET的白线，线上还有双斜线划掉，说明线两端连接的NET相同但是没有电气连接。显示一个圈加上一个类似probe或者天线符号的东西，说明属于走线了但是没有完全走线【没有连接两个相同NET】。如下图所示：</p>
 <p><img src="/2021/07/06/AltiumDesigner/09.png" alt="vio"></p>
 <p>绿圈里标注的符号说明该连的没有连上，蓝圈里标注的符号说明走线走到一半就停了。类似的标志均可以通过点击圈内的位置，鼠标右键选择弹出菜单中的Violations选项来查看详细问题。</p>
 <h1 id="什么是PCB"><a href="#什么是PCB" class="headerlink" title="什么是PCB"></a>什么是PCB</h1><p>PCB（Printed Circuit Board），中文名称为印制电路板，又称印刷线路板，是重要的电子部件，是电子元器件的支撑体，是电子元器件电气相互连接的载体。由于它是采用电子印刷术制作的，故被称为“印刷”电路板。PCB有很多种，如下图所示【截图来自捷配官网】：</p>
@@ -521,7 +531,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">常用进制转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">2.</span> <span class="nav-text">AD常用技巧</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPCB"><span class="nav-number">3.</span> <span class="nav-text">什么是PCB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PCB%E5%B7%A5%E8%89%BA%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%99%90%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">PCB工艺介绍及限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Altium-Designer%E7%AE%80%E4%BB%8B"><span class="nav-number">5.</span> <span class="nav-text">Altium Designer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD2020%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3"><span class="nav-number">6.</span> <span class="nav-text">AD2020的安装和破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD%E4%BD%BF%E7%94%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-number">7.</span> <span class="nav-text">AD使用前的准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B8%B8%E7%94%A8%E8%BF%9B%E5%88%B6%E8%BD%AC%E6%8D%A2"><span class="nav-number">1.</span> <span class="nav-text">常用进制转换</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD%E5%B8%B8%E7%94%A8%E6%8A%80%E5%B7%A7"><span class="nav-number">2.</span> <span class="nav-text">AD常用技巧</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%BE%93%E5%85%A5%E6%A8%A1%E5%BC%8F"><span class="nav-number">2.1.</span> <span class="nav-text">输入模式</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE%EF%BC%9A"><span class="nav-number">2.2.</span> <span class="nav-text">快捷键：</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BA%A4%E5%8F%89%E9%80%89%E6%8B%A9"><span class="nav-number">2.3.</span> <span class="nav-text">交叉选择</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%B2%BE%E7%BB%86%E5%B8%83%E7%BA%BF"><span class="nav-number">2.4.</span> <span class="nav-text">精细布线</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#DRC%E8%AD%A6%E5%91%8A%E6%A0%B7%E4%BE%8B"><span class="nav-number">2.5.</span> <span class="nav-text">DRC警告样例</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%80%E4%B9%88%E6%98%AFPCB"><span class="nav-number">3.</span> <span class="nav-text">什么是PCB</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#PCB%E5%B7%A5%E8%89%BA%E4%BB%8B%E7%BB%8D%E5%8F%8A%E9%99%90%E5%88%B6"><span class="nav-number">4.</span> <span class="nav-text">PCB工艺介绍及限制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Altium-Designer%E7%AE%80%E4%BB%8B"><span class="nav-number">5.</span> <span class="nav-text">Altium Designer简介</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD2020%E7%9A%84%E5%AE%89%E8%A3%85%E5%92%8C%E7%A0%B4%E8%A7%A3"><span class="nav-number">6.</span> <span class="nav-text">AD2020的安装和破解</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#AD%E4%BD%BF%E7%94%A8%E5%89%8D%E7%9A%84%E5%87%86%E5%A4%87"><span class="nav-number">7.</span> <span class="nav-text">AD使用前的准备</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%8F%82%E8%80%83%E8%B5%84%E6%96%99"><span class="nav-number">8.</span> <span class="nav-text">参考资料</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
