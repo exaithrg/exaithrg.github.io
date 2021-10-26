@@ -20,19 +20,22 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="Modelsim 2019.2学习笔记">
+  <meta name="description" content="Modelsim 2019.2笔记 从代码到波形 如何从代码文件到波形图 对于Verilog： 1 写好top和testbench 2 写一个sim.do sim.do的样例如下： 123456789quit -simvlib workvmap work workvlog adder_test.v#vlog test_vector_gen.vvlog adder4.vvsim -novopt ad">
 <meta property="og:type" content="article">
-<meta property="og:title" content="modelsim学习">
+<meta property="og:title" content="modelsim笔记">
 <meta property="og:url" content="https://njughr.github.io/2021/10/25/modelsim/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="Modelsim 2019.2学习笔记">
+<meta property="og:description" content="Modelsim 2019.2笔记 从代码到波形 如何从代码文件到波形图 对于Verilog： 1 写好top和testbench 2 写一个sim.do sim.do的样例如下： 123456789quit -simvlib workvmap work workvlog adder_test.v#vlog test_vector_gen.vvlog adder4.vvsim -novopt ad">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/10/25/modelsim/01.png">
+<meta property="og:image" content="https://njughr.github.io/2021/10/25/modelsim/chushu.jpg">
 <meta property="article:published_time" content="2021-10-25T03:12:37.000Z">
-<meta property="article:modified_time" content="2021-10-25T03:13:48.935Z">
+<meta property="article:modified_time" content="2021-10-26T05:34:34.043Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="modelsim">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://njughr.github.io/2021/10/25/modelsim/01.png">
 
 <link rel="canonical" href="https://njughr.github.io/2021/10/25/modelsim/">
 
@@ -47,7 +50,7 @@
   };
 </script>
 
-  <title>modelsim学习 | GHR's Blog</title>
+  <title>modelsim笔记 | GHR's Blog</title>
   
 
 
@@ -127,7 +130,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">14</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">17</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -137,7 +140,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">13</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">14</span></a>
 
   </li>
   </ul>
@@ -181,7 +184,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          modelsim学习
+          modelsim笔记
         </h1>
 
         <div class="post-meta">
@@ -190,10 +193,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-25 11:12:37 / 修改时间：11:13:48" itemprop="dateCreated datePublished" datetime="2021-10-25T11:12:37+08:00">2021-10-25</time>
+              <time title="创建时间：2021-10-25 11:12:37" itemprop="dateCreated datePublished" datetime="2021-10-25T11:12:37+08:00">2021-10-25</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-10-26 13:34:34" itemprop="dateModified" datetime="2021-10-26T13:34:34+08:00">2021-10-26</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -215,7 +224,99 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <p><strong>Modelsim 2019.2学习笔记</strong></p>
+        <p><strong>Modelsim 2019.2笔记</strong></p>
+<h1 id="从代码到波形"><a href="#从代码到波形" class="headerlink" title="从代码到波形"></a>从代码到波形</h1><hr>
+<p>如何从代码文件到波形图</p>
+<p><strong>对于Verilog：</strong></p>
+<p>1 写好top和testbench</p>
+<p>2 写一个sim.do</p>
+<p>sim.do的样例如下：</p>
+<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">quit</span> -<span class="keyword">sim</span></span><br><span class="line">vlib work</span><br><span class="line"><span class="keyword">vmap</span> work work</span><br><span class="line">vlog adder_test.v</span><br><span class="line">#vlog test_vector_gen.v</span><br><span class="line">vlog adder4.v</span><br><span class="line">vsim -novopt adder_tb</span><br><span class="line"><span class="built_in">add</span> wave <span class="keyword">sim</span>:/adder_tb/adder4_1/*</span><br><span class="line">run -<span class="keyword">all</span></span><br></pre></td></tr></table></figure>
+<p>source: D:\Lessons\数字集成电路I\2020VLSI\e1_adder</p>
+<p>多文件版本的sim.do：</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">quit -sim</span><br><span class="line">vlib work</span><br><span class="line">vmap work work</span><br><span class="line"></span><br><span class="line">vlog cpu_test.v</span><br><span class="line">vlog cpu.v</span><br><span class="line">vlog clkgen.v</span><br><span class="line"></span><br><span class="line">vlog ..<span class="regexp">/register/</span>register.v</span><br><span class="line">vlog ..<span class="regexp">/mux/</span>scale_mux.v</span><br><span class="line">vlog ..<span class="regexp">/counter/</span>counter.v</span><br><span class="line">vlog ..<span class="regexp">/alu/</span>alu.v</span><br><span class="line">vlog ..<span class="regexp">/mem/m</span>emory.v</span><br><span class="line">vlog ..<span class="regexp">/control/</span>controller.v</span><br><span class="line"></span><br><span class="line">vsim -novopt cpu_test</span><br><span class="line">add wave -r sim:<span class="regexp">/cpu_test/</span>cpu1/*</span><br><span class="line">run -all</span><br></pre></td></tr></table></figure>
+<p>source: D:\Lessons\数字集成电路I\RISCCPU\project\risk_cpu\cpu</p>
+<p>3 进入相关目录然后do sim.do</p>
+<span id="more"></span>
+<hr>
+<p><strong>更加一般的方法，例如对于System Verilog文件：</strong></p>
+<p>1 写好top和tesebench</p>
+<p>2 参考<a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/db638e25b9d528ea81c779cc.html">modelsim详细使用教程</a>，但是这个文件被垃圾百度文库设成了VIP才能阅读全文。简单来说，首先建立work这个library：<code>File</code>-&gt;<code>New</code>-&gt;<code>Library</code>。如果已经有work目录，就直接新建：<code>File</code>-&gt;<code>New</code>-&gt;<code>project</code>，然后就很自然了，add existing files，然后compile all，切到Library选项卡下，右键testbench的文件选择simulate即可。如下图：</p>
+<p><img src="/2021/10/25/modelsim/01.png" alt="01"></p>
+<p>2.5 如何看compile_all的报错？直接双击就行了</p>
+<p>3 【10.4】vsim -gui work.testbench  【2019.2】vsim -voptargs=+acc work.top_testbench</p>
+<p>4 add wave *</p>
+<p>5 调整run length，如改成1 us。注意自己testbench开头写的timecale。</p>
+<p>6 输入run启动仿真</p>
+<p>7 仿真后quit -sim或restart</p>
+<p>del波形直接在wave - default里面delete就行了</p>
+<p>觉得某个波形前缀太长了的话下面有个滑动条可以拉一拉</p>
+<p>wave窗口左下角还有个小按钮可以切换leaf name和full name</p>
+<p>按G可以go to time</p>
+<h1 id="快捷键"><a href="#快捷键" class="headerlink" title="快捷键"></a>快捷键</h1><p>2019.2下，不能简单的用<code>vsim -gui work.testbench</code>启动仿真</p>
+<p>而是需要<code>vsim -voptargs=+acc work.testbench</code>（即在<code>Library</code>中右键<code>testbench.sv</code>选择第一个<code>simulate</code>）</p>
+<p>点击<code>sim</code> - <code>Default</code>窗口的<code>Instance</code>可以切换目录树的排序方式</p>
+<p>下面是10.4版本的快捷键，新版本可能有变化</p>
+<p><code>vlog</code>：针对verilog</p>
+<p><code>vcom</code>：针对VHDL</p>
+<p>针对sv的到底是啥啊！！！</p>
+<p><code>Alt</code>+<code>C</code>+<code>A</code>：编译全部</p>
+<p><code>Alt</code>+<code>S</code>+<code>S</code>：运行仿真</p>
+<p><code>run -all</code>：仿真命令</p>
+<p><code>vsim -gui lib.modelname</code>：运行仿真</p>
+<p><code>add wave *</code>：把所有top模块的输入输出变量加到wave里面</p>
+<p>在<code>sim</code>-<code>Default Instance</code>中选中所需模块直接<code>Ctrl</code> + <code>W</code>即可将该模块所有信号加入Wave</p>
+<p><code>Tools</code> - <code>Edit Preferences</code>可以改字体大小</p>
+<p><code>cd E:/study/Fundamentals_of_IC_Design/RISCCPU/project/risk_cpu/counter?</code></p>
+<p><code>add wave -r /*</code>：把所有中间变量都加到仿真里面去</p>
+<p>专门把某个中间变量添加到仿真：</p>
+<p><code>add wave sim:/</code>仿真模块的名称/仿真模块中所实例化的模块的实例化名称/所需中间变量</p>
+<p>如：<code>add wave sim:/npu_nl_relu_tb/nnr/relu_result</code></p>
+<p><code>add wave sim:/npu_nl_relu_tb/nnr/relun_result</code></p>
+<p>用命令可能还不如用图形界面快。用图形界面的方法是：</p>
+<p>在<code>sim</code>-<code>default</code>窗口中，点击所需变量所在的模块，该模块中所有变量立即被加入到Objects中，然后右键或<code>Ctrl</code>+<code>W</code>添加波形，重新仿真。</p>
+<p>所谓的<code>sim</code>-<code>default</code>窗口，就是<code>View</code>中的<code>Structure</code>窗口</p>
+<p>用指令也可以，比如<code>add wave -position insertpoint sim:/testbench/blkbfs/*</code></p>
+<p>或者：<code>add wave -position insertpoint sim:/testbench/*</code></p>
+<p>这些指令不会递归。</p>
+<p>如果要删除Wave，那么就是直接选中按<code>Delete</code>即可。</p>
+<p><code>quit -sim</code>：退出仿真</p>
+<p>三操作：</p>
+<p><code>Alt</code> +<code>C</code>+<code>A</code>    ：编译全部</p>
+<p><code>restart</code>：重启仿真</p>
+<p><code>run -all</code>    ：仿真开启。不要选用run -all，还是建议使用run循环…用来调试….</p>
+<p>在wave窗口中：</p>
+<p><code>i</code>：放大</p>
+<p><code>o</code>：缩小</p>
+<p><code>f</code>：全部显示</p>
+<h1 id="错误和警告"><a href="#错误和警告" class="headerlink" title="错误和警告"></a>错误和警告</h1><p>非常莫名其妙的东西：set PrefMain(updateRate) 797n</p>
+<p>参考<a target="_blank" rel="noopener" href="https://www.reddit.com/r/FPGA/comments/ijxk23/need_quick_help_on_modelsimquestasim_preference/">Need quick help on ModelSim/QuestaSim preference variables</a></p>
+<p>Allows you to change the length of time (in ms) between transcript refreshes.</p>
+<hr>
+<p>10.4a学生版被漂亮国禁掉了。</p>
+<blockquote>
+<p>//  ModelSim PE Student Edition 10.4a Apr  7 2015 </p>
+<p>//  Copyright 1991-2015 Mentor Graphics Corporation</p>
+<p>//    Mentor Graphics Corporation即明导，全球三大EDA大佬之一</p>
+<p>//  All Rights Reserved.</p>
+<p>//    保留所有权利</p>
+<p>//    THIS WORK CONTAINS TRADE SECRET AND PROPRIETARY INFORMATION</p>
+<p>//    本软件含有商业机密和专有信息</p>
+<p>//    WHICH IS THE PROPERTY OF MENTOR GRAPHICS CORPORATION OR ITS LICENSORS AND IS SUBJECT TO LICENSE TERMS.</p>
+<p>//    是MGC或其授权方的财产，并受到许可条款的约束</p>
+<p>//    THIS DOCUMENT CONTAINS TRADE SECRETS AND COMMERCIAL OR FINANCIAL INFORMATION THAT ARE PRIVILEGED, CONFIDENTIAL, AND EXEMPT FROM DISCLOSURE UNDER THE FREEDOM OF INFORMATION ACT, 5 U.S.C. SECTION 552.</p>
+<p>//    本文件包含美国《美国法典》第5卷第5款所规定的保密，免于公开披露的商业秘密和商业或财务信息。见第552条。</p>
+<p>//    FURTHERMORE, THIS INFORMATION IS PROHIBITED FROM DISCLOSURE UNDER THE TRADE SECRETS ACT, 18 U.S.C. SECTION 1905.</p>
+<p>//    此外，根据美国法典第18卷《商业秘密法》的规定，不得披露本信息。见第1905条。</p>
+<p>//    NOT FOR CORPORATE OR PRODUCTION USE.</p>
+<p>//    不用于公司或生产的要求</p>
+<p>//    THE ModelSim PE Student Edition IS NOT A SUPPORTED PRODUCT.</p>
+<p>//    该版本不是受支持的版本</p>
+<p>//    FOR HIGHER EDUCATION PURPOSES ONLY</p>
+<p>//    仅用于高等教育用途</p>
+</blockquote>
+<hr>
+<p><img src="/2021/10/25/modelsim/chushu.jpg" alt="ChuShu"></p>
 
     </div>
 
@@ -231,7 +332,7 @@
   </li>
   <li class="post-copyright-link">
     <strong>本文链接：</strong>
-    <a href="https://njughr.github.io/2021/10/25/modelsim/" title="modelsim学习">https://njughr.github.io/2021/10/25/modelsim/</a>
+    <a href="https://njughr.github.io/2021/10/25/modelsim/" title="modelsim笔记">https://njughr.github.io/2021/10/25/modelsim/</a>
   </li>
   <li class="post-copyright-license">
     <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
@@ -255,7 +356,10 @@
     <a href="/2021/10/24/monitor/" rel="prev" title="显示器">
       <i class="fa fa-chevron-left"></i> 显示器
     </a></div>
-      <div class="post-nav-item"></div>
+      <div class="post-nav-item">
+    <a href="/2021/10/26/hdl/" rel="next" title="hdl学习">
+      hdl学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
     </div>
       </footer>
     
@@ -314,6 +418,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E4%BB%A3%E7%A0%81%E5%88%B0%E6%B3%A2%E5%BD%A2"><span class="nav-number">1.</span> <span class="nav-text">从代码到波形</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BF%AB%E6%8D%B7%E9%94%AE"><span class="nav-number">2.</span> <span class="nav-text">快捷键</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E9%94%99%E8%AF%AF%E5%92%8C%E8%AD%A6%E5%91%8A"><span class="nav-number">3.</span> <span class="nav-text">错误和警告</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
@@ -329,7 +434,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">13</span>
+          <span class="site-state-item-count">14</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -342,7 +447,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">14</span>
+        <span class="site-state-item-count">17</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
