@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/G128.ico">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/G32.ico">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/G16.ico">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+<link rel="stylesheet" href="https://fonts.loli.net/css?family=Noto Serif SC:300,300italic,400,400italic,700,700italic&display=swap&subset=latin,latin-ext">
+<link rel="stylesheet" href="/lib/font-awesome/css/all.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
+  </script>
+
+  <meta name="description" content="有什么问题？小号：minighr【用于Git协作测试】 Github可以作为两台电脑交换文件的渠道 但是一定要注意仓库私有，保密保密保密，这是最关键的  master分支是什么？ 怎么创建更多的分支？ 各个分支怎么互相合并？ 合并时假设一个分支改了A，另一个分支改了A和B，两个分支对A的修改还不一样怎么办？ fork别人的仓库后，别人仓库更新了要做什么？ 提交pull request的时候发现别人">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Git&amp;GitHub使用笔记">
+<meta property="og:url" content="https://njughr.github.io/2021/07/08/git/index.html">
+<meta property="og:site_name" content="GHR&#39;s Blog">
+<meta property="og:description" content="有什么问题？小号：minighr【用于Git协作测试】 Github可以作为两台电脑交换文件的渠道 但是一定要注意仓库私有，保密保密保密，这是最关键的  master分支是什么？ 怎么创建更多的分支？ 各个分支怎么互相合并？ 合并时假设一个分支改了A，另一个分支改了A和B，两个分支对A的修改还不一样怎么办？ fork别人的仓库后，别人仓库更新了要做什么？ 提交pull request的时候发现别人">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/07/08/git/1.png">
+<meta property="og:image" content="https://njughr.github.io/2021/07/08/git/shuangjiang.jpg">
+<meta property="article:published_time" content="2021-07-08T07:14:14.000Z">
+<meta property="article:modified_time" content="2021-10-31T16:04:36.571Z">
+<meta property="article:author" content="Haoran Geng">
+<meta property="article:tag" content="github">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://njughr.github.io/2021/07/08/git/1.png">
+
+<link rel="canonical" href="https://njughr.github.io/2021/07/08/git/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome : false,
+    isPost : true,
+    lang   : 'zh-CN'
+  };
+</script>
+
+  <title>Git&GitHub使用笔记 | GHR's Blog</title>
+  
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <span class="logo-line-before"><i></i></span>
+      <h1 class="site-title">GHR's Blog</h1>
+      <span class="logo-line-after"><i></i></span>
+    </a>
+      <p class="site-subtitle" itemprop="description">Yesterday is done. Tomorrow never comes. Today is here.</p>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+
+<nav class="site-nav">
+  <ul id="menu" class="main-menu menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-home fa-fw"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-user fa-fw"></i>关于</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-th fa-fw"></i>分类<span class="badge">3</span></a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
+
+  </li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content post posts-expand">
+            
+
+    
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/08/git/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR's Blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          Git&GitHub使用笔记
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2021-07-08 15:14:14" itemprop="dateCreated datePublished" datetime="2021-07-08T15:14:14+08:00">2021-07-08</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-01 00:04:36" itemprop="dateModified" datetime="2021-11-01T00:04:36+08:00">2021-11-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+        <h1 id="有什么问题？"><a href="#有什么问题？" class="headerlink" title="有什么问题？"></a>有什么问题？</h1><p>小号：minighr【用于Git协作测试】</p>
+<p>Github可以作为两台电脑交换文件的渠道</p>
+<p>但是一定要注意仓库私有，<strong>保密保密保密，这是最关键的</strong></p>
+<ol>
+<li>master分支是什么？</li>
+<li>怎么创建更多的分支？</li>
+<li>各个分支怎么互相合并？</li>
+<li>合并时假设一个分支改了A，另一个分支改了A和B，两个分支对A的修改还不一样怎么办？</li>
+<li>fork别人的仓库后，别人仓库更新了要做什么？</li>
+<li>提交pull request的时候发现别人仓库和fork时相比更新了怎么办？</li>
+<li>git pull是什么意思？有哪些参数？</li>
+<li>git push是什么意思？有哪些参数？</li>
+<li>如何建立私人仓库并协作？</li>
+<li>git fetch是什么意思？有哪些参数？</li>
+<li>有哪些git版本回退的方法？</li>
+<li>git merge是什么意思？有哪些参数？</li>
+</ol>
+<h1 id="Git工作流指南"><a href="#Git工作流指南" class="headerlink" title="Git工作流指南"></a>Git工作流指南</h1><p>链接：<a target="_blank" rel="noopener" href="https://www.jianshu.com/p/eba2efc035ec">https://www.jianshu.com/p/eba2efc035ec</a></p>
+<p>更详细的链接：<a target="_blank" rel="noopener" href="https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md">https://github.com/xirong/my-git/blob/master/git-workflow-tutorial.md</a></p>
+<p>小明和小红用git协作</p>
+<p>有人先初始化中央仓库</p>
+<p>所有人fork（克隆）中央仓库</p>
+<p>各个开发者通过<code>git clone</code>命令创建整个项目的本地拷贝</p>
+<span id="more"></span>
+<h2 id="小明开发功能"><a href="#小明开发功能" class="headerlink" title="小明开发功能"></a>小明开发功能</h2><p>在小明的本地仓库中，他使用标准的Git过程开发功能：编辑、暂存（Stage）和提交。</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">git status <span class="meta"># 查看本地仓库的修改状态</span></span><br><span class="line">git <span class="keyword">add</span> <span class="meta"># 暂存文件</span></span><br><span class="line">git commit <span class="meta"># 提交文件</span></span><br><span class="line">git diff <span class="meta">#查看本地的所有修改</span></span><br><span class="line">git checkout file/. <span class="meta">##撤销文件更改</span></span><br></pre></td></tr></table></figure>
+<p>这些命令生成的是本地提交，小明可以按自己需求反复操作多次，而不用担心中央仓库上有了什么操作。</p>
+<h2 id="小红开发功能"><a href="#小红开发功能" class="headerlink" title="小红开发功能"></a>小红开发功能</h2><p>与此同时，小红在自己的本地仓库中用相同的编辑、暂存和提交过程开发功能。和小明一样，她也不关心中央仓库有没有新提交； 当然更不关心小明在他的本地仓库中的操作，因为所有本地仓库都是私有的。</p>
+<h2 id="小明发布功能【成功】"><a href="#小明发布功能【成功】" class="headerlink" title="小明发布功能【成功】"></a>小明发布功能【成功】</h2><p>一旦小明完成了他的功能开发，会发布他的本地提交到中央仓库中，这样其它团队成员可以看到他的修改。他可以用下面的[<code>git push</code>命令]：</p>
+<p> <code>git push origin master</code></p>
+<p>注意，origin是在小明克隆仓库时Git创建的远程中央仓库别名。master参数告诉Git推送的分支。 由于中央仓库自从小明克隆以来还没有被更新过，所以push操作不会有冲突，成功完成。</p>
+<h2 id="小红试着发布功能【失败】"><a href="#小红试着发布功能【失败】" class="headerlink" title="小红试着发布功能【失败】"></a>小红试着发布功能【失败】</h2><p>一起来看看在小明发布修改后，小红push修改会怎么样？她使用完全一样的push命令：</p>
+<p> <code>git push origin master</code></p>
+<p>但她的本地历史已经和中央仓库有分岐了，Git拒绝操作并给出下面很长的出错消息：</p>
+<blockquote>
+<p> error: failed to push some refs to ‘/path/to/repo.git’</p>
+<p> hint: Updates were rejected because the tip of your current branch is behind</p>
+<p> hint: its remote counterpart. Merge the remote changes (e.g. ‘git pull’)</p>
+<p> hint: before pushing again.</p>
+<p> hint: See the ‘Note about fast-forwards’ in ‘git push —help’ for details.</p>
+</blockquote>
+<p>这避免了小红覆写正式的提交。她要先pull小明的更新到她的本地仓库合并上她的本地修改后，再重试。</p>
+<h2 id="小红在小明的提交之上rebase"><a href="#小红在小明的提交之上rebase" class="headerlink" title="小红在小明的提交之上rebase"></a>小红在小明的提交之上rebase</h2><p>【没看懂】</p>
+<p>小红用[<code>git pull</code>]合并上游的修改到自己的仓库中。 ——拉取所有上游提交命令到小红的本地仓库，并尝试和她的本地修改合并：</p>
+<p><code>git pull --rebase origin master</code></p>
+<p><code>--rebase</code>选项告诉Git把小红的提交移到<strong>同步了中央仓库修改后的master分支的顶部</strong>。</p>
+<p>如果你忘加了这个选项，pull操作仍然可以完成，但每次pull操作要同步中央仓库中别人修改时，提交历史会以一个多余的『合并提交』结尾。 对于集中式工作流，最好是使用rebase而不是生成一个合并提交。</p>
+<h2 id="小红解决合并冲突"><a href="#小红解决合并冲突" class="headerlink" title="小红解决合并冲突"></a>小红解决合并冲突</h2><p>【没看懂】</p>
+<p><code>rebase</code>操作过程是把本地提交<strong>一次一个地</strong>迁移到更新了的中央仓库master分支之上。 这意味着可能要解决在迁移某个提交时出现的合并冲突，而不是解决包含了所有提交的大型合并时所出现的冲突。 这样的方式让你尽可能保持每个提交的聚焦和项目历史的整洁。反过来，简化了哪里引入Bug的分析，如果有必要，回滚修改也可以做到对项目影响最小。</p>
+<p>如果小红和小明的功能是不相关的，不大可能在rebase过程中有冲突。如果有，Git在合并有冲突的提交处暂停rebase过程，输出下面的信息并带上相关的指令：</p>
+<blockquote>
+<p>CONFLICT (content): Merge conflict in <some-file></some-file></p>
+</blockquote>
+<p>Git很赞的一点是，任何人可以解决他自己的冲突。在这个例子中，小红可以简单的运行[<code>git status</code>]命令来查看哪里有问题。 冲突文件列在<code>Unmerged paths</code>（未合并路径）一节中：</p>
+<blockquote>
+<p>Unmerged paths:</p>
+<p>(use “git reset HEAD <some-file>…” to unstage)</some-file></p>
+<p>(use “git add/rm <some-file>…” as appropriate to mark resolution)</some-file></p>
+<p>both modified: <some-file></some-file></p>
+</blockquote>
+<p>接着小红编辑这些文件。修改完成后，用老套路暂存这些文件，并让[<code>git rebase</code> ]完成剩下的事：</p>
+<p> <code>git add &lt;some-file&gt; git rebase --continue</code></p>
+<p>要做的就这些了。Git会继续一个一个地合并后面的提交，如其它的提交有冲突就重复这个过程。</p>
+<p> 如果你碰到了冲突，但发现搞不定，不要惊慌。只要执行下面这条命令，就可以回到你执行[<code>git pull --rebase</code>]命令前的样子：</p>
+<p> <code>git rebase --abort</code></p>
+<h2 id="小红成功发布功能"><a href="#小红成功发布功能" class="headerlink" title="小红成功发布功能"></a>小红成功发布功能</h2><p>小红完成和中央仓库的同步后，就能成功发布她的修改了：</p>
+<p><code>git push origin master</code></p>
+<h1 id="Watch-Star-Fork"><a href="#Watch-Star-Fork" class="headerlink" title="Watch Star Fork"></a>Watch Star Fork</h1><h2 id="Watch"><a href="#Watch" class="headerlink" title="Watch"></a>Watch</h2><h2 id="Star"><a href="#Star" class="headerlink" title="Star"></a>Star</h2><p>点赞</p>
+<h2 id="Fork"><a href="#Fork" class="headerlink" title="Fork"></a>Fork</h2><p>相当于你在原项目的主分支上又建立了一个分支，你可以在该分支上任意修改，如果想将你的修改合并到原项目中时，可以pull request，这样原项目的作者就可以将你修改的东西合并到原项目的主分支上去，这样你就为开源项目贡献了代码，开源项目就会在大家共同的努力下不断壮大和完善。</p>
+<p><img src="/2021/07/08/git/1.png" alt="1"></p>
+<p><a target="_blank" rel="noopener" href="https://linux.cn/article-4292-1-rss.html">在Github和Git上fork之简单指南</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/21682976">GitHub 的 Pull Request 是指什么意思？</a></p>
+<p>我尝试用类比的方法来解释一下 pull reqeust。想想我们中学考试，老师改卷的场景吧。你做的试卷就像仓库，你的试卷肯定会有很多错误，就相当于程序里的 bug。<strong>老师把你的试卷拿过来，相当于先 fork。在你的卷子上做一些修改批注，相当于 git commit。最后把改好的试卷给你，相当于发 pull request，你拿到试卷重新改正错误，相当于 merge。</strong></p>
+<p>当你想更正别人仓库里的错误时，要走一个流程：</p>
+<ol>
+<li>先 fork 别人的仓库，相当于拷贝一份，相信我，不会有人直接让你改修原仓库的</li>
+<li>clone 到本地分支，做一些 bug fix</li>
+<li>发起 pull request 给原仓库，让他看到你修改的 bug</li>
+<li>原仓库 review 这个 bug，如果是正确的话，就会 merge 到他自己的项目中</li>
+</ol>
+<p>至此，整个 pull request 的过程就结束了。</p>
+<hr>
+<p>我从单纯的语言学角度解释一下为什么“pull request”这个词组这么令人费解。</p>
+<p>先说正确的理解：<strong>pull request是一个request，它的目的是让别人pull你的东西。</strong></p>
+<p>然而pull和request两个名词直接相连构成偏正短语，二者之间具体是什么关系是不确定的。</p>
+<blockquote>
+<p><strong>思考</strong>：water hose, rubber hose, fire hose, garden hose 这四个短语中，两个词之间分别是什么关系？</p>
+</blockquote>
+<p>我第一次看到pull request这个词组的时候，误以为这个request的目的是请求别人允许自己pull别人的东西。</p>
+<p>另外，pull和request还都有动词义，放到一起的时候，还可能被误解成动宾短语（pull作动词，request作名词）。</p>
+<p>英语中很多单词有多种词性，另外对一串名词直接相连构成词组的句法又比较宽容，这两个性质容易被滥用，造成沟通上的不便。</p>
+<p>恰好汉语也具有这两个特点——你把上文中的“pull request”都换成“拉取请求”，看看是不是依然成立？</p>
+<p>当然，熟悉了GitHub的工作流程后，你可能就不再感觉pull request这个词组有歧义或是费解了。</p>
+<p>这是专业知识消除歧义的典型例子。</p>
+<hr>
+<p>有一个仓库，叫Repo A。你如果要往里贡献代码，首先要Fork这个Repo，于是在你的Github账号下有了一个Repo A2,。然后你在这个A2下工作，Commit，push等。然后你希望原始仓库Repo A合并你的工作，你可以在Github上发起一个Pull Request，意思是请求Repo A的所有者从你的A2合并分支。如果被审核通过并正式合并，这样你就为项目A做贡献了</p>
+<hr>
+<p>使用过git的应该都知道git pull，这个命名相当于连续执行两个命令git fetch然后git merge。所以，pull request的意思就是一个“请求”（request），请对方做一个git fetch拿到request中的代码commits，然后git merge一下到某个分支上。</p>
+<p>pull request简称PR，是github的概念，不是git的概念，所以也不是立刻出结果的，需要有人去同意完成这个PR，当然同意完成PR的可以是自己，也可以拒绝PR。</p>
+<p>现实项目中，即使自己对某个repo的特定分枝有写入权限，也可以提PR来修改，因为这是code review的一种方式，让团队的其他人看一看改的咋样。</p>
+<p>git里其实有这个概念的，有个命令是git request-pull。不过这个命令看起来很老派了，用来生成一段格式化的文本，适用于邮件往来。描述了在某某服务器仓库上可以获取到某个分支，里面包含了自某个提交以来有哪些新提交。如果需要的话，可以去那个服务器仓库里取到然后应用到自己的仓库里。github上的pull request整合了这个过程。</p>
+<hr>
+<p>我改了你们的代码，但是我不是你们git库成员，不能开个分支改好求合并（merge request），只能自己搞一份副本改好求你们拉我代码了（pull request）</p>
+<p>就算是同一个git库的成员，也是pull request。。。比如你的dev分支请求merge到master的时候，github上也叫pull request</p>
+<hr>
+<p>首先 fork 别人的仓库，意思相当于你在github 上拷贝一份对方的源代码，相信我，不会有人直接让你改修原仓库的</p>
+<p>你不可能有能力直接在github 上直接发现别人的代码有问题，不然你也太牛逼了，这个时候你就需要clone 一份到本地分支，并用IDE 打开，例如使用android Studio</p>
+<p>使用并阅读人家代码的偶尔有一天，你发现，我擦，有bug,然后你就充满正义感，像个大神一样做一些 bug fix。</p>
+<p>这个时候你瞬间觉得自己牛逼哄哄，世界都得知道你修改了bug</p>
+<p>然后你就把修改的bug 先 commit file（这步骤是必须得）到本地仓库，然后在通过git—&gt;responsity 下得push 命令 把你修改得代码push 远地仓库（说白了，你不push 到github 这个人气爆满得远程仓库，谁知道你修复bug,谁看的到你的牛逼烘烘………）</p>
+<p>这个时候你的fork 项目已经和当初不一样了，做了bug修改，这个时候你大手一挥，潇洒得按下enter 键，给对方来了一句：“hey gug, your code have funking bug, I fix it ! 流不流？ 掉不掉？”，这就是我们发起 pull request 给原仓库，让他看到你修改的 bug</p>
+<p>原仓库主人review 这个 bug（或者说这个请求），compare 两者代码之间得差异，发现一SB 竟然把他精心设计bug修复了，如果他觉得正确的话，或者你让他爽了得话-呵呵，自己脑补，就会 merge 到他自己的项目中。</p>
+<p>这样所有运用此项目得更新代码得话，这些fix code 就全部运用到所有人得代码。</p>
+<p>这个时候，你就可以把眼神移向窗台，默默的点上一根烟…….你就是黑暗中的man</p>
+<hr>
+<p>你如果想对某个项目贡献的话</p>
+<p>1.fork项目到你的GitHub用户下</p>
+<p>2.git clone刚才fork的项目到本地电脑</p>
+<p>3.修改代码 </p>
+<p>4.git commit然后git push origin master</p>
+<p>5.然后再Github仓库页面，点击pull requst请求合并，</p>
+<p>6.项目作者review你的代码后没问题的话就merge</p>
+<h1 id="Git配置"><a href="#Git配置" class="headerlink" title="Git配置"></a>Git配置</h1><p>git配置文件的位置：%HOMEPATH%\.gitconfig</p>
+<p>lowSpeedLimit = 1000：最低传输速度1KB/s</p>
+<p>lowSpeedTime = 60：持续60s</p>
+<hr>
+<p><img src="/2021/07/08/git/shuangjiang.jpg" alt="ShuangJiang"></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Haoran Geng
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="https://njughr.github.io/2021/07/08/git/" title="Git&amp;GitHub使用笔记">https://njughr.github.io/2021/07/08/git/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fab fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/github/" rel="tag"># github</a>
+              <a href="/tags/git/" rel="tag"># git</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2021/07/07/blogmaintenance/" rel="prev" title="博客维护日志">
+      <i class="fa fa-chevron-left"></i> 博客维护日志
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2021/07/08/connectors/" rel="next" title="有线通信接口学习">
+      有线通信接口学习 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let { activeClass } = CONFIG.comments;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%9C%89%E4%BB%80%E4%B9%88%E9%97%AE%E9%A2%98%EF%BC%9F"><span class="nav-number">1.</span> <span class="nav-text">有什么问题？</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E5%B7%A5%E4%BD%9C%E6%B5%81%E6%8C%87%E5%8D%97"><span class="nav-number">2.</span> <span class="nav-text">Git工作流指南</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%98%8E%E5%BC%80%E5%8F%91%E5%8A%9F%E8%83%BD"><span class="nav-number">2.1.</span> <span class="nav-text">小明开发功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BA%A2%E5%BC%80%E5%8F%91%E5%8A%9F%E8%83%BD"><span class="nav-number">2.2.</span> <span class="nav-text">小红开发功能</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E6%98%8E%E5%8F%91%E5%B8%83%E5%8A%9F%E8%83%BD%E3%80%90%E6%88%90%E5%8A%9F%E3%80%91"><span class="nav-number">2.3.</span> <span class="nav-text">小明发布功能【成功】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BA%A2%E8%AF%95%E7%9D%80%E5%8F%91%E5%B8%83%E5%8A%9F%E8%83%BD%E3%80%90%E5%A4%B1%E8%B4%A5%E3%80%91"><span class="nav-number">2.4.</span> <span class="nav-text">小红试着发布功能【失败】</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BA%A2%E5%9C%A8%E5%B0%8F%E6%98%8E%E7%9A%84%E6%8F%90%E4%BA%A4%E4%B9%8B%E4%B8%8Arebase"><span class="nav-number">2.5.</span> <span class="nav-text">小红在小明的提交之上rebase</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BA%A2%E8%A7%A3%E5%86%B3%E5%90%88%E5%B9%B6%E5%86%B2%E7%AA%81"><span class="nav-number">2.6.</span> <span class="nav-text">小红解决合并冲突</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%B0%8F%E7%BA%A2%E6%88%90%E5%8A%9F%E5%8F%91%E5%B8%83%E5%8A%9F%E8%83%BD"><span class="nav-number">2.7.</span> <span class="nav-text">小红成功发布功能</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Watch-Star-Fork"><span class="nav-number">3.</span> <span class="nav-text">Watch Star Fork</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#Watch"><span class="nav-number">3.1.</span> <span class="nav-text">Watch</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Star"><span class="nav-number">3.2.</span> <span class="nav-text">Star</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Fork"><span class="nav-number">3.3.</span> <span class="nav-text">Fork</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Git%E9%85%8D%E7%BD%AE"><span class="nav-number">4.</span> <span class="nav-text">Git配置</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Haoran Geng"
+      src="/images/paperboat.jpg">
+  <p class="site-author-name" itemprop="name">Haoran Geng</p>
+  <div class="site-description" itemprop="description"></div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">3</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/njughr" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;njughr" rel="noopener" target="_blank"><i class="fab fa-github fa-fw"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:hrgeng@smail.nju.edu.cn" title="E-Mail → mailto:hrgeng@smail.nju.edu.cn" rel="noopener" target="_blank"><i class="fa fa-envelope fa-fw"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+
+      </div>
+
+      <iframe frameborder="no" border="0" marginwidth="0" marginheight="0" width=330 height=86 src="//music.163.com/outchain/player?type=2&id=1444528490&auto=0&height=66"></iframe>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Haoran Geng</span>
+</div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script color='105,7,90' opacity='0.6' zIndex='-1' count='100' src="/lib/canvas-nest/canvas-nest-nomobile.min.js"></script>
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/pisces.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+
+  <script defer src="/lib/three/three.min.js"></script>
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+  
+
+  
+
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"model":{"jsonPath":"/live2dw/assets/wanko.model.json"},"display":{"position":"right","width":150,"height":300},"mobile":{"show":false},"log":false});</script></body>
+</html>
+
+<!-- 页面点击小红心 -->
+<script type="text/javascript" src="/js/src/clicklove.js"></script>
