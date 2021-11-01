@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CPU: Central Processing Unit 从时钟到控制clk信号是一个周期性方波，可以用晶振生成。 如何利用这个周期性方波产生其他波形？例如，如何实现基于clk的计数器？ 原理图如下：">
+  <meta name="description" content="CPU: Central Processing Unit 从时钟到控制clk信号是一个周期性方波，可以用晶振生成。 如何利用这个周期性方波产生其他波形？例如，如何实现基于clk的计数器？ 原理图如下： RISC-V">
 <meta property="og:type" content="article">
 <meta property="og:title" content="CPU学习">
 <meta property="og:url" content="https://njughr.github.io/2021/10/22/mycpu/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="CPU: Central Processing Unit 从时钟到控制clk信号是一个周期性方波，可以用晶振生成。 如何利用这个周期性方波产生其他波形？例如，如何实现基于clk的计数器？ 原理图如下：">
+<meta property="og:description" content="CPU: Central Processing Unit 从时钟到控制clk信号是一个周期性方波，可以用晶振生成。 如何利用这个周期性方波产生其他波形？例如，如何实现基于clk的计数器？ 原理图如下： RISC-V">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2021/10/22/mycpu/qingming.jpg">
 <meta property="article:published_time" content="2021-10-22T13:38:39.000Z">
-<meta property="article:modified_time" content="2021-10-29T07:37:44.188Z">
+<meta property="article:modified_time" content="2021-11-01T14:22:14.991Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="CS">
 <meta property="article:tag" content="cpu">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-10-29 15:37:44" itemprop="dateModified" datetime="2021-10-29T15:37:44+08:00">2021-10-29</time>
+                <time title="修改时间：2021-11-01 22:22:14" itemprop="dateModified" datetime="2021-11-01T22:22:14+08:00">2021-11-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -227,7 +227,7 @@
 <h1 id="从时钟到控制"><a href="#从时钟到控制" class="headerlink" title="从时钟到控制"></a>从时钟到控制</h1><p>clk信号是一个周期性方波，可以用晶振生成。</p>
 <p>如何利用这个周期性方波产生其他波形？例如，如何实现基于clk的计数器？</p>
 <p>原理图如下：</p>
-<span id="more"></span>
+<h1 id="RISC-V"><a href="#RISC-V" class="headerlink" title="RISC-V"></a>RISC-V</h1><span id="more"></span>
 <hr>
 <p><img src="/2021/10/22/mycpu/qingming.jpg" alt="QingMing"></p>
 
@@ -331,7 +331,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%97%B6%E9%92%9F%E5%88%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">从时钟到控制</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BB%8E%E6%97%B6%E9%92%9F%E5%88%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">1.</span> <span class="nav-text">从时钟到控制</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#RISC-V"><span class="nav-number">2.</span> <span class="nav-text">RISC-V</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
