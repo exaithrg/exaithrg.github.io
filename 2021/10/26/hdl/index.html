@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了">
+  <meta name="description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 补码计算一个十进制整数最少需要多少位补码表示： 1234567891011121314151617181920212223242526272829function binwidth &#x3D; bm">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdl学习">
 <meta property="og:url" content="https://njughr.github.io/2021/10/26/hdl/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了">
+<meta property="og:description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 补码计算一个十进制整数最少需要多少位补码表示： 1234567891011121314151617181920212223242526272829function binwidth &#x3D; bm">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/liqiu.jpg">
 <meta property="article:published_time" content="2021-10-26T02:16:16.000Z">
-<meta property="article:modified_time" content="2021-11-08T03:30:27.454Z">
+<meta property="article:modified_time" content="2021-11-09T04:35:57.068Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="hdl">
@@ -202,7 +202,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-08 11:30:27" itemprop="dateModified" datetime="2021-11-08T11:30:27+08:00">2021-11-08</time>
+                <time title="修改时间：2021-11-09 12:35:57" itemprop="dateModified" datetime="2021-11-09T12:35:57+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -228,7 +228,31 @@
         <p><strong>尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别</strong></p>
 <h1 id="比较器的实现"><a href="#比较器的实现" class="headerlink" title="比较器的实现"></a>比较器的实现</h1><p>>&lt;实现比较器与+-实现比较器，面积是否有区别？</p>
 <p>比较器直接s=a&gt;b?1:0就可以了</p>
+<h1 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h1><p>计算一个十进制整数最少需要多少位补码表示：</p>
+<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binwidth</span> = <span class="title">bmwidth</span><span class="params">(decnum)</span></span></span><br><span class="line">    <span class="comment">% bmwidth(-3) = 3[101]</span></span><br><span class="line">    <span class="comment">% bmwidth(-2) = 2[10]</span></span><br><span class="line">    <span class="comment">% bmwidth(-1) = 1[1]</span></span><br><span class="line">    <span class="comment">% bmwidth(0) = 1[0]</span></span><br><span class="line">    <span class="comment">% bmwidth(1) = 2[01]</span></span><br><span class="line">    <span class="comment">% bmwidth(2) = 3[010]</span></span><br><span class="line">    <span class="comment">% bmwidth(3) = 3[011]</span></span><br><span class="line">    </span><br><span class="line">    [~,loop] = <span class="built_in">size</span>(decnum);</span><br><span class="line">    binwidth = <span class="built_in">zeros</span>(<span class="number">1</span>,loop);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">1</span>:loop</span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) ~= <span class="built_in">fix</span>(decnum(<span class="built_in">i</span>))</span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">inf</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) &gt;= <span class="number">0</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(<span class="built_in">abs</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% disp(bitnum);</span></span><br><span class="line">    <span class="comment">% <span class="doctag">TODO:</span> ymwidth(YuanMa), fmwidth(FanMa)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
 <span id="more"></span>
+<p>下面给出一些典型表示：</p>
+<blockquote>
+<p>-9    10111</p>
+<p>-8    1000</p>
+<p>-7    1001</p>
+<p>-6    1010</p>
+<p>-5    1011</p>
+<p>-4    100</p>
+<p>-3    101</p>
+<p>-2    10</p>
+<p>-1    1 or 11</p>
+<p>0    0    </p>
+<p>1    01</p>
+<p>2    010</p>
+<p>3    011</p>
+<p>4    0100</p>
+<p>5    0101</p>
+<p>6    0110</p>
+<p>7    0111</p>
+<p>8    01000</p>
+<p>9    01001</p>
+</blockquote>
 <hr>
 <p><img src="/2021/10/26/hdl/liqiu.jpg" alt="LiQiu"></p>
 
@@ -334,7 +358,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">比较器的实现</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">比较器的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">补码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

@@ -20,16 +20,16 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="图形界面可以极大增加用户友好度。 必须学习如何写带图形界面的程序，才能推广自己写的工具。 从C++ MFC开始。">
+  <meta name="description" content="图形界面可以极大增加用户友好度。 必须学习如何写带图形界面的程序，才能推广自己写的工具。 从C++ MFC开始。  system命令和cmd并不完全相同。 例如，在cmd中敲start Mystify.scr &#x2F;s可以正常启动屏保 但是C++的system(“start Mystify.scr &#x2F;s”);就会报错“Windows cannot find ‘Mystify.scr’. Make su">
 <meta property="og:type" content="article">
 <meta property="og:title" content="图形界面程序制作">
 <meta property="og:url" content="https://njughr.github.io/2021/10/31/gui/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="图形界面可以极大增加用户友好度。 必须学习如何写带图形界面的程序，才能推广自己写的工具。 从C++ MFC开始。">
+<meta property="og:description" content="图形界面可以极大增加用户友好度。 必须学习如何写带图形界面的程序，才能推广自己写的工具。 从C++ MFC开始。  system命令和cmd并不完全相同。 例如，在cmd中敲start Mystify.scr &#x2F;s可以正常启动屏保 但是C++的system(“start Mystify.scr &#x2F;s”);就会报错“Windows cannot find ‘Mystify.scr’. Make su">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2021/10/31/gui/bailu.jpg">
 <meta property="article:published_time" content="2021-10-30T18:32:25.000Z">
-<meta property="article:modified_time" content="2021-10-30T18:35:54.953Z">
+<meta property="article:modified_time" content="2021-11-08T12:05:44.357Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="CS">
 <meta property="article:tag" content="C++">
@@ -192,10 +192,16 @@
                 <i class="far fa-calendar"></i>
               </span>
               <span class="post-meta-item-text">发表于</span>
-              
 
-              <time title="创建时间：2021-10-31 02:32:25 / 修改时间：02:35:54" itemprop="dateCreated datePublished" datetime="2021-10-31T02:32:25+08:00">2021-10-31</time>
+              <time title="创建时间：2021-10-31 02:32:25" itemprop="dateCreated datePublished" datetime="2021-10-31T02:32:25+08:00">2021-10-31</time>
             </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="far fa-calendar-check"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-11-08 20:05:44" itemprop="dateModified" datetime="2021-11-08T20:05:44+08:00">2021-11-08</time>
+              </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
                 <i class="far fa-folder"></i>
@@ -221,6 +227,10 @@
 <p>必须学习如何写带图形界面的程序，才能推广自己写的工具。</p>
 <p>从C++ MFC开始。</p>
 <hr>
+<p>system命令和cmd并不完全相同。</p>
+<p>例如，在cmd中敲start Mystify.scr /s可以正常启动屏保</p>
+<p>但是C++的system(“start Mystify.scr /s”);就会报错“Windows cannot find ‘Mystify.scr’. Make sure you typed the name correctly, and then try again.”</p>
+<p>原因应该是环境变量问题。在VS环境下cmd执行时并不会搜索正常cmd应该搜索的目录。因此必须把Mystify.scr拷贝到和exe文件同目录下。</p>
 <span id="more"></span>
 <p><img src="/2021/10/31/gui/bailu.jpg" alt="BaiLu"></p>
 
