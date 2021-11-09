@@ -192,7 +192,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 12:35:57" itemprop="dateModified" datetime="2021-11-09T12:35:57+08:00">2021-11-09</time>
+                <time title="修改时间：2021-11-09 21:44:03" itemprop="dateModified" datetime="2021-11-09T21:44:03+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -216,10 +216,87 @@
 
       
           <p><strong>尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别</strong></p>
+<p><strong>限制某个电路的门数，尝试优化至限制门数以内</strong></p>
+<p><strong>限制某个电路的最低时延，尝试加速</strong></p>
 <h1 id="比较器的实现"><a href="#比较器的实现" class="headerlink" title="比较器的实现"></a>比较器的实现</h1><p>>&lt;实现比较器与+-实现比较器，面积是否有区别？</p>
 <p>比较器直接s=a&gt;b?1:0就可以了</p>
-<h1 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h1><p>计算一个十进制整数最少需要多少位补码表示：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binwidth</span> = <span class="title">bmwidth</span><span class="params">(decnum)</span></span></span><br><span class="line">    <span class="comment">% bmwidth(-3) = 3[101]</span></span><br><span class="line">    <span class="comment">% bmwidth(-2) = 2[10]</span></span><br><span class="line">    <span class="comment">% bmwidth(-1) = 1[1]</span></span><br><span class="line">    <span class="comment">% bmwidth(0) = 1[0]</span></span><br><span class="line">    <span class="comment">% bmwidth(1) = 2[01]</span></span><br><span class="line">    <span class="comment">% bmwidth(2) = 3[010]</span></span><br><span class="line">    <span class="comment">% bmwidth(3) = 3[011]</span></span><br><span class="line">    </span><br><span class="line">    [~,loop] = <span class="built_in">size</span>(decnum);</span><br><span class="line">    binwidth = <span class="built_in">zeros</span>(<span class="number">1</span>,loop);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">1</span>:loop</span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) ~= <span class="built_in">fix</span>(decnum(<span class="built_in">i</span>))</span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">inf</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) &gt;= <span class="number">0</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(<span class="built_in">abs</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% disp(bitnum);</span></span><br><span class="line">    <span class="comment">% <span class="doctag">TODO:</span> ymwidth(YuanMa), fmwidth(FanMa)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
+<h1 id="小数补码"><a href="#小数补码" class="headerlink" title="小数补码"></a>小数补码</h1><p><code>logic signed [widthx-1:0] x</code>配合<code>localparam integer xn</code>即可实现dec数自动按补码存储和获取。</p>
+<p>下面给出一些典型表示：</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>补码</th>
+<th>十进制</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-10</td>
+<td>10110</td>
+<td>9</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>-9</td>
+<td>10111</td>
+<td>8</td>
+<td>01000</td>
+</tr>
+<tr>
+<td>-8</td>
+<td>1000</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>-7</td>
+<td>1001</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>-6</td>
+<td><strong>10</strong>10</td>
+<td>5</td>
+<td><strong>01</strong>01</td>
+</tr>
+<tr>
+<td>-5</td>
+<td><strong>10</strong>11</td>
+<td>4</td>
+<td><strong>01</strong>00</td>
+</tr>
+<tr>
+<td>-4</td>
+<td><strong>10</strong>0</td>
+<td>3</td>
+<td><strong>01</strong>1</td>
+</tr>
+<tr>
+<td>-3</td>
+<td><strong>10</strong>1</td>
+<td>2</td>
+<td><strong>01</strong>0</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><strong>10</strong></td>
+<td>1</td>
+<td><strong>01</strong></td>
+</tr>
+<tr>
+<td>-1</td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>假设存在bmwidth(x)可以计算一个整数最少需要用几位补码表示。函数典型输入输出如上表。已知最大是-2.9，小数位数11，应该用 <code>bmwidth(fix(-2.9*2^11))</code>【=14】 还是 <code>bmwidth(fix(-2.9))+11</code>【=13】 来算？</p>
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2021/10/26/hdl/" rel="contents">

@@ -20,23 +20,24 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 补码计算一个十进制整数最少需要多少位补码表示： 1234567891011121314151617181920212223242526272829function binwidth &#x3D; bm">
+  <meta name="description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 限制某个电路的门数，尝试优化至限制门数以内 限制某个电路的最低时延，尝试加速 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 小数补码logic signed [widthx-1:0] x配合localparam integer xn即可">
 <meta property="og:type" content="article">
 <meta property="og:title" content="hdl学习">
 <meta property="og:url" content="https://njughr.github.io/2021/10/26/hdl/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 补码计算一个十进制整数最少需要多少位补码表示： 1234567891011121314151617181920212223242526272829function binwidth &#x3D; bm">
+<meta property="og:description" content="尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别 限制某个电路的门数，尝试优化至限制门数以内 限制某个电路的最低时延，尝试加速 比较器的实现&gt;&lt;实现比较器与+-实现比较器，面积是否有区别？ 比较器直接s&#x3D;a&gt;b?1:0就可以了 小数补码logic signed [widthx-1:0] x配合localparam integer xn即可">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/1.png">
 <meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/liqiu.jpg">
 <meta property="article:published_time" content="2021-10-26T02:16:16.000Z">
-<meta property="article:modified_time" content="2021-11-09T04:35:57.068Z">
+<meta property="article:modified_time" content="2021-11-09T13:44:03.149Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="hdl">
 <meta property="article:tag" content="Verilog">
 <meta property="article:tag" content="System Verilog">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://njughr.github.io/2021/10/26/hdl/liqiu.jpg">
+<meta name="twitter:image" content="https://njughr.github.io/2021/10/26/hdl/1.png">
 
 <link rel="canonical" href="https://njughr.github.io/2021/10/26/hdl/">
 
@@ -202,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 12:35:57" itemprop="dateModified" datetime="2021-11-09T12:35:57+08:00">2021-11-09</time>
+                <time title="修改时间：2021-11-09 21:44:03" itemprop="dateModified" datetime="2021-11-09T21:44:03+08:00">2021-11-09</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -226,33 +227,111 @@
 
       
         <p><strong>尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别</strong></p>
+<p><strong>限制某个电路的门数，尝试优化至限制门数以内</strong></p>
+<p><strong>限制某个电路的最低时延，尝试加速</strong></p>
 <h1 id="比较器的实现"><a href="#比较器的实现" class="headerlink" title="比较器的实现"></a>比较器的实现</h1><p>>&lt;实现比较器与+-实现比较器，面积是否有区别？</p>
 <p>比较器直接s=a&gt;b?1:0就可以了</p>
-<h1 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h1><p>计算一个十进制整数最少需要多少位补码表示：</p>
-<figure class="highlight matlab"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">binwidth</span> = <span class="title">bmwidth</span><span class="params">(decnum)</span></span></span><br><span class="line">    <span class="comment">% bmwidth(-3) = 3[101]</span></span><br><span class="line">    <span class="comment">% bmwidth(-2) = 2[10]</span></span><br><span class="line">    <span class="comment">% bmwidth(-1) = 1[1]</span></span><br><span class="line">    <span class="comment">% bmwidth(0) = 1[0]</span></span><br><span class="line">    <span class="comment">% bmwidth(1) = 2[01]</span></span><br><span class="line">    <span class="comment">% bmwidth(2) = 3[010]</span></span><br><span class="line">    <span class="comment">% bmwidth(3) = 3[011]</span></span><br><span class="line">    </span><br><span class="line">    [~,loop] = <span class="built_in">size</span>(decnum);</span><br><span class="line">    binwidth = <span class="built_in">zeros</span>(<span class="number">1</span>,loop);</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">for</span> <span class="built_in">i</span>=<span class="number">1</span>:<span class="number">1</span>:loop</span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) ~= <span class="built_in">fix</span>(decnum(<span class="built_in">i</span>))</span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">inf</span>;</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">        <span class="keyword">if</span> decnum(<span class="built_in">i</span>) &gt;= <span class="number">0</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            binwidth(<span class="built_in">i</span>) = <span class="built_in">ceil</span>(<span class="built_in">log2</span>(<span class="built_in">abs</span>(decnum(<span class="built_in">i</span>)+<span class="number">1</span>)+<span class="number">1</span>))+<span class="number">1</span>;</span><br><span class="line">        <span class="keyword">end</span></span><br><span class="line">    <span class="keyword">end</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">% disp(bitnum);</span></span><br><span class="line">    <span class="comment">% <span class="doctag">TODO:</span> ymwidth(YuanMa), fmwidth(FanMa)</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">return</span>;</span><br></pre></td></tr></table></figure>
-<span id="more"></span>
+<h1 id="小数补码"><a href="#小数补码" class="headerlink" title="小数补码"></a>小数补码</h1><p><code>logic signed [widthx-1:0] x</code>配合<code>localparam integer xn</code>即可实现dec数自动按补码存储和获取。</p>
 <p>下面给出一些典型表示：</p>
-<blockquote>
-<p>-9    10111</p>
-<p>-8    1000</p>
-<p>-7    1001</p>
-<p>-6    1010</p>
-<p>-5    1011</p>
-<p>-4    100</p>
-<p>-3    101</p>
-<p>-2    10</p>
-<p>-1    1 or 11</p>
-<p>0    0    </p>
-<p>1    01</p>
-<p>2    010</p>
-<p>3    011</p>
-<p>4    0100</p>
-<p>5    0101</p>
-<p>6    0110</p>
-<p>7    0111</p>
-<p>8    01000</p>
-<p>9    01001</p>
-</blockquote>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>十进制</th>
+<th>补码</th>
+<th>十进制</th>
+<th>补码</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-10</td>
+<td>10110</td>
+<td>9</td>
+<td>01001</td>
+</tr>
+<tr>
+<td>-9</td>
+<td>10111</td>
+<td>8</td>
+<td>01000</td>
+</tr>
+<tr>
+<td>-8</td>
+<td>1000</td>
+<td>7</td>
+<td>0111</td>
+</tr>
+<tr>
+<td>-7</td>
+<td>1001</td>
+<td>6</td>
+<td>0110</td>
+</tr>
+<tr>
+<td>-6</td>
+<td><strong>10</strong>10</td>
+<td>5</td>
+<td><strong>01</strong>01</td>
+</tr>
+<tr>
+<td>-5</td>
+<td><strong>10</strong>11</td>
+<td>4</td>
+<td><strong>01</strong>00</td>
+</tr>
+<tr>
+<td>-4</td>
+<td><strong>10</strong>0</td>
+<td>3</td>
+<td><strong>01</strong>1</td>
+</tr>
+<tr>
+<td>-3</td>
+<td><strong>10</strong>1</td>
+<td>2</td>
+<td><strong>01</strong>0</td>
+</tr>
+<tr>
+<td>-2</td>
+<td><strong>10</strong></td>
+<td>1</td>
+<td><strong>01</strong></td>
+</tr>
+<tr>
+<td>-1</td>
+<td><strong>1</strong></td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</div>
+<p>假设存在bmwidth(x)可以计算一个整数最少需要用几位补码表示。函数典型输入输出如上表。已知最大是-2.9，小数位数11，应该用 <code>bmwidth(fix(-2.9*2^11))</code>【=14】 还是 <code>bmwidth(fix(-2.9))+11</code>【=13】 来算？</p>
+<span id="more"></span>
+<p><strong>问题1：0.5的定点补码是？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/AaricYang/article/details/87882868">有符号定点小数的补码表示</a></p>
+<p><img src="/2021/10/26/hdl/1.png" alt="1"></p>
+<p>根据这个，则0.5原码0.1000，反码0.1000，补码0.1000【=bmwidth(0.5*2^1)】</p>
+<p><strong>问题2：-0.5的定点补码是？</strong></p>
+<p>原码1.1000，反码1.0111，补码1.1000【与原码一致，巧合】【=bmwidth(-0.5<em>2^1)=<em>*1</em></em>，小数点自行约定】</p>
+<p><strong>问题2：-0.125的定点补码是？</strong></p>
+<p>原码1.0010，反码1.1101，补码1.1110【=bmwidth(-0.125<em>2^3)=<em>*1</em></em>，小数点自行约定】</p>
+<p><strong>问题3：2.25的定点补码是？</strong></p>
+<p>原码010.01，反码010.01，补码010.01【=bmwidth(2)+2】【=bmwidth(2.25*2^2)】</p>
+<p><strong>问题4：1.25的定点补码是？</strong></p>
+<p>原码01.01，反码01.01，补码01.01【=bmwidth(1)+2】【=bmwidth(1.25*2^2)】</p>
+<p><strong>问题5：-2的定点补码是？</strong></p>
+<p>原码110，反码101，补码110【=bmwidth(-2)=2】【=bmwidth(-2*2^0)】</p>
+<p><strong>问题6：-1.5的定点补码是？</strong></p>
+<p>原码11.100，反码10.011，补码10.100【!=bmwidth(-1)+1=2。<strong>警告：至少需要3位。</strong>】【=bmwidth(-1.5*2^1)】</p>
+<p><strong>问题7：-2.125的定点补码是？</strong></p>
+<p>原码110.00100，反码101.11011，补码101.11100【!=bmwidth(-2)+3=5。<strong>警告：至少需要6位。</strong>】</p>
+<p><strong>问题8：-2.75的定点补码是？</strong></p>
+<p>原码110.1100，反码101.0011，补码101.0100【!=bmwidth(-2)+2=4。<strong>警告：至少需要5位。</strong>】</p>
+<p>综上，<strong>负数补码不能单看整数部分最少多少位、小数部分最少多少位，加起来得到最终最少多少位。</strong>这一点在极限范围设计时非常重要。假设已知小数位数为fw，最佳解决方案是按bmwidth(fix(x*2^fw)来决定存储位数，必不会错。</p>
+<p>因此针对小数的bmwidth函数可以用<code>function binwidth = bmw_frac(fracnum,fracwidth)</code>的形式，并加入<code>decnum = fix(fracnum.*2.^fracwidth);</code>【注意.*和.^】。</p>
+<p>最终实现了两个非常有用的函数：<code>bmw_int(decnum)</code>和<code>bmw_frac(fracnum,fracwidth)</code>，尤其bmw_frac特别好使。另外宝马打钱！</p>
 <hr>
 <p><img src="/2021/10/26/hdl/liqiu.jpg" alt="LiQiu"></p>
 
@@ -358,7 +437,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">比较器的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">补码</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8%E7%9A%84%E5%AE%9E%E7%8E%B0"><span class="nav-number">1.</span> <span class="nav-text">比较器的实现</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B0%8F%E6%95%B0%E8%A1%A5%E7%A0%81"><span class="nav-number">2.</span> <span class="nav-text">小数补码</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
