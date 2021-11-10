@@ -121,7 +121,7 @@
   </li>
         <li class="menu-item menu-item-tags">
 
-    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">23</span></a>
+    <a href="/tags/" rel="section"><i class="fa fa-tags fa-fw"></i>标签<span class="badge">20</span></a>
 
   </li>
         <li class="menu-item menu-item-categories">
@@ -131,7 +131,7 @@
   </li>
         <li class="menu-item menu-item-archives">
 
-    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">18</span></a>
+    <a href="/archives/" rel="section"><i class="fa fa-archive fa-fw"></i>归档<span class="badge">17</span></a>
 
   </li>
   </ul>
@@ -161,7 +161,7 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/10/26/hdl/">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/blogsetup/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/paperboat.jpg">
@@ -175,7 +175,7 @@
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
           
-            <a href="/2021/10/26/hdl/" class="post-title-link" itemprop="url">hdl学习</a>
+            <a href="/2021/07/07/blogsetup/" class="post-title-link" itemprop="url">博客搭建总结</a>
         </h2>
 
         <div class="post-meta">
@@ -185,14 +185,14 @@
               </span>
               <span class="post-meta-item-text">发表于</span>
 
-              <time title="创建时间：2021-10-26 10:16:16" itemprop="dateCreated datePublished" datetime="2021-10-26T10:16:16+08:00">2021-10-26</time>
+              <time title="创建时间：2021-07-07 17:08:21" itemprop="dateCreated datePublished" datetime="2021-07-07T17:08:21+08:00">2021-07-07</time>
             </span>
               <span class="post-meta-item">
                 <span class="post-meta-item-icon">
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-09 21:44:03" itemprop="dateModified" datetime="2021-11-09T21:44:03+08:00">2021-11-09</time>
+                <time title="修改时间：2021-11-10 15:13:26" itemprop="dateModified" datetime="2021-11-10T15:13:26+08:00">2021-11-10</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -200,7 +200,7 @@
               </span>
               <span class="post-meta-item-text">分类于</span>
                 <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
                 </span>
             </span>
 
@@ -215,91 +215,21 @@
     <div class="post-body" itemprop="articleBody">
 
       
-          <p><strong>尝试不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路，仿真综合看区别</strong></p>
-<p><strong>限制某个电路的门数，尝试优化至限制门数以内</strong></p>
-<p><strong>限制某个电路的最低时延，尝试加速</strong></p>
-<h1 id="比较器的实现"><a href="#比较器的实现" class="headerlink" title="比较器的实现"></a>比较器的实现</h1><p>>&lt;实现比较器与+-实现比较器，面积是否有区别？</p>
-<p>比较器直接s=a&gt;b?1:0就可以了</p>
-<h1 id="小数补码"><a href="#小数补码" class="headerlink" title="小数补码"></a>小数补码</h1><p><code>logic signed [widthx-1:0] x</code>配合<code>localparam integer xn</code>即可实现dec数自动按补码存储和获取。</p>
-<p>下面给出一些典型表示：</p>
-<div class="table-container">
-<table>
-<thead>
-<tr>
-<th>十进制</th>
-<th>补码</th>
-<th>十进制</th>
-<th>补码</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>-10</td>
-<td>10110</td>
-<td>9</td>
-<td>01001</td>
-</tr>
-<tr>
-<td>-9</td>
-<td>10111</td>
-<td>8</td>
-<td>01000</td>
-</tr>
-<tr>
-<td>-8</td>
-<td>1000</td>
-<td>7</td>
-<td>0111</td>
-</tr>
-<tr>
-<td>-7</td>
-<td>1001</td>
-<td>6</td>
-<td>0110</td>
-</tr>
-<tr>
-<td>-6</td>
-<td><strong>10</strong>10</td>
-<td>5</td>
-<td><strong>01</strong>01</td>
-</tr>
-<tr>
-<td>-5</td>
-<td><strong>10</strong>11</td>
-<td>4</td>
-<td><strong>01</strong>00</td>
-</tr>
-<tr>
-<td>-4</td>
-<td><strong>10</strong>0</td>
-<td>3</td>
-<td><strong>01</strong>1</td>
-</tr>
-<tr>
-<td>-3</td>
-<td><strong>10</strong>1</td>
-<td>2</td>
-<td><strong>01</strong>0</td>
-</tr>
-<tr>
-<td>-2</td>
-<td><strong>10</strong></td>
-<td>1</td>
-<td><strong>01</strong></td>
-</tr>
-<tr>
-<td>-1</td>
-<td><strong>1</strong></td>
-<td>0</td>
-<td><strong>0</strong></td>
-</tr>
-</tbody>
-</table>
-</div>
-<p>假设存在bmwidth(x)可以计算一个整数最少需要用几位补码表示。函数典型输入输出如上表。已知最大是-2.9，小数位数11，应该用 <code>bmwidth(fix(-2.9*2^11))</code>【=14】 还是 <code>bmwidth(fix(-2.9))+11</code>【=13】 来算？</p>
+          <h1 id="Blog搭建实录"><a href="#Blog搭建实录" class="headerlink" title="Blog搭建实录"></a>Blog搭建实录</h1><p><strong>记录博客搭建方法，常用操作，所看的资料链接等</strong></p>
+<h2 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h2><p>目前看到的较好的Blog：</p>
+<p><a target="_blank" rel="noopener" href="https://leiblog.wang/">Lei Wang的Blog</a></p>
+<p><a target="_blank" rel="noopener" href="https://waterxjw.github.io/">waterxjw的Blog</a></p>
+<p>上述两个博客均由<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>驱动，这是一个快速、简洁、高效的博客框架。上述两个博客采用了不同的<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo Theme</a>所以界面差异很大。本博客的Theme为NexT，这是一个被广泛使用的优雅而功能强大的Hexo主题，在手机端也有比较好的效果。参见<a target="_blank" rel="noopener" href="https://github.com/next-theme">NexT的github项目</a>。</p>
+<p>本博客的搭建首先参考了这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37781304/article/details/82729029">zjufangzh的史上最全hexo搭建教程</a></p>
+<p>安装NexT主题，主要参考了这篇文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">nightmare_dimple的NexT安装教程</a></p>
+<p>此时界面还是英文，且tags标签和categories标签是不可用的，可以通过这篇文章的方法修正：</p>
+<p><a target="_blank" rel="noopener" href="http://www.chenlianhan.com/2020/03/20/HEXO-NEXT%E7%95%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">chenlianhan的HEXO+NEXT界面美化教程</a></p>
+<p>值得注意的是，上面这篇文章还给出了将页面字体从默认的微软雅黑改为更好看的思源宋体的方法、编辑博客中的社交软件链接的方法（打开主题配置文件，搜索关键字<code>social</code>）等，是一篇很好的文章，有空可以转过来。</p>
           <!--noindex-->
             <div class="post-button">
-              <a class="btn" href="/2021/10/26/hdl/" rel="contents">
+              <a class="btn" href="/2021/07/07/blogsetup/" rel="contents">
                 阅读全文 &raquo;
               </a>
             </div>
@@ -787,98 +717,6 @@
   
   
   <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
-    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/07/07/blogsetup/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/paperboat.jpg">
-      <meta itemprop="name" content="Haoran Geng">
-      <meta itemprop="description" content="">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="GHR's Blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          
-            <a href="/2021/07/07/blogsetup/" class="post-title-link" itemprop="url">博客搭建总结</a>
-        </h2>
-
-        <div class="post-meta">
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-calendar"></i>
-              </span>
-              <span class="post-meta-item-text">发表于</span>
-
-              <time title="创建时间：2021-07-07 17:08:21" itemprop="dateCreated datePublished" datetime="2021-07-07T17:08:21+08:00">2021-07-07</time>
-            </span>
-              <span class="post-meta-item">
-                <span class="post-meta-item-icon">
-                  <i class="far fa-calendar-check"></i>
-                </span>
-                <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-11-03 12:27:30" itemprop="dateModified" datetime="2021-11-03T12:27:30+08:00">2021-11-03</time>
-              </span>
-            <span class="post-meta-item">
-              <span class="post-meta-item-icon">
-                <i class="far fa-folder"></i>
-              </span>
-              <span class="post-meta-item-text">分类于</span>
-                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
-                  <a href="/categories/%E5%8D%9A%E5%AE%A2%E6%90%AD%E5%BB%BA/" itemprop="url" rel="index"><span itemprop="name">博客搭建</span></a>
-                </span>
-            </span>
-
-          
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-
-      
-          <h1 id="Blog搭建实录"><a href="#Blog搭建实录" class="headerlink" title="Blog搭建实录"></a>Blog搭建实录</h1><p><strong>记录博客搭建方法，常用操作，所看的资料链接等</strong></p>
-<h2 id="基础框架"><a href="#基础框架" class="headerlink" title="基础框架"></a>基础框架</h2><p>目前看到的较好的Blog：</p>
-<p><a target="_blank" rel="noopener" href="https://leiblog.wang/">Lei Wang的Blog</a></p>
-<p><a target="_blank" rel="noopener" href="https://waterxjw.github.io/">waterxjw的Blog</a></p>
-<p>上述两个博客均由<a target="_blank" rel="noopener" href="https://hexo.io/">Hexo</a>驱动，这是一个快速、简洁、高效的博客框架。上述两个博客采用了不同的<a target="_blank" rel="noopener" href="https://hexo.io/themes/">Hexo Theme</a>所以界面差异很大。本博客的Theme为NexT，这是一个被广泛使用的优雅而功能强大的Hexo主题，在手机端也有比较好的效果。参见<a target="_blank" rel="noopener" href="https://github.com/next-theme">NexT的github项目</a>。</p>
-<p>本博客的搭建首先参考了这篇文章：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/sinat_37781304/article/details/82729029">zjufangzh的史上最全hexo搭建教程</a></p>
-<p>安装NexT主题，主要参考了这篇文章：</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/nightmare_dimple/article/details/86661502">nightmare_dimple的NexT安装教程</a></p>
-<p>此时界面还是英文，且tags标签和categories标签是不可用的，可以通过这篇文章的方法修正：</p>
-<p><a target="_blank" rel="noopener" href="http://www.chenlianhan.com/2020/03/20/HEXO-NEXT%E7%95%8C%E9%9D%A2%E7%BE%8E%E5%8C%96%EF%BC%88%E6%8C%81%E7%BB%AD%E6%9B%B4%E6%96%B0%EF%BC%89/">chenlianhan的HEXO+NEXT界面美化教程</a></p>
-<p>值得注意的是，上面这篇文章还给出了将页面字体从默认的微软雅黑改为更好看的思源宋体的方法、编辑博客中的社交软件链接的方法（打开主题配置文件，搜索关键字<code>social</code>）等，是一篇很好的文章，有空可以转过来。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/07/blogsetup/" rel="contents">
-                阅读全文 &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-      <footer class="post-footer">
-        <div class="post-eof"></div>
-      </footer>
-  </article>
-  
-  
-  
-
-      
-  
-  
-  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
     <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/10/22/mycpu/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -1150,6 +988,89 @@
   
   
 
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="https://njughr.github.io/2021/10/31/english/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/paperboat.jpg">
+      <meta itemprop="name" content="Haoran Geng">
+      <meta itemprop="description" content="">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="GHR's Blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          
+            <a href="/2021/10/31/english/" class="post-title-link" itemprop="url">English Learning</a>
+        </h2>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-calendar"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+              
+
+              <time title="创建时间：2021-10-31 00:37:13 / 修改时间：00:44:43" itemprop="dateCreated datePublished" datetime="2021-10-31T00:37:13+08:00">2021-10-31</time>
+            </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="far fa-folder"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index"><span itemprop="name">学习</span></a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+          <h1 id="Is-noon-12am"><a href="#Is-noon-12am" class="headerlink" title="Is noon 12am?"></a>Is noon 12am?</h1><p><a target="_blank" rel="noopener" href="https://www.rmg.co.uk/stories/topics/noon-12-am-or-12-pm">Is noon 12 am or 12 pm?</a></p>
+<p>12pm. </p>
+<p><em>‘Noon’</em> means ‘midday’ or 12 o’clock during the day. <em>‘Midnight’</em> refers to 12 o’clock (or 0:00) during the night.</p>
+<p>When using a 12-hour clock, 12 pm typically refers to noon and 12 am means midnight. While most people follow this convention, technically this isn’t quite right.</p>
+<p>To avoid any confusion, <strong>12 o’clock should be written as 12 noon or 12 midnight</strong> instead.</p>
+<p><em>AM</em> = Ante meridiem: Before noon; PM = Post meridiem: After noon. </p>
+<h1 id="Minecraft-Live-2021"><a href="#Minecraft-Live-2021" class="headerlink" title="Minecraft Live 2021"></a>Minecraft Live 2021</h1><p><strong><a target="_blank" rel="noopener" href="https://www.minecraft.net/en-us/live">Minecraft Live 2021</a>: Vote for the next new mob on Oct 16!!</strong></p>
+<p>The Glare, the Allay, and the Copper Golem! Hope the golem wins the vote! Very cute stuff!</p>
+<p>Allay wins…</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2021/10/31/english/" rel="contents">
+                阅读全文 &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
 
   
   <nav class="pagination">
@@ -1221,7 +1142,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">18</span>
+          <span class="site-state-item-count">17</span>
           <span class="site-state-item-name">日志</span>
         </a>
       </div>
@@ -1234,7 +1155,7 @@
       <div class="site-state-item site-state-tags">
             <a href="/tags/">
           
-        <span class="site-state-item-count">23</span>
+        <span class="site-state-item-count">20</span>
         <span class="site-state-item-name">标签</span></a>
       </div>
   </nav>
