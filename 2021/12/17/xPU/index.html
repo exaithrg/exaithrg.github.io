@@ -20,21 +20,22 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="CPUCPU: Central Processing Unit Computer Organization and Design: The Hardware&#x2F;Software Interface by David A. Patterson and John L. Hennessy Computer Architecture: A Quantitative Approach by John L. H">
+  <meta name="description" content="ABBREVIATIONSTRV： liangkangnan巨佬的tinyriscv CSAPP： Computer Systems: A Programmer’s Perspective 深入理解计算机系统 CODHSI： Computer Organization and Design: The Hardware&#x2F;Software Interface 计算机组成与设计 硬件&#x2F;软件接口 CAQA">
 <meta property="og:type" content="article">
 <meta property="og:title" content="xPU学习">
 <meta property="og:url" content="https://njughr.github.io/2021/12/17/xPU/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="CPUCPU: Central Processing Unit Computer Organization and Design: The Hardware&#x2F;Software Interface by David A. Patterson and John L. Hennessy Computer Architecture: A Quantitative Approach by John L. H">
+<meta property="og:description" content="ABBREVIATIONSTRV： liangkangnan巨佬的tinyriscv CSAPP： Computer Systems: A Programmer’s Perspective 深入理解计算机系统 CODHSI： Computer Organization and Design: The Hardware&#x2F;Software Interface 计算机组成与设计 硬件&#x2F;软件接口 CAQA">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/TRV.jpg">
 <meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/qingming.jpg">
 <meta property="article:published_time" content="2021-12-17T09:39:52.000Z">
-<meta property="article:modified_time" content="2021-12-28T13:51:36.877Z">
+<meta property="article:modified_time" content="2021-12-29T09:44:33.409Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://njughr.github.io/2021/12/17/xPU/qingming.jpg">
+<meta name="twitter:image" content="https://njughr.github.io/2021/12/17/xPU/TRV.jpg">
 
 <link rel="canonical" href="https://njughr.github.io/2021/12/17/xPU/">
 
@@ -200,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2021-12-28 21:51:36" itemprop="dateModified" datetime="2021-12-28T21:51:36+08:00">2021-12-28</time>
+                <time title="修改时间：2021-12-29 17:44:33" itemprop="dateModified" datetime="2021-12-29T17:44:33+08:00">2021-12-29</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -223,19 +224,36 @@
     <div class="post-body" itemprop="articleBody">
 
       
-        <h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><p>CPU: Central Processing Unit</p>
+        <h1 id="ABBREVIATIONS"><a href="#ABBREVIATIONS" class="headerlink" title="ABBREVIATIONS"></a>ABBREVIATIONS</h1><p>TRV： liangkangnan巨佬的tinyriscv</p>
+<p>CSAPP： Computer Systems: A Programmer’s Perspective 深入理解计算机系统</p>
+<p>CODHSI： Computer Organization and Design: The Hardware/Software Interface 计算机组成与设计 硬件/软件接口</p>
+<p>CAQA: Computer Architecture: A Quantitative Approach 计算机体系结构 量化研究方法</p>
+<h1 id="CPU"><a href="#CPU" class="headerlink" title="CPU"></a>CPU</h1><p>CPU: Central Processing Unit</p>
 <p>Computer Organization and Design: The Hardware/Software Interface by <strong>David A. Patterson</strong> and <strong>John L. Hennessy</strong></p>
 <p>Computer Architecture: A Quantitative Approach by <strong>John L. Hennessy</strong> and <strong>David A. Patterson</strong></p>
 <p>目标是设计一个具有现代CPU一切重要特性的原型机，并将其在FPGA和MC上验证出来。基于RISC-V的精神，项目将在完成后开源。</p>
-<p>目标特性包括：（逐步补充）</p>
+<p>目标特性包括：</p>
 <p>Multiple-Issue, Out-of-order Execution, Out-of-order pipeline, Superscalar, Dynamic Branch Predictor, Load-store Queue, Non-blocking Cache Controller, Associative Cache, Hardware Prefetching, Simultaneous Multithreading.</p>
 <p>多发射，乱序执行，乱序流水线，超标量，动态分支预测，加载存储队列，非阻塞缓存，相联缓存，缓存预取，并发多线程</p>
-<p>不太懂这些东西到底是什么意思，这些目标特性基于一门UMich的硬核课程。在后期逐步搞懂后我将慢慢完善上述列表。</p>
+<p>这些目标特性基于一门UMich的硬核课程。在后期逐步搞懂后我将慢慢增补上述列表。</p>
 <span id="more"></span>
 <h2 id="分析：课程CPU作业"><a href="#分析：课程CPU作业" class="headerlink" title="分析：课程CPU作业"></a>分析：课程CPU作业</h2><p>参见projects/mccpu/ICCPU_Homework</p>
 <p>架构如下：</p>
 <h2 id="分析：从零开始写RISC-V处理器"><a href="#分析：从零开始写RISC-V处理器" class="headerlink" title="分析：从零开始写RISC-V处理器"></a>分析：从零开始写RISC-V处理器</h2><p><a target="_blank" rel="noopener" href="https://github.com/njughr/tinyriscv">tinyriscv forked by liangkangnan</a></p>
 <p><a target="_blank" rel="noopener" href="https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">从零开始写RISC-V处理器</a></p>
+<p>tinyriscv采用的是三级流水线，即取指、译码和执行，设计的目标就是要对标ARM的Cortex-M3系列处理器。为了描述方便，下文中将tinyriscv简称为TRV。</p>
+<p>他们的代码风格很不错，学习。例如</p>
+<h3 id="if语句"><a href="#if语句" class="headerlink" title="if语句"></a>if语句</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (a == <span class="number">1&#x27;b1</span>) <span class="keyword">begin</span></span><br><span class="line">    c &lt;= b;</span><br><span class="line"><span class="keyword">end</span> <span class="keyword">else</span> <span class="keyword">begin</span></span><br><span class="line">    c &lt;= d;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="case语句"><a href="#case语句" class="headerlink" title="case语句"></a>case语句</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">case</span> (a)</span><br><span class="line">	c: <span class="keyword">begin</span></span><br><span class="line">		e = g;</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line">	<span class="keyword">default</span>: <span class="keyword">begin</span></span><br><span class="line">		b = t;</span><br><span class="line">	<span class="keyword">end</span></span><br><span class="line"><span class="keyword">endcase</span></span><br></pre></td></tr></table></figure>
+<h3 id="always语句"><a href="#always语句" class="headerlink" title="always语句"></a>always语句</h3><figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">always</span> @ (<span class="keyword">posedge</span> clk) <span class="keyword">begin</span></span><br><span class="line">    a &lt;= b;</span><br><span class="line"><span class="keyword">end</span></span><br></pre></td></tr></table></figure>
+<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><p>=、==、&lt;=、&gt;=、+、-、*、/、@等符号左右各有一个空格。</p>
+<p>,和:符号后面有一个空格。</p>
+<p>对于模块的输入信号，不省略wire关键字。</p>
+<p>每个文件的最后留一行空行。</p>
+<p>if、case、always后面都有一个空格。</p>
+<h3 id="硬件架构"><a href="#硬件架构" class="headerlink" title="硬件架构"></a>硬件架构</h3><p><img src="/2021/12/17/xPU/TRV.jpg" alt="TRV"></p>
+<p>很赞成作者认为这是一个SOC的观点。事实上CPU核心不需要做这么多事情，但是没有其他元件，core毫无用处。</p>
+<p>tinyriscv SOC输入输出信号有两部分，一部分是系统时钟clk和复位信号rst，另一部分是JTAG调试信号，TCK、TMS、TDI和TDO。</p>
 <h2 id="多发射技术"><a href="#多发射技术" class="headerlink" title="多发射技术"></a>多发射技术</h2><p>参见<a target="_blank" rel="noopener" href="http://thebeardsage.com/multiple-issue-processors/">Multiple Issue Processors</a></p>
 <blockquote>
 <p>Dynamic multiple-issue processors are also known as superscalar processors. An advanced pipelining technique that enables the processor to execute more than one instruction per clock cycle by selecting them during execution.</p>
@@ -352,7 +370,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU"><span class="nav-number">1.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A%E8%AF%BE%E7%A8%8BCPU%E4%BD%9C%E4%B8%9A"><span class="nav-number">1.1.</span> <span class="nav-text">分析：课程CPU作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">1.2.</span> <span class="nav-text">分析：从零开始写RISC-V处理器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%91%E5%B0%84%E6%8A%80%E6%9C%AF"><span class="nav-number">1.3.</span> <span class="nav-text">多发射技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%97%B6%E9%92%9F%E5%88%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">1.4.</span> <span class="nav-text">从时钟到控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80"><span class="nav-number">1.5.</span> <span class="nav-text">汇编基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISA%E5%9F%BA%E7%A1%80"><span class="nav-number">1.6.</span> <span class="nav-text">ISA基础</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GPU"><span class="nav-number">2.</span> <span class="nav-text">GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA%E5%AD%A6%E4%B9%A0"><span class="nav-number">2.1.</span> <span class="nav-text">CUDA学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NPU"><span class="nav-number">3.</span> <span class="nav-text">NPU</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#ABBREVIATIONS"><span class="nav-number">1.</span> <span class="nav-text">ABBREVIATIONS</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CPU"><span class="nav-number">2.</span> <span class="nav-text">CPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A%E8%AF%BE%E7%A8%8BCPU%E4%BD%9C%E4%B8%9A"><span class="nav-number">2.1.</span> <span class="nav-text">分析：课程CPU作业</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%88%86%E6%9E%90%EF%BC%9A%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8"><span class="nav-number">2.2.</span> <span class="nav-text">分析：从零开始写RISC-V处理器</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#if%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.1.</span> <span class="nav-text">if语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#case%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.2.</span> <span class="nav-text">case语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#always%E8%AF%AD%E5%8F%A5"><span class="nav-number">2.2.3.</span> <span class="nav-text">always语句</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%85%B6%E4%BB%96"><span class="nav-number">2.2.4.</span> <span class="nav-text">其他</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%A1%AC%E4%BB%B6%E6%9E%B6%E6%9E%84"><span class="nav-number">2.2.5.</span> <span class="nav-text">硬件架构</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%A4%9A%E5%8F%91%E5%B0%84%E6%8A%80%E6%9C%AF"><span class="nav-number">2.3.</span> <span class="nav-text">多发射技术</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BB%8E%E6%97%B6%E9%92%9F%E5%88%B0%E6%8E%A7%E5%88%B6"><span class="nav-number">2.4.</span> <span class="nav-text">从时钟到控制</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%B1%87%E7%BC%96%E5%9F%BA%E7%A1%80"><span class="nav-number">2.5.</span> <span class="nav-text">汇编基础</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#ISA%E5%9F%BA%E7%A1%80"><span class="nav-number">2.6.</span> <span class="nav-text">ISA基础</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#GPU"><span class="nav-number">3.</span> <span class="nav-text">GPU</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#CUDA%E5%AD%A6%E4%B9%A0"><span class="nav-number">3.1.</span> <span class="nav-text">CUDA学习</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#NPU"><span class="nav-number">4.</span> <span class="nav-text">NPU</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
