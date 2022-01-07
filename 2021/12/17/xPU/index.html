@@ -27,16 +27,17 @@
 <meta property="og:site_name" content="GHR&#39;s Blog">
 <meta property="og:description" content="ABBREVIATIONSTRV： liangkangnan巨佬的tinyriscv CSAPP： Computer Systems: A Programmer’s Perspective 深入理解计算机系统 CODHSI： Computer Organization and Design: The Hardware&#x2F;Software Interface 计算机组成与设计 硬件&#x2F;软件接口 by D">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/IbexCore.svg">
 <meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/TRV.jpg">
 <meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/Matrix_Z.png">
 <meta property="og:image" content="https://njughr.github.io/2021/12/17/xPU/qingming.jpg">
 <meta property="article:published_time" content="2021-12-17T09:39:52.000Z">
-<meta property="article:modified_time" content="2022-01-06T02:34:32.192Z">
+<meta property="article:modified_time" content="2022-01-07T05:42:06.414Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://njughr.github.io/2021/12/17/xPU/TRV.jpg">
+<meta name="twitter:image" content="https://njughr.github.io/2021/12/17/xPU/IbexCore.svg">
 
 <link rel="canonical" href="https://njughr.github.io/2021/12/17/xPU/">
 
@@ -202,7 +203,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-01-06 10:34:32" itemprop="dateModified" datetime="2022-01-06T10:34:32+08:00">2022-01-06</time>
+                <time title="修改时间：2022-01-07 13:42:06" itemprop="dateModified" datetime="2022-01-07T13:42:06+08:00">2022-01-07</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -263,6 +264,14 @@
 <p>架构如下：</p>
 <h2 id="Ibex"><a href="#Ibex" class="headerlink" title="Ibex"></a>Ibex</h2><p>github: <a target="_blank" rel="noopener" href="https://github.com/lowRISC/ibex">https://github.com/lowRISC/ibex</a></p>
 <p>文档：<a target="_blank" rel="noopener" href="https://ibex-core.readthedocs.io/en/latest/introduction.html">https://ibex-core.readthedocs.io/en/latest/introduction.html</a> </p>
+<p><strong>Ibex RISC-V Core介绍</strong></p>
+<p>Ibex is a production-quality open source 32-bit RISC-V CPU core written in SystemVerilog. The CPU core is heavily parametrizable and well suited for embedded control applications. Ibex is being extensively verified and has seen multiple tape-outs. Ibex supports the Integer (I) or Embedded (E), Integer Multiplication and Division (M), Compressed (C), and B (Bit Manipulation) extensions.</p>
+<p>Ibex 是用 SystemVerilog 编写的生产质量的开源 32 位 RISC-V CPU 内核。 CPU 内核可大量参数化，非常适合嵌入式控制应用。 Ibex 正在接受广泛的验证，并且已经看到了多次流片。 Ibex 支持整数 (I) 或嵌入式 (E)、整数乘法和除法 (M)、压缩 (C) 和 B（位操作）扩展。</p>
+<p>The block diagram below shows the <em>small</em> parametrization with a 2-stage pipeline.</p>
+<p>下面的框图显示了带有 2 级流水线的小参数化。</p>
+<p><img src="/2021/12/17/xPU/IbexCore.svg" alt="IbexCore"></p>
+<p>Ibex was initially developed as part of the <a target="_blank" rel="noopener" href="https://www.pulp-platform.org/">PULP platform</a> under the name <a target="_blank" rel="noopener" href="https://doi.org/10.1109/PATMOS.2017.8106976">“Zero-riscy”</a>, and has been contributed to <a target="_blank" rel="noopener" href="https://www.lowrisc.org/">lowRISC</a> who maintains it and develops it further. It is under active development.</p>
+<p>Ibex 最初是作为 PULP 平台的一部分以“零风险”的名义开发的，并且已经为维护它并进一步开发它的 lowRISC 做出了贡献。 它正在积极开发中。</p>
 <h2 id="从零开始写RISC-V处理器"><a href="#从零开始写RISC-V处理器" class="headerlink" title="从零开始写RISC-V处理器"></a>从零开始写RISC-V处理器</h2><p><a target="_blank" rel="noopener" href="https://gitee.com/liangkangnan/tinyriscv">tinyriscv gitee</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/njughr/tinyriscv">tinyriscv forked by liangkangnan</a></p>
 <p><a target="_blank" rel="noopener" href="https://liangkangnan.gitee.io/2020/04/29/%E4%BB%8E%E9%9B%B6%E5%BC%80%E5%A7%8B%E5%86%99RISC-V%E5%A4%84%E7%90%86%E5%99%A8/">从零开始写RISC-V处理器</a></p>
