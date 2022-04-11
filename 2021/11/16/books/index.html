@@ -29,7 +29,7 @@
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2021/11/16/books/liqiu.jpg">
 <meta property="article:published_time" content="2021-11-16T11:53:44.000Z">
-<meta property="article:modified_time" content="2022-04-10T13:35:56.275Z">
+<meta property="article:modified_time" content="2022-04-11T06:14:38.888Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="CS">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-10 21:35:56" itemprop="dateModified" datetime="2022-04-10T21:35:56+08:00">2022-04-10</time>
+                <time title="修改时间：2022-04-11 14:14:38" itemprop="dateModified" datetime="2022-04-11T14:14:38+08:00">2022-04-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,7 +234,11 @@
 <p><strong>0410 16-20</strong>：IP核是SoC设计的基础。要多写IP核、多整理IP核。整理到ICAIS\codes\GHR_IPcores目录下。<strong>面积，速度，功耗，可测性，可靠性</strong>是衡量芯片成功与否的主要技术指标。基于标准单元的设计流程共有20步。他们是：</p>
 <p>硬件设计定义，模块设计及IP复用，顶层模块集成，前仿真，逻辑综合，版图布局规划，电源网络功耗分析，单元布局和优化，DFT插入，时钟树综合，布线设计，功耗分析，信号完整性，优化，寄生参数提取，布局后仿真，ECO修改，后仿真，物理验证，交付芯片制造厂。其中，逻辑综合、DFT插入、寄生参数提取、ECO修改后都需要完成STA，DFT插入、优化、ECO修改后需要进行形式验证。</p>
 <p>一般来说IC前端是逻辑设计，IC后端是物理设计，验证工作贯穿前后端，但是功能验证是前端的工作。形式验证+STA是设计的静态验证的两种组成。为了方便测试，逻辑电路插入扫描链，输入输出端口采用边界扫描。明天着重看FPGA。</p>
+<p><strong>0411 21-25</strong>：FPGA中的IO是按组分配的，每组可以独立支持不同的标准。DCM由DLL、DFS、DPS和DSS组成。BRAM是FPGA最主要的存储资源。BRAM可以配置为单口RAM，简单双端口RAM，真双口RAM，ROM，FIFO等。FPGA厂商也会提供很多内嵌专用IP单元，软核硬核都有，处理器单元之类的都有，利于SoC设计。FPGA的设计流程为：电路功能设计，设计输入，功能仿真，综合，综合后仿真（<strong>把综合生成的标准延时文件反标注到模型中</strong>），实现与布局布线，时序仿真与验证（<strong>后仿真，将布局布线的延时信息反标注到设计网表中</strong>），板级仿真与验证，芯片编程与调试。</p>
+<p><strong>硬核和软核的区别</strong>：硬核，比如PowerPC和ARM。软核，比如Microblaze，Nios等。IP核模块有行为（Behavior）、结构（Structure）和物理（Physical）三级不一样程度的设计，对应描述功能行为的不一样分为三类，即软核（Soft IP Core）、完成结构描述的固核（Firm IP Core）和基于物理描述并通过工艺验证的硬核（Hard IP Core）。 软核一般是HDL文本，也称为虚拟组件VC-Virtual Component。 IP固核的设计程度则是介于软核和硬核之间，除了完成软核全部的设计外，还完成了门级电路综合和时序仿真等设计环节。通常以门级电路网表的形式提供给用户。 IP硬核是基于半导体工艺的物理设计，已有固定的拓扑布局和具体工艺，并已通过工艺验证，具备可保证的性能。其提供给用户的形式是电路物理结构掩模版图和全套工艺文件，是能够拿来就用的全套技术。</p>
 <h2 id="Refs"><a href="#Refs" class="headerlink" title="Refs"></a>Refs</h2><p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/rouwawa/p/10031833.html">FPGA基础学习(7) — 内部结构之CLB</a></p>
+<p><a target="_blank" rel="noopener" href="https://baijiahao.baidu.com/s?id=1712679492810498953&amp;wfr=spider&amp;for=pc">从Intel做了个RISC-V处理器谈起</a>【硬核，软核，Nios】</p>
+<p><a target="_blank" rel="noopener" href="http://www.javashuo.com/article/p-dieoztjv-ba.html">软核，硬核、固核的区别！(整理总结)</a></p>
 <hr>
 <p><img src="/2021/11/16/books/liqiu.jpg" alt="立秋"></p>
 
