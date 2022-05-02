@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://njughr.github.io/2021/11/16/books/ESL.svg">
 <meta property="og:image" content="https://njughr.github.io/2021/11/16/books/liqiu.jpg">
 <meta property="article:published_time" content="2021-11-16T11:53:44.000Z">
-<meta property="article:modified_time" content="2022-04-30T07:09:25.351Z">
+<meta property="article:modified_time" content="2022-05-01T04:15:35.672Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-04-30 15:09:25" itemprop="dateModified" datetime="2022-04-30T15:09:25+08:00">2022-04-30</time>
+                <time title="修改时间：2022-05-01 12:15:35" itemprop="dateModified" datetime="2022-05-01T12:15:35+08:00">2022-05-01</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -252,6 +252,9 @@
 <p><strong>78-84</strong>：开始学SystemC，完全看不懂。前天看的那些模块，端口，接口，通道，今天看的事务级建模，信号，事件，定时，并发，进程，内部信号，内部数据，子模块，构造函数，析构函数，敏感变量，方法进程，线程进程，钟控线程进程，大堆新的数据类型，新类，各种抽象类，基类，语法。。。在下当年上C++就没认真学，现在看SC直接给我整懵了。果断放弃，我不配。</p>
 <p><a target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1P54y1z77U?spm_id_from=333.337.search-card.all.click">【数字芯片验证&amp;软硬件协同仿真】SystemC</a></p>
 <p><strong>85-108</strong>：看完了SystemC的DMA设计，无时钟版本和有时钟版本，无时钟用SC_THREAD，有时钟用SC_METHOD。看完了整个第5章，感觉毫无收获。确实扯了很多内容，很多流程图，很多模型，但是没什么用。光看不练看不懂。IP验证要验证兼容性、边界验证、随机验证、应用程序验证以及修改了某一部分后重跑所有验证样例的回归验证。硬核需要包括功能模型，时序模型，功耗模型，测试模型，物理模型。</p>
+<p><strong>109-114</strong>：编写RTL代码之前的准备，主要就是对项目的概念越清楚越好，与团队多交流，团队风格一致，模块划分清晰，每个模块提供说明，避免粘附逻辑，<strong>尤其避免多个模块的组合逻辑拼在一起就像我之前干的那样，因为DC默认不会跨模块对组合逻辑进行归并优化</strong>，多周期路径和伪路径是非常恶心的东西，提到了时钟分频，门控时钟，门控单元的概念。指出数据传输应在接口建立申请应答机制。时钟生成要单独一个模块。总线接口应单独一个模块。特殊测试应单独一个模块。RTL暂时不需要考虑扫描链问题。外部必须可以控制内部复位，因此可能需要MUX。外部必须可以控制内部时钟，因此可能需要MUX。三态驱动看不懂，说什么必须有可知的输出，多个三态驱动不能同时有效。<strong>特殊的结构单元，如单周期乘法器，串行加法器链，复杂控制逻辑，大指令解码单元可以在RTL中直接调用Synopsis的DesignWare库。</strong> 注意布线阻塞问题，大的拆分成分布式的小的。</p>
+<p><strong>什么是门控时钟？</strong> 时钟门控即Clock-Gating，是一种重要的降低功耗手段。</p>
+<p><strong>门控时钟的RTL一般怎么写？</strong>：TODO</p>
 <h2 id="工具整理"><a href="#工具整理" class="headerlink" title="工具整理"></a>工具整理</h2><p><strong>动态验证相关工具</strong>：电路级仿真工具，如SPICE，TimeMill，NanoSim。逻辑仿真工具，如VCS，Verilog-XL，NC Verilog，Modelsim。电路级仿真工具用于模拟晶体管级行为特性，用于模拟IC设计。逻辑仿真工具可以仿真行为级、RTL级和门级网表，采用事件驱动或周期驱动方式，用于数字电路设计。基于SPICE的工具有HSPICE，PSPICE，Or CAD， Electronics Workbench。Nanosim和VCS是Synopsis公司开发的。明天开始学静态验证相关工具。</p>
 <p><strong>静态验证-形式验证相关工具：</strong>Synopsis的<strong>Formality</strong>，Cadence的<strong>Encounter Conformal Equivalent Checker</strong></p>
 <p><strong>静态验证-STA工具</strong>：Synopsis的<strong>Primetime</strong></p>
