@@ -31,7 +31,7 @@
 <meta property="og:image" content="https://njughr.github.io/2021/11/16/books/ESL.svg">
 <meta property="og:image" content="https://njughr.github.io/2021/11/16/books/liqiu.jpg">
 <meta property="article:published_time" content="2021-11-16T11:53:44.000Z">
-<meta property="article:modified_time" content="2022-05-06T03:31:33.947Z">
+<meta property="article:modified_time" content="2022-05-08T04:01:52.698Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta name="twitter:card" content="summary">
@@ -201,7 +201,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-06 11:31:33" itemprop="dateModified" datetime="2022-05-06T11:31:33+08:00">2022-05-06</time>
+                <time title="修改时间：2022-05-08 12:01:52" itemprop="dateModified" datetime="2022-05-08T12:01:52+08:00">2022-05-08</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -229,7 +229,7 @@
 <span id="more"></span>
 <h1 id="SoC设计方法"><a href="#SoC设计方法" class="headerlink" title="SoC设计方法"></a>SoC设计方法</h1><p><strong>SoC设计方法与实现</strong> by 郭炜等</p>
 <p>资料下载：<a target="_blank" rel="noopener" href="https://www.hxedu.com.cn/hxedu/hg/book/bookInfo.html?code=G0322540">SoC设计方法与实现（第3版）-华信教育资源网</a></p>
-<p>阅读时间：预计2022.4至2022.7三个月时间读完。该书共有312页，每天读5页即可。0413更新，因为比较闲，改为一天5+x。即先读5页，然后根据时间安排再读x页。<strong>为了避免思路的coherence被打断，可以先读完再整理笔记。</strong></p>
+<p>阅读时间：预计2022.4至2022.7三个月时间读完。该书共有312页，每天读5页即可。<strong>为了避免思路的coherence被打断，可以先读完再整理笔记。</strong></p>
 <p><strong>1-5</strong>：没啥好说的，序言，SoC的重要性，强调IC的重要性和人才的需求。更多的是在整理单词。SoC的优势：可以实现更复杂的系统，具有较低的设计成本，具有更高的可靠性，缩短产品设计时间，减少产品反复的次数，满足更小尺寸的设计要求，低功耗。</p>
 <p><strong>6-10</strong>：SoC面临的挑战：集成密度高导致复杂性增加，时序收敛问题，信号完整性问题，低功耗设计问题，可制造性设计和成品率问题。整体来讲都是一些科普。</p>
 <p><strong>11-15</strong>：硬件工程师应仔细理解所谓<strong>系统设计文档</strong>。第二章开始讲SoC设计流程。SoC需要一种软硬件协同设计的方法进行设计，即系统需求说明+高级算法建模与仿真+软硬件划分过程+软硬件同步设计+硬件系统测试。明天看的所谓“基于标准单元的SoC芯片设计流程”可以回答一些很重要的疑惑，需要认真看。</p>
@@ -269,6 +269,8 @@
 <p><strong>合理猜测在调用IP库的时候注释其实也起到了脚本的作用，而不仅仅被简单忽略掉</strong></p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Operator Inference</span></span><br><span class="line"><span class="keyword">module</span> my_adder(a,b,sum)</span><br><span class="line">    <span class="keyword">input</span> a,b,c;</span><br><span class="line">    <span class="keyword">output</span> sum;</span><br><span class="line">    <span class="comment">// synopsys resource r0</span></span><br><span class="line">    <span class="comment">// map_to_module = &quot;DW01_add&quot;</span></span><br><span class="line">    <span class="comment">// implementation = &quot;cla&quot;</span></span><br><span class="line">    <span class="comment">// ops = &quot;al&quot;</span></span><br><span class="line">    <span class="keyword">assign</span> sum = a + b;</span><br><span class="line"><span class="keyword">endmodule</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// Component Instantiation</span></span><br><span class="line"><span class="keyword">module</span> my_adder(a,b,sum)</span><br><span class="line">    <span class="keyword">input</span> a,b,ci;</span><br><span class="line">    <span class="keyword">output</span> co,sum;</span><br><span class="line">    <span class="comment">// synopsys dc_script_begin</span></span><br><span class="line">    <span class="comment">// set_implementation cla adder</span></span><br><span class="line">    <span class="comment">// synopsys dc_script_end</span></span><br><span class="line">    DW01_add <span class="variable">#(1) adder(.A(a),.B(b),.CI(ci),.SUM(sum),.CO(co))</span>;</span><br><span class="line"><span class="keyword">endmodule</span></span><br></pre></td></tr></table></figure>
 <p>使用DesignWare需要在综合库即synthetic_library中添加<code>synthetic_library=dw_foudation.sldb</code>，并在DC中执行<code>set synthetic_library dw_foundation.sldb</code>。</p>
+<p><strong>同步电路设计及其与异步信号交互的问题</strong></p>
+<p>关于亚稳态为什么要用两级触发器做同步器防止亚稳态传播，理论是这样的：数字电路跨时钟域传输控制信号关键不是说能否实时的采到控制电平，而是准确采到电平的变化。数字电路可能认为0.6V是1，0.4V是0，而理想情况下1.5V是1，0V是0。在1.5V下，触发器可以强力的对后级扇出进行充能【充能这个词不免让我想到了海啸防御系统的<strong>猫又</strong>和军用科技的<strong>M-179阿喀琉斯</strong>】，保证多级扇出的每一个后级触发器都知道逻辑是高电平。但是在不保证建立时间的情况下，触发器采到亚稳态电平，其输出可能是0.6V或0.4V，这个电平并不能充分的对后级触发器进行充能，例如0.6V充5个触发器，有可能3个认为是1，而2个认为是0，这就造成不可挽回的亚稳态大面积传播后果。但是如果使用两级触发器级联成的同步器，在前级输出一个亚稳态后，如果后级扇出太多，电容就太大，这样由于RC时间常数问题，0.6这个输出会更难升高，也就是更难驱动一堆触发器，这就造成了扇出的传播。注意实际上后级触发器只care上升沿那个时刻，但是前级触发器的输出充电是取决于扇出的。这也就是说如果用两级触发器级联，后级只有1个触发器，RC小，更容易充电，就不容易造成亚稳态的传播。</p>
 <h2 id="工具整理"><a href="#工具整理" class="headerlink" title="工具整理"></a>工具整理</h2><p><strong>动态验证相关工具</strong>：电路级仿真工具，如SPICE，TimeMill，NanoSim。逻辑仿真工具，如VCS，Verilog-XL，NC Verilog，Modelsim。电路级仿真工具用于模拟晶体管级行为特性，用于模拟IC设计。逻辑仿真工具可以仿真行为级、RTL级和门级网表，采用事件驱动或周期驱动方式，用于数字电路设计。基于SPICE的工具有HSPICE，PSPICE，Or CAD， Electronics Workbench。Nanosim和VCS是Synopsis公司开发的。明天开始学静态验证相关工具。</p>
 <p><strong>静态验证-形式验证相关工具：</strong>Synopsis的<strong>Formality</strong>，Cadence的<strong>Encounter Conformal Equivalent Checker</strong></p>
 <p><strong>静态验证-STA工具</strong>：Synopsis的<strong>Primetime</strong></p>
