@@ -27,16 +27,18 @@
 <meta property="og:site_name" content="GHR&#39;s Blog">
 <meta property="og:description" content="硬件描述语言及编译仿真综合实现的一切 Theme不同的语法表达相同的电路，不同的语言表达相同的电路，相似的语法表达相似的电路。限制某个电路的门数，尝试优化至限制门数以内。限制某个电路的最高时延，尝试加速。HDLbits学习。牛客网面试刷题。各类软件的使用教程。乱七八糟的知识碎片。硬件描述语言语法。各种注意事项。FPGA相关知识。">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/BJQ.jpg">
+<meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/QJQ.jpg">
 <meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/afsm.jpg">
 <meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/1.png">
 <meta property="og:image" content="https://njughr.github.io/2021/10/26/hdl/mangzhong.jpg">
 <meta property="article:published_time" content="2021-10-26T02:16:16.000Z">
-<meta property="article:modified_time" content="2022-05-10T13:22:52.514Z">
+<meta property="article:modified_time" content="2022-05-11T13:05:07.437Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta property="article:tag" content="HDL">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:image" content="https://njughr.github.io/2021/10/26/hdl/afsm.jpg">
+<meta name="twitter:image" content="https://njughr.github.io/2021/10/26/hdl/BJQ.jpg">
 
 <link rel="canonical" href="https://njughr.github.io/2021/10/26/hdl/">
 
@@ -202,7 +204,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-10 21:22:52" itemprop="dateModified" datetime="2022-05-10T21:22:52+08:00">2022-05-10</time>
+                <time title="修改时间：2022-05-11 21:05:07" itemprop="dateModified" datetime="2022-05-11T21:05:07+08:00">2022-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -234,7 +236,37 @@
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/461215137">【目录序言翻译】算术电路综合：FPGA，ASIC与嵌入式系统 Synthesis of Arithmetic Circuits : FPGA, ASIC, and Embedded Systems</a></p>
 <p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/258679655">【目录序言翻译】计算机硬件算法《COMPUTER ARITHMETIC : Algorithms and Hardware Designs》2nd</a></p>
 <p><a target="_blank" rel="noopener" href="https://github.com/dblalock">dblalock</a>/<strong><a target="_blank" rel="noopener" href="https://github.com/dblalock/bolt">bolt</a></strong>【10x faster matrix and vector operations, and the source code for <a target="_blank" rel="noopener" href="https://arxiv.org/abs/2106.10860">MADDNESS</a>】</p>
-<h1 id="Verilog"><a href="#Verilog" class="headerlink" title="Verilog"></a>Verilog</h1><p><strong><a target="_blank" rel="noopener" href="https://www.nowcoder.com/exam/intelligent">Verilog专项练习</a></strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.docin.com/p-645091398.html">31 算术逻辑单元</a>【本文认为一级与非门/非门的延迟为T，一级与或非门/异或门的延迟为1.5T】【则全加器的S要经过3T，C要经过4T，1或=1是异或门，&amp;是与门，&gt;=1是或门，反正就这样吧】</p>
+<p><strong>半加器</strong></p>
+<p><img src="/2021/10/26/hdl/BJQ.jpg" alt="BJQ" style="zoom:50%;"></p>
+<p><strong>全加器</strong></p>
+<p><img src="/2021/10/26/hdl/QJQ.jpg" alt="QJQ"></p>
+<p>全加器要长一个与或门或者一个异或门的延时。或者说，<strong>全加器的延时大概是半加器的一倍。</strong></p>
+<h1 id="Verilog"><a href="#Verilog" class="headerlink" title="Verilog"></a>Verilog</h1><h2 id="规范"><a href="#规范" class="headerlink" title="规范"></a>规范</h2><p><strong>Naming Conventions</strong>: 信号使用全部小写字母；常数使用全部大写字母，大小写不敏感的编码；后缀用_n表示低电平启动，用_a表示异步（async），用_z表示三态，连接在一起的信号和端口使用完全相同的名字，千万不要使用HDL的保留字，保持组内、部门内、公司内的一致性。</p>
+<p><strong>File Header</strong>：必须包括以下内容：作者信息，修订历史，功能说明，可用参数，复位方法和时钟域，关键时序和异步接口，测试架构。<strong>模板见HDL笔记</strong></p>
+<p><strong>Ports</strong>：一个端口名占一行，并给出适当的注释；先写输入再写输出；顺序为<strong>时钟，复位，使能，其他控制，地址总线，数据总线</strong>。Port Mapping即端口映射方面看不懂。</p>
+<p><strong>Other Coding Guidelines</strong>: 适当的注释，小端字节序（使用[31:0]而不是[0:31]），操作数位宽要匹配，不要将信号赋上不关心的值，将所有寄存器全部reset【不知道RMM什么意思】。使用<strong><em>function</em></strong>来模型化组合逻辑电路（没看懂）。避免使用供应商限定的门电路。使用诸如<strong>Synopsis Getch</strong>或<strong>DesignWare</strong>这种不依赖具体技术的库。使用本地变量（local Variables）。</p>
+<p><strong>Clocks and Resets</strong>：避免同时使用时钟信号的两个边沿（占空比敏感，难以设计DFT）。绝不寄存时钟和复位信号（物理综合阶段做这个）。</p>
+<p><strong>Combinational/Sequential Blocks</strong>：对于<strong>组合电路模块</strong>（Combinational Block），使用阻塞赋值（blocking assignments），即<strong>=</strong>。最小化敏感列表（Sensitivity List）里面的信号数。赋值语句顺序需要与拓扑结构对应。对于<strong>顺序模块</strong>（疑似时序电路模块，Sequential Block），使用非阻塞赋值（non-blocking assignments），即<strong>&lt;=</strong>。避免<strong>竞争问题</strong>（race problem）。组合电路模块和顺序模块要分离。</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/main_michael/article/details/108395142">关于full_case和parallel_case属性</a></p>
+<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74543358">盘点哪些仿真与综合不匹配的RTL Coding Styles（一）</a></p>
+<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d09d34cf82c758f5f61fb7360b4c2e3f5727253c.html">逻辑综合——概述与基本概念</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21842097/article/details/120367596">Design Compiler指南——概述和基本流程</a></p>
+<p><strong>Coding for Synthesis</strong>：敏感列表的列举要准确且无冗余。避免使用full_case和parallel_case以避免pre-synthesis预综合和post-synthesis后综合的mismatch。避免在顶层模块使用胶水逻辑。另外在模块实例化调用特定port的时候不要在.()里面额外加逻辑，比如加一个MUX。</p>
+<p><strong>模块的命名</strong>：顶层模块命名为芯片名，次级模块命名为xx_core.v，<strong>例化名和模块名相同或加序号</strong></p>
+<p><strong>信号的命名</strong>：信号用小写字母开头+下划线+数字，低电平有效的用<code>_n</code>或<code>_b</code>结尾，总线从高到低位命名如<code>bus[31:0]</code>注意<code>reg [7:0] mema [15:0]</code>表示16个8位的寄存器。<strong>信号名字不需要注明in还是out，只需要在注释里写</strong>，全局信号和接口信号应保持命名相同，模块例化采用<code>信号名称连connection by name</code>的形式，反正就是同名字点同名字。clk和rst等扇出大的信号列在信号列表最后。</p>
+<p><strong>同步触发器命名</strong>：用于同步异步信号时应加<code>synch_</code></p>
+<p><strong>时钟</strong>：全局时钟叫<code>clk</code>，其他的时钟应下划线加频率。</p>
+<p><strong>文件</strong>：文件名与模块名相同</p>
+<p><strong>编码风格</strong>：initial begin和always begin不要单独给begin一行。时序单元用非阻塞。组合逻辑用阻塞。阻塞和非阻塞在一个block里面不能混用。敏感列表要完整。尽量不使用循环。</p>
+<p><strong>综合性</strong>：只使用一个主时钟。复位信号为异步<code>rst_n</code>。模块要保证输入和输出直接连接触发器，这是最好的。不在数据通路上的触发器都要有复位。数据通路上的触发器（可能因为时序紧张）复位根据流水线划分设置。同一个block要么都是带复位要么都不带复位。不使用casex和casez。case的第一条赋值和case在一行。用default。内部逻辑避免三态。不要在代码描述中加入specify去规定多周期路径。ifelse要避免生成锁存器。避免<strong>异步逻辑，带有反馈环的组合逻辑和自同步逻辑</strong>。输入和输出默认为wire。synopsys忽略initial综合。忽略所有的延时。</p>
+<h2 id="基本"><a href="#基本" class="headerlink" title="基本"></a>基本</h2><p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/81075c1f964bcf84b9d57b57.html">Verilog文件读写操作</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/cdl1989/article/details/120666486">Verilog读写文件</a></p>
+<p><strong>常用命令</strong>：</p>
+<p><strong>$fopen</strong></p>
+<p><strong>$fseek</strong></p>
+<p><strong>$ftell</strong></p>
+<h2 id="练习"><a href="#练习" class="headerlink" title="练习"></a>练习</h2><p><strong><a target="_blank" rel="noopener" href="https://www.nowcoder.com/exam/intelligent">Verilog专项练习</a></strong></p>
 <p>十进制转八进制的时候先十进制转二进制，除2取余降序排列，小数部分不断往上乘然后正序排列。然后二进制转八进制，从小数点往左右数每3位转一个8进制数。</p>
 <p><strong>用verilog建立可综合模型的原则，以下不正确的是：</strong></p>
 <figure class="highlight verilog"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">不使用用户自定义原语【正确】【？】</span><br><span class="line">混合使用上升沿和下降沿触发的触发器【错误】【敏感列表同时有<span class="keyword">posedge</span>和<span class="keyword">negedge</span>则<span class="keyword">always</span>不可综合，但是有人有不同意见】</span><br><span class="line">用<span class="keyword">always</span>过程块描述组合逻辑，应在敏感信号列表中列出所有的输入信号【正确】</span><br><span class="line">同一个变量的赋值不能受多个时钟控制，也不能受两种不同的时钟条件（或者不同的时钟沿）控制。【正确】【？】</span><br></pre></td></tr></table></figure>
@@ -329,8 +361,12 @@
 <h2 id="乘法器"><a href="#乘法器" class="headerlink" title="乘法器"></a>乘法器</h2><p>1个乘法器的面积是1个加法器的多少倍？</p>
 <p>非常难说，但是起码有个量吧</p>
 <p>VLSI讲的时候乘法器复杂度是加法器的多少倍？</p>
-<p>乘法器输入xxxx0000乘yyyy的面积和xxxx乘yyyy的面积一样么</p>
+<p>乘法器输入xxxx0000乘yyyy的面积和xxxx乘yyyy的面积一样么，高度怀疑是基本一样的。</p>
 <p>不管是否一样，后者肯定面积小</p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/45554104">硬件乘法器的意义何在？乘法直接乘不就可以了吗。我verilog里编写a*b即可，为什么要移位相加去乘？</a></p>
+<p><strong>Verilog里面直接写axb，在DC里到底发生了什么？</strong></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_35801916/article/details/118412735">微型计算机的指令集,窥视灵魂深处 AMD新一代SIMD指令集剖析</a></p>
+<p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%B9%98%E7%A7%AF%E7%B4%AF%E5%8A%A0%E8%BF%90%E7%AE%97/22817935?fr=aladdin">乘积累加运算</a></p>
 <h2 id="位数扩展"><a href="#位数扩展" class="headerlink" title="位数扩展"></a>位数扩展</h2><p>{}运算符</p>
 <h2 id="Question"><a href="#Question" class="headerlink" title="Question"></a>Question</h2><p><strong>Verilog里面设置[width-1:0] x，如果width是1或者0或者负数会怎么样？</strong></p>
 <h1 id="知识"><a href="#知识" class="headerlink" title="知识"></a>知识</h1><h2 id="补码"><a href="#补码" class="headerlink" title="补码"></a>补码</h2><p><code>logic signed [widthx-1:0] x</code>配合<code>localparam integer xn</code>即可实现dec数自动按补码存储和获取。</p>
@@ -756,8 +792,8 @@
       <i class="fa fa-chevron-left"></i> 显示器
     </a></div>
       <div class="post-nav-item">
-    <a href="/2021/10/29/papers/" rel="next" title="Pipes">
-      Pipes <i class="fa fa-chevron-right"></i>
+    <a href="/2021/10/29/papers/" rel="next" title="论文笔记">
+      论文笔记 <i class="fa fa-chevron-right"></i>
     </a></div>
     </div>
       </footer>
@@ -817,7 +853,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Theme"><span class="nav-number">1.</span> <span class="nav-text">Theme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shards"><span class="nav-number">2.</span> <span class="nav-text">Shards</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Verilog"><span class="nav-number">3.</span> <span class="nav-text">Verilog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#HDLbits"><span class="nav-number">3.1.</span> <span class="nav-text">HDLbits</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FLOW"><span class="nav-number">4.</span> <span class="nav-text">FLOW</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CODE"><span class="nav-number">5.</span> <span class="nav-text">CODE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FileHeader"><span class="nav-number">5.1.</span> <span class="nav-text">FileHeader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8"><span class="nav-number">5.2.</span> <span class="nav-text">比较器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">5.3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MUX"><span class="nav-number">5.4.</span> <span class="nav-text">MUX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E5%99%A8"><span class="nav-number">5.5.</span> <span class="nav-text">乘法器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E6%95%B0%E6%89%A9%E5%B1%95"><span class="nav-number">5.6.</span> <span class="nav-text">位数扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question"><span class="nav-number">5.7.</span> <span class="nav-text">Question</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86"><span class="nav-number">6.</span> <span class="nav-text">知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">6.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E7%9A%84%E5%B9%82%E6%AC%A1"><span class="nav-number">6.2.</span> <span class="nav-text">B的幂次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E7%9A%84%E5%B9%82%E6%AC%A1"><span class="nav-number">6.3.</span> <span class="nav-text">2的幂次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%8F%E5%8F%B7%E5%92%8C%E8%BF%9E%E5%AD%97%E7%AC%A6"><span class="nav-number">6.4.</span> <span class="nav-text">减号和连字符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#News"><span class="nav-number">7.</span> <span class="nav-text">News</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refs"><span class="nav-number">8.</span> <span class="nav-text">Refs</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#Theme"><span class="nav-number">1.</span> <span class="nav-text">Theme</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Shards"><span class="nav-number">2.</span> <span class="nav-text">Shards</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Verilog"><span class="nav-number">3.</span> <span class="nav-text">Verilog</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A7%84%E8%8C%83"><span class="nav-number">3.1.</span> <span class="nav-text">规范</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%9F%BA%E6%9C%AC"><span class="nav-number">3.2.</span> <span class="nav-text">基本</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%83%E4%B9%A0"><span class="nav-number">3.3.</span> <span class="nav-text">练习</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#HDLbits"><span class="nav-number">3.4.</span> <span class="nav-text">HDLbits</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#FLOW"><span class="nav-number">4.</span> <span class="nav-text">FLOW</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#CODE"><span class="nav-number">5.</span> <span class="nav-text">CODE</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#FileHeader"><span class="nav-number">5.1.</span> <span class="nav-text">FileHeader</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83%E5%99%A8"><span class="nav-number">5.2.</span> <span class="nav-text">比较器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%AF%94%E8%BE%83"><span class="nav-number">5.3.</span> <span class="nav-text">比较</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#MUX"><span class="nav-number">5.4.</span> <span class="nav-text">MUX</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%B9%98%E6%B3%95%E5%99%A8"><span class="nav-number">5.5.</span> <span class="nav-text">乘法器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E4%BD%8D%E6%95%B0%E6%89%A9%E5%B1%95"><span class="nav-number">5.6.</span> <span class="nav-text">位数扩展</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#Question"><span class="nav-number">5.7.</span> <span class="nav-text">Question</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%9F%A5%E8%AF%86"><span class="nav-number">6.</span> <span class="nav-text">知识</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%A1%A5%E7%A0%81"><span class="nav-number">6.1.</span> <span class="nav-text">补码</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#B%E7%9A%84%E5%B9%82%E6%AC%A1"><span class="nav-number">6.2.</span> <span class="nav-text">B的幂次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2%E7%9A%84%E5%B9%82%E6%AC%A1"><span class="nav-number">6.3.</span> <span class="nav-text">2的幂次</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%87%8F%E5%8F%B7%E5%92%8C%E8%BF%9E%E5%AD%97%E7%AC%A6"><span class="nav-number">6.4.</span> <span class="nav-text">减号和连字符</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#News"><span class="nav-number">7.</span> <span class="nav-text">News</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Refs"><span class="nav-number">8.</span> <span class="nav-text">Refs</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 

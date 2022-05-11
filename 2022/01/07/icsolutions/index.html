@@ -30,7 +30,7 @@
 <meta property="og:image" content="https://njughr.github.io/2022/01/07/icsolutions/MooresLaw.jpg">
 <meta property="og:image" content="https://njughr.github.io/2022/01/07/icsolutions/bailu.jpg">
 <meta property="article:published_time" content="2022-01-07T06:57:08.000Z">
-<meta property="article:modified_time" content="2022-05-06T08:55:38.569Z">
+<meta property="article:modified_time" content="2022-05-11T12:16:18.028Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="IC">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-06 16:55:38" itemprop="dateModified" datetime="2022-05-06T16:55:38+08:00">2022-05-06</time>
+                <time title="修改时间：2022-05-11 20:16:18" itemprop="dateModified" datetime="2022-05-11T20:16:18+08:00">2022-05-11</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -250,17 +250,6 @@
 <p>基于IP的SoC设计周期：<strong>y = 100% - (7+0.82<em>x</em>)%</strong></p>
 <p>y表示节省了百分之多少的时间，x表示修改IP所耗费的时间，<strong>0&lt;x&lt;1</strong></p>
 <p><strong>RTL Coding Styles</strong>：Readability可读性，Simplicity简单性，Locality局部性，Portability可移植性，Reusability可复用性，Reconfigurability可重构性</p>
-<p><strong>Naming Conventions</strong>: 信号使用全部小写字母；常数使用全部大写字母，大小写不敏感的编码；后缀用_n表示低电平启动，用_a表示异步（async），用_z表示三态，连接在一起的信号和端口使用完全相同的名字，千万不要使用HDL的保留字，保持组内、部门内、公司内的一致性。</p>
-<p><strong>File Header</strong>：必须包括以下内容：作者信息，修订历史，功能说明，可用参数，复位方法和时钟域，关键时序和异步接口，测试架构。<strong>模板见HDL笔记</strong></p>
-<p><strong>Ports</strong>：一个端口名占一行，并给出适当的注释；先写输入再写输出；顺序为<strong>时钟，复位，使能，其他控制，地址总线，数据总线</strong>。Port Mapping即端口映射方面看不懂。</p>
-<p><strong>Other Coding Guidelines</strong>: 适当的注释，小端字节序（使用[31:0]而不是[0:31]），操作数位宽要匹配，不要将信号赋上不关心的值，将所有寄存器全部reset【不知道RMM什么意思】。使用<strong><em>function</em></strong>来模型化组合逻辑电路（没看懂）。避免使用供应商限定的门电路。使用诸如<strong>Synopsis Getch</strong>或<strong>DesignWare</strong>这种不依赖具体技术的库。使用本地变量（local Variables）。</p>
-<p><strong>Clocks and Resets</strong>：避免同时使用时钟信号的两个边沿（占空比敏感，难以设计DFT）。绝不寄存时钟和复位信号（物理综合阶段做这个）。</p>
-<p><strong>Combinational/Sequential Blocks</strong>：对于<strong>组合电路模块</strong>（Combinational Block），使用阻塞赋值（blocking assignments），即<strong>=</strong>。最小化敏感列表（Sensitivity List）里面的信号数。赋值语句顺序需要与拓扑结构对应。对于<strong>顺序模块</strong>（疑似时序电路模块，Sequential Block），使用非阻塞赋值（non-blocking assignments），即<strong>&lt;=</strong>。避免<strong>竞争问题</strong>（race problem）。组合电路模块和顺序模块要分离。</p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/main_michael/article/details/108395142">关于full_case和parallel_case属性</a></p>
-<p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/74543358">盘点哪些仿真与综合不匹配的RTL Coding Styles（一）</a></p>
-<p><a target="_blank" rel="noopener" href="https://wenku.baidu.com/view/d09d34cf82c758f5f61fb7360b4c2e3f5727253c.html">逻辑综合——概述与基本概念</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/qq_21842097/article/details/120367596">Design Compiler指南——概述和基本流程</a></p>
-<p><strong>Coding for Synthesis</strong>：敏感列表的列举要准确且无冗余。避免使用full_case和parallel_case以避免pre-synthesis预综合和post-synthesis后综合的mismatch。避免在顶层模块使用胶水逻辑。另外在模块实例化调用特定port的时候不要在.()里面额外加逻辑，比如加一个MUX。</p>
 <p><a target="_blank" rel="noopener" href="https://zhidao.baidu.com/question/1825609005927703148.html">什么是功能仿真？什么是时序仿真</a></p>
 <p>《<strong>可综合性编码举例</strong>》中有许多很好的例子，记录到HDL笔记里面。</p>
 <p><strong>Coding for DFT</strong>：避免使用三态总线。避免内部生成的时钟和复位信号。在测试模式下时钟和Set/Reset信号必须能够从外部完全控制。存储器建议使用BIST即<strong>内建自测试</strong>。好好设计测试模式。<strong>DFT is mandatory but not optional! High fault coverage is a must but not just a plus! DFT 是强制的而不是可选的！ 高错误覆盖率是必须的而不仅仅是一个优点！</strong> </p>
