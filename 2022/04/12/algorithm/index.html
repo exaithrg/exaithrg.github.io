@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="算法学习笔记 凯撒密码 度量衡古代度量衡制度极为混乱，每个朝代都不一样，直接看晕了。决定以百度单位换算为准。 长度：1毫&#x3D;0.03毫米，1厘&#x3D;0.33毫米，1分&#x3D;3.33毫米，1寸&#x3D;3.33厘米，1尺&#x3D;33.3厘米，1丈&#x3D;3.33米，1里&#x3D;500米 质量：1钱&#x3D;5克，1两&#x3D;50克，1斤&#x3D;500克，1担&#x3D;50千克 面积：1分&#x3D;66.6平方米，1亩&#x3D;666.6平方米，1顷&#x3D;66666平方米，1公亩&#x3D;1">
+  <meta name="description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：$\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor$。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记">
 <meta property="og:url" content="https://njughr.github.io/2022/04/12/algorithm/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="算法学习笔记 凯撒密码 度量衡古代度量衡制度极为混乱，每个朝代都不一样，直接看晕了。决定以百度单位换算为准。 长度：1毫&#x3D;0.03毫米，1厘&#x3D;0.33毫米，1分&#x3D;3.33毫米，1寸&#x3D;3.33厘米，1尺&#x3D;33.3厘米，1丈&#x3D;3.33米，1里&#x3D;500米 质量：1钱&#x3D;5克，1两&#x3D;50克，1斤&#x3D;500克，1担&#x3D;50千克 面积：1分&#x3D;66.6平方米，1亩&#x3D;666.6平方米，1顷&#x3D;66666平方米，1公亩&#x3D;1">
+<meta property="og:description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：$\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor$。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2022/04/12/algorithm/kAIsA.jpg">
 <meta property="og:image" content="https://njughr.github.io/2022/04/12/algorithm/xiaohan.jpg">
 <meta property="article:published_time" content="2022-04-12T12:15:13.000Z">
-<meta property="article:modified_time" content="2022-05-02T03:38:55.000Z">
+<meta property="article:modified_time" content="2022-05-23T03:27:35.219Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-02 11:38:55" itemprop="dateModified" datetime="2022-05-02T11:38:55+08:00">2022-05-02</time>
+                <time title="修改时间：2022-05-23 11:27:35" itemprop="dateModified" datetime="2022-05-23T11:27:35+08:00">2022-05-23</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,11 +225,173 @@
       
         <p><strong>算法学习笔记</strong></p>
 <h1 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h1><p><img src="/2022/04/12/algorithm/kAIsA.jpg" alt="kAIsA"></p>
+<h1 id="年龄"><a href="#年龄" class="headerlink" title="年龄"></a>年龄</h1><p><strong>年龄算法</strong>：这个算法得到的年龄可以用来量刑。计算方法：<strong>$\lfloor (当前公历年月日-身份证生日-1)/10000 \rfloor$</strong>。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌晨0点开始，也就是说2012年1月3日即为已满12周岁。</p>
+<span id="more"></span>
+<p><strong>样例</strong>：2022年5月23号，2004年5月22号及之前生日的满18岁（$\lfloor (20220523-20040522-1)/10000 \rfloor=18$），2004年5月23号及之后生日的未成年（$\lfloor (20220523-20040523-1)/10000 \rfloor=17$）。</p>
+<p><a target="_blank" rel="noopener" href="http://www.gov.cn/ziliao/flfg/2006-01/24/content_169194.htm">最高人民法院关于审理未成年人刑事案件具体应用法律若干问题的解释</a></p>
+<blockquote>
+<p>刑法第十七条规定的“周岁”，按照公历的年、月、日计算，<strong>从周岁生日的第二天起算</strong>。【国际惯例是生日当天涨一岁，即$\lfloor (当前公历年月日-身份证生日)/10000 \rfloor$，但是刑法这样规定是出于人情以及尽量减少麻烦的考虑。】</p>
+</blockquote>
+<p><strong>知乎搜索计算年龄，看看人家的回答。</strong></p>
+<p><a target="_blank" rel="noopener" href="https://www.zhihu.com/question/310595178/answer/1292764284">怎么计算年龄？ - NPC7285950281的回答 - 知乎</a></p>
+<p><strong>周岁</strong>：已经过完生日，则周岁=当前公历年份-出生公历年份。没有过完生日，则周岁=当前公历年份-出生公历年份-1。</p>
+<p><strong>虚岁</strong>：过完春节。虚岁=当年农历年份-出生农历年份+1。</p>
+<p>涉及到虚岁的年龄问题不是很常用，感觉最好放弃。虚岁和周岁的关系则含有极其复杂且恶心的分类讨论，而且意义不大，放弃。</p>
+<p>分类讨论的目的有：农历先还是公历先？农历生日先到还是公历先到？闰月怎么办？有多少特殊情况？？？<strong>农历生日为12月1日，公历生日为1月1日</strong>：<strong>农历生日为1月1日，公历生日为2月1日</strong>：<strong>农历生日为2月1日，公历生日为3月1日</strong>：过生日前周岁和虚岁差2岁，过生日后周岁和虚岁差1岁。因为人一出生就是1虚岁0周岁，过完春节是2虚岁0周岁，再过完生日是2虚岁1周岁。从1995年出生到2020年过完当年生日为止，一共过了2020－1995=25个生日，所以是25周岁。如果生日为1月1日至春节之间，计算虚岁方法比较特殊：①在1月1日～春节期间计算年龄：虚岁＝年份差＋1。②在春节~12月31日期间计算年龄：虚岁＝年份差＋2。主要原因是在公历年度中，周岁增长先于虚岁增长，在以上面周岁为基础计算年龄的方法中，跨越了公历年度。</p>
+<h2 id="春节"><a href="#春节" class="headerlink" title="春节"></a>春节</h2><p>春节一般是公历几月几号？<strong>公历一月下旬到二月中旬</strong>。元旦一般是农历几月几号？<strong>农历十一月中旬到腊月上旬</strong>。</p>
+<div class="table-container">
+<table>
+<thead>
+<tr>
+<th>年份</th>
+<th>元旦</th>
+<th>春节</th>
+<th>年份</th>
+<th>元旦</th>
+<th>春节</th>
+<th>年份</th>
+<th>元旦</th>
+<th>春节</th>
+<th>年份</th>
+<th>元旦</th>
+<th>春节</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>1998</strong></td>
+<td>1203</td>
+<td>0128</td>
+<td><strong>1999</strong></td>
+<td>1114</td>
+<td>0216</td>
+<td><strong>2000</strong></td>
+<td>1125</td>
+<td>0205</td>
+<td><strong>2001</strong></td>
+<td>1207</td>
+<td>0124</td>
+</tr>
+<tr>
+<td><strong>2002</strong></td>
+<td>1118</td>
+<td>0212</td>
+<td><strong>2003</strong></td>
+<td>1129</td>
+<td>0201</td>
+<td><strong>2004</strong></td>
+<td>1210</td>
+<td>0122</td>
+<td><strong>2005</strong></td>
+<td>1121</td>
+<td>0209</td>
+</tr>
+<tr>
+<td><strong>2006</strong></td>
+<td>1202</td>
+<td>0129</td>
+<td><strong>2007</strong></td>
+<td>1113</td>
+<td>0218</td>
+<td><strong>2008</strong></td>
+<td>1123</td>
+<td>0207</td>
+<td><strong>2009</strong></td>
+<td>1206</td>
+<td>0126</td>
+</tr>
+<tr>
+<td><strong>2010</strong></td>
+<td>1117</td>
+<td>0214</td>
+<td><strong>2011</strong></td>
+<td>1127</td>
+<td>0203</td>
+<td><strong>2012</strong></td>
+<td>1208</td>
+<td>0123</td>
+<td><strong>2013</strong></td>
+<td>1120</td>
+<td>0210</td>
+</tr>
+<tr>
+<td><strong>2014</strong></td>
+<td>1201</td>
+<td>0131</td>
+<td><strong>2015</strong></td>
+<td>1111</td>
+<td>0219</td>
+<td><strong>2016</strong></td>
+<td>1122</td>
+<td>0208</td>
+<td><strong>2017</strong></td>
+<td>1204</td>
+<td>0128</td>
+</tr>
+<tr>
+<td><strong>2018</strong></td>
+<td>1115</td>
+<td>0216</td>
+<td><strong>2019</strong></td>
+<td>1126</td>
+<td>0205</td>
+<td><strong>2020</strong></td>
+<td>1207</td>
+<td>0125</td>
+<td><strong>2021</strong></td>
+<td>1118</td>
+<td>0212</td>
+</tr>
+<tr>
+<td><strong>2022</strong></td>
+<td>1129</td>
+<td>0201</td>
+<td><strong>2023</strong></td>
+<td>1210</td>
+<td>0122</td>
+<td><strong>2024</strong></td>
+<td>1120</td>
+<td>0210</td>
+<td><strong>2025</strong></td>
+<td>1202</td>
+<td>0129</td>
+</tr>
+<tr>
+<td><strong>2026</strong></td>
+<td>1113</td>
+<td>0217</td>
+<td><strong>2027</strong></td>
+<td>1124</td>
+<td>0206</td>
+<td><strong>2028</strong></td>
+<td>1205</td>
+<td>0126</td>
+<td><strong>2029</strong></td>
+<td>1117</td>
+<td>0213</td>
+</tr>
+<tr>
+<td><strong>2030</strong></td>
+<td>1128</td>
+<td>0203</td>
+<td><strong>2031</strong></td>
+<td>1208</td>
+<td>0123</td>
+<td><strong>2032</strong></td>
+<td>1119</td>
+<td>0211</td>
+<td><strong>2033</strong></td>
+<td>1201</td>
+<td>0131</td>
+</tr>
+</tbody>
+</table>
+</div>
+<p><strong>23年春节是近二十多年来最早的一次春节。</strong></p>
 <h1 id="度量衡"><a href="#度量衡" class="headerlink" title="度量衡"></a>度量衡</h1><p><strong>古代度量衡制度极为混乱，每个朝代都不一样，直接看晕了。决定以百度<a target="_blank" rel="noopener" href="https://www.baidu.com/s?wd=%E5%8D%95%E4%BD%8D%E6%8D%A2%E7%AE%97&amp;rsv_spt=1&amp;rsv_iqid=0xbb4a980000604ca8&amp;issp=1&amp;f=8&amp;rsv_bp=1&amp;rsv_idx=2&amp;ie=utf-8&amp;rqlang=cn&amp;tn=baiduhome_pg&amp;rsv_enter=1&amp;rsv_dl=tb&amp;rsv_btype=t&amp;inputT=1373&amp;rsv_t=37e2foFoH8qgq9c9Q%2B1S7TllCM1zvWoHRL9J7Hm4u%2FDVFRf0b2k9u0OWuYiJr%2FDWt%2FXj&amp;oq=%25E4%25B8%2580%25E9%2592%25B1%25E7%25AD%2589%25E4%25BA%258E%25E5%25A4%259A%25E5%25B0%2591%25E5%2585%258B&amp;rsv_pq=bd6d3f62002fc893&amp;rsv_sug3=48&amp;rsv_sug1=42&amp;rsv_sug7=100&amp;rsv_sug2=0&amp;rsv_sug4=1373">单位换算</a>为准。</strong></p>
 <p><strong>长度</strong>：1毫=0.03毫米，1厘=0.33毫米，1分=3.33毫米，1寸=3.33厘米，1尺=33.3厘米，1丈=3.33米，1里=500米</p>
 <p><strong>质量</strong>：1钱=5克，1两=50克，1斤=500克，1担=50千克</p>
 <p><strong>面积</strong>：1分=66.6平方米，1亩=666.6平方米，1顷=66666平方米，1公亩=100平方米，1公顷=10000平方米</p>
-<span id="more"></span>
 <h1 id="Zeller"><a href="#Zeller" class="headerlink" title="Zeller"></a>Zeller</h1><p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E8%94%A1%E5%8B%92%E5%85%AC%E5%BC%8F/10491767">蔡勒（Zeller）公式</a>，是一个计算星期的公式，随便给一个日期，就能用这个公式推算出是星期几。</p>
 <h1 id="D-Star"><a href="#D-Star" class="headerlink" title="D-Star"></a>D-Star</h1><p><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/142721264">D*路径规划算法及python实现</a></p>
 <p>SoC里面用到的ATPG好像使用了D算法，不知道是不是这个。</p>
@@ -338,7 +500,7 @@
 
       <!--noindex-->
       <div class="post-toc-wrap sidebar-panel">
-          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">凯撒密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%A6%E9%87%8F%E8%A1%A1"><span class="nav-number">2.</span> <span class="nav-text">度量衡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zeller"><span class="nav-number">3.</span> <span class="nav-text">Zeller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-Star"><span class="nav-number">4.</span> <span class="nav-text">D-Star</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Checkerboard"><span class="nav-number">5.</span> <span class="nav-text">Checkerboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#March-Algo"><span class="nav-number">6.</span> <span class="nav-text">March Algo</span></a></li></ol></div>
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%87%AF%E6%92%92%E5%AF%86%E7%A0%81"><span class="nav-number">1.</span> <span class="nav-text">凯撒密码</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%B9%B4%E9%BE%84"><span class="nav-number">2.</span> <span class="nav-text">年龄</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%98%A5%E8%8A%82"><span class="nav-number">2.1.</span> <span class="nav-text">春节</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%BA%A6%E9%87%8F%E8%A1%A1"><span class="nav-number">3.</span> <span class="nav-text">度量衡</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Zeller"><span class="nav-number">4.</span> <span class="nav-text">Zeller</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#D-Star"><span class="nav-number">5.</span> <span class="nav-text">D-Star</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#Checkerboard"><span class="nav-number">6.</span> <span class="nav-text">Checkerboard</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#March-Algo"><span class="nav-number">7.</span> <span class="nav-text">March Algo</span></a></li></ol></div>
       </div>
       <!--/noindex-->
 
