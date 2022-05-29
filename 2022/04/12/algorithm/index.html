@@ -20,17 +20,17 @@
     var CONFIG = {"hostname":"njughr.github.io","root":"/","scheme":"Pisces","version":"7.8.0","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":true,"show_result":true,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}}};
   </script>
 
-  <meta name="description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：$\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor$。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌">
+  <meta name="description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：  年龄&#x3D;\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor  之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="算法笔记">
 <meta property="og:url" content="https://njughr.github.io/2022/04/12/algorithm/index.html">
 <meta property="og:site_name" content="GHR&#39;s Blog">
-<meta property="og:description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：$\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor$。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌">
+<meta property="og:description" content="算法学习笔记 凯撒密码 年龄年龄算法：这个算法得到的年龄可以用来量刑。计算方法：  年龄&#x3D;\lfloor (当前公历年月日-身份证生日-1)&#x2F;10000 \rfloor  之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://njughr.github.io/2022/04/12/algorithm/kAIsA.jpg">
 <meta property="og:image" content="https://njughr.github.io/2022/04/12/algorithm/xiaohan.jpg">
 <meta property="article:published_time" content="2022-04-12T12:15:13.000Z">
-<meta property="article:modified_time" content="2022-05-23T03:27:35.219Z">
+<meta property="article:modified_time" content="2022-05-28T10:53:36.000Z">
 <meta property="article:author" content="Haoran Geng">
 <meta property="article:tag" content="CS">
 <meta name="twitter:card" content="summary">
@@ -200,7 +200,7 @@
                   <i class="far fa-calendar-check"></i>
                 </span>
                 <span class="post-meta-item-text">更新于</span>
-                <time title="修改时间：2022-05-23 11:27:35" itemprop="dateModified" datetime="2022-05-23T11:27:35+08:00">2022-05-23</time>
+                <time title="修改时间：2022-05-28 18:53:36" itemprop="dateModified" datetime="2022-05-28T18:53:36+08:00">2022-05-28</time>
               </span>
             <span class="post-meta-item">
               <span class="post-meta-item-icon">
@@ -225,7 +225,9 @@
       
         <p><strong>算法学习笔记</strong></p>
 <h1 id="凯撒密码"><a href="#凯撒密码" class="headerlink" title="凯撒密码"></a>凯撒密码</h1><p><img src="/2022/04/12/algorithm/kAIsA.jpg" alt="kAIsA"></p>
-<h1 id="年龄"><a href="#年龄" class="headerlink" title="年龄"></a>年龄</h1><p><strong>年龄算法</strong>：这个算法得到的年龄可以用来量刑。计算方法：<strong>$\lfloor (当前公历年月日-身份证生日-1)/10000 \rfloor$</strong>。之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌晨0点开始，也就是说2012年1月3日即为已满12周岁。</p>
+<h1 id="年龄"><a href="#年龄" class="headerlink" title="年龄"></a>年龄</h1><p><strong>年龄算法</strong>：这个算法得到的年龄可以用来量刑。计算方法：</p>
+<script type="math/tex; mode=display">
+年龄=\lfloor (当前公历年月日-身份证生日-1)/10000 \rfloor</script><p>  之所以有个奇怪的$ -1 $，是因为法律出于人情放宽了一点点关于年龄计算的限制，并不是生日当天涨一岁，而是过完生日涨一岁。例如小明出生于2000年1月2日，至2012年1月2日，即12周岁生日当天，均属于未满12周岁。过完生日的第二天凌晨0点开始，也就是说2012年1月3日即为已满12周岁。</p>
 <span id="more"></span>
 <p><strong>样例</strong>：2022年5月23号，2004年5月22号及之前生日的满18岁（$\lfloor (20220523-20040522-1)/10000 \rfloor=18$），2004年5月23号及之后生日的未成年（$\lfloor (20220523-20040523-1)/10000 \rfloor=17$）。</p>
 <p><a target="_blank" rel="noopener" href="http://www.gov.cn/ziliao/flfg/2006-01/24/content_169194.htm">最高人民法院关于审理未成年人刑事案件具体应用法律若干问题的解释</a></p>
